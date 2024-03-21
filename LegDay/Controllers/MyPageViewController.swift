@@ -11,7 +11,8 @@ class MyPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemPink
+        print("MyPageVC")
         // Do any additional setup after loading the view.
     }
     

@@ -7,11 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
+    let homeView = HomeView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hello")
+        self.view.addSubview(homeView)
+        setupViewLayout(yourView: homeView)
+        
     }
 
 

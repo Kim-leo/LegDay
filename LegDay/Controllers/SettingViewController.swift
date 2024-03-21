@@ -11,7 +11,8 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemBlue
+        print("SettingVC")
         // Do any additional setup after loading the view.
     }
     

@@ -24,9 +24,9 @@ extension UIViewController {
     
     func setupViewLayout(yourView: UIView) {
         yourView.translatesAutoresizingMaskIntoConstraints = false
-        yourView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        yourView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         yourView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         yourView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        yourView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        yourView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 }

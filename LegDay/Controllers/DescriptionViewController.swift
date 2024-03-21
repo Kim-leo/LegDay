@@ -11,7 +11,7 @@ class DescriptionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("DescriptionVC")
         // Do any additional setup after loading the view.
     }
     
