@@ -12,6 +12,8 @@ class WorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("WorkoutVC")
+        self.view.backgroundColor = .systemYellow
+        tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
     }
     

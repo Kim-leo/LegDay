@@ -12,7 +12,7 @@ class TabBarVC: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let homeVC = HomeViewController()
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         let settingVC = SettingViewController()
         let myPageVC = MyPageViewController()
         
@@ -28,7 +28,8 @@ class TabBarVC: UITabBarController {
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
         tabBar.layer.borderWidth = 1
         
-        viewControllers = [homeVC, settingVC, myPageVC]
+        self.viewControllers = [homeVC, settingVC, myPageVC]
+        
         
     }
     

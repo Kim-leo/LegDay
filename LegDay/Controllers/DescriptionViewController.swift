@@ -11,8 +11,10 @@ class DescriptionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("DescriptionVC")
-        // Do any additional setup after loading the view.
+        self.title = "사용 설명"
+        self.view.backgroundColor = .white
+        tabBarController?.tabBar.isHidden = true
+        
     }
     
 
