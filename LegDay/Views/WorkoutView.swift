@@ -47,7 +47,7 @@ class WorkoutView: UIView {
             label.tag = i
             label.textAlignment = .center
             label.textColor = .white
-            label.font = UIFont.boldSystemFont(ofSize: 30)
+            label.font = UIFont.boldSystemFont(ofSize: 35)
             labels.append(label)
         }
         return labels

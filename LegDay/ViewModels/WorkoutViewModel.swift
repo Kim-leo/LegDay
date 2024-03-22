@@ -62,6 +62,12 @@ extension WorkoutViewModel {
         }
         
         view.workoutLabels[1].text = "\(workoutModel.howManyTimesNum) times"
+        
+        let fontSize = UIFont.boldSystemFont(ofSize: 18)
+        let attributedString = NSMutableAttributedString(string: view.workoutLabels[1].text ?? "")
+        
+        attributedString.addAttribute(.font, value: fontSize, range: (view.workoutLabels[1].text! as NSString).range(of: "times"))
+        view.workoutLabels[1].attributedText = attributedString
     }
     
     func distinguishTheShapeOfTheCard(_ view: WorkoutView) {

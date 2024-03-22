@@ -29,8 +29,8 @@ class TabBarVC: UITabBarController {
         tabBar.backgroundColor = .black
         tabBar.tintColor = Colors().redColor
         tabBar.unselectedItemTintColor = .lightGray
-        tabBar.layer.borderColor = UIColor.lightGray.cgColor
-        tabBar.layer.borderWidth = 1
+//        tabBar.layer.borderColor = UIColor.lightGray.cgColor
+//        tabBar.layer.borderWidth = 1
         
         self.viewControllers = [homeVC, settingVC, myPageVC]
         
