@@ -41,7 +41,7 @@ struct Colors {
     UIColor(red: 239, green: 239, blue: 222)
     ]
     
-    let darkBlack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.95)
+    let darkBlack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.9)
     let redColor: UIColor = UIColor(red: 240, green: 29, blue: 0, a: 1)
 }
 

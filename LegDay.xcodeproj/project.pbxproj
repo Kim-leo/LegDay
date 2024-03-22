@@ -33,6 +33,10 @@
 		E65D412D2BAC0791002585B0 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D412C2BAC0791002585B0 /* MyPageViewModel.swift */; };
 		E65D412F2BAC079B002585B0 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D412E2BAC079B002585B0 /* WorkoutViewModel.swift */; };
 		E65D41312BAC07A5002585B0 /* DescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D41302BAC07A5002585B0 /* DescriptionViewModel.swift */; };
+		E65D41352BAD8217002585B0 /* UpperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D41332BAD8217002585B0 /* UpperCell.swift */; };
+		E65D41362BAD8217002585B0 /* UpperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65D41342BAD8217002585B0 /* UpperCell.xib */; };
+		E65D41392BAD8223002585B0 /* LowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D41372BAD8223002585B0 /* LowerCell.swift */; };
+		E65D413A2BAD8223002585B0 /* LowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65D41382BAD8223002585B0 /* LowerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,10 @@
 		E65D412C2BAC0791002585B0 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		E65D412E2BAC079B002585B0 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		E65D41302BAC07A5002585B0 /* DescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewModel.swift; sourceTree = "<group>"; };
+		E65D41332BAD8217002585B0 /* UpperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCell.swift; sourceTree = "<group>"; };
+		E65D41342BAD8217002585B0 /* UpperCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpperCell.xib; sourceTree = "<group>"; };
+		E65D41372BAD8223002585B0 /* LowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerCell.swift; sourceTree = "<group>"; };
+		E65D41382BAD8223002585B0 /* LowerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowerCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +163,7 @@
 				E65D411E2BAC0121002585B0 /* HomeView.swift */,
 				E65D41242BAC073A002585B0 /* WorkoutView.swift */,
 				E65D41202BAC06D2002585B0 /* SettingView.swift */,
+				E65D41322BAD81E3002585B0 /* CollectionViewCells */,
 				E65D41222BAC0720002585B0 /* MyPageView.swift */,
 				E65D41262BAC074B002585B0 /* DescriptionView.swift */,
 			);
@@ -173,6 +182,17 @@
 				E65D411C2BABFF80002585B0 /* DescriptionViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E65D41322BAD81E3002585B0 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E65D41332BAD8217002585B0 /* UpperCell.swift */,
+				E65D41342BAD8217002585B0 /* UpperCell.xib */,
+				E65D41372BAD8223002585B0 /* LowerCell.swift */,
+				E65D41382BAD8223002585B0 /* LowerCell.xib */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +255,8 @@
 			files = (
 				E65D40FA2BABF649002585B0 /* Assets.xcassets in Resources */,
 				E65D40FD2BABF649002585B0 /* Base in Resources */,
+				E65D413A2BAD8223002585B0 /* LowerCell.xib in Resources */,
+				E65D41362BAD8217002585B0 /* UpperCell.xib in Resources */,
 				E65D40F82BABF648002585B0 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +280,7 @@
 				E65D40F12BABF648002585B0 /* AppDelegate.swift in Sources */,
 				E65D41212BAC06D2002585B0 /* SettingView.swift in Sources */,
 				E65D41112BABF795002585B0 /* WorkoutModel.swift in Sources */,
+				E65D41392BAD8223002585B0 /* LowerCell.swift in Sources */,
 				E65D410B2BABF744002585B0 /* ExtensionVC.swift in Sources */,
 				E65D41252BAC073A002585B0 /* WorkoutView.swift in Sources */,
 				E65D41232BAC0720002585B0 /* MyPageView.swift in Sources */,
@@ -268,6 +291,7 @@
 				E65D412D2BAC0791002585B0 /* MyPageViewModel.swift in Sources */,
 				E65D41192BABFC66002585B0 /* TabBarVC.swift in Sources */,
 				E65D410F2BABF784002585B0 /* CardModel.swift in Sources */,
+				E65D41352BAD8217002585B0 /* UpperCell.swift in Sources */,
 				E65D41132BABF7A6002585B0 /* ImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
