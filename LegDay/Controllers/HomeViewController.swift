@@ -20,9 +20,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(homeView)
-        
         setupViewLayout(yourView: homeView)
-        self.view.backgroundColor = .white
         homeView.startWorkoutBtn.addTarget(self, action: #selector(startWorkoutBtnTapped), for: .touchUpInside)
         homeView.descriptionBtn.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
     }

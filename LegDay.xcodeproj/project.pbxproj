@@ -138,9 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				E65D41282BAC0766002585B0 /* HomeViewModel.swift */,
+				E65D412E2BAC079B002585B0 /* WorkoutViewModel.swift */,
 				E65D412A2BAC0785002585B0 /* SettingViewModel.swift */,
 				E65D412C2BAC0791002585B0 /* MyPageViewModel.swift */,
-				E65D412E2BAC079B002585B0 /* WorkoutViewModel.swift */,
 				E65D41302BAC07A5002585B0 /* DescriptionViewModel.swift */,
 			);
 			path = ViewModels;
@@ -153,9 +153,9 @@
 				E65D40FB2BABF649002585B0 /* LaunchScreen.storyboard */,
 				E65D40F62BABF648002585B0 /* Main.storyboard */,
 				E65D411E2BAC0121002585B0 /* HomeView.swift */,
+				E65D41242BAC073A002585B0 /* WorkoutView.swift */,
 				E65D41202BAC06D2002585B0 /* SettingView.swift */,
 				E65D41222BAC0720002585B0 /* MyPageView.swift */,
-				E65D41242BAC073A002585B0 /* WorkoutView.swift */,
 				E65D41262BAC074B002585B0 /* DescriptionView.swift */,
 			);
 			path = Views;
@@ -167,9 +167,9 @@
 				E65D410A2BABF744002585B0 /* ExtensionVC.swift */,
 				E65D41182BABFC66002585B0 /* TabBarVC.swift */,
 				E65D40F42BABF648002585B0 /* HomeViewController.swift */,
+				E65D411A2BABFF5F002585B0 /* WorkoutViewController.swift */,
 				E65D41142BABF9E0002585B0 /* SettingViewController.swift */,
 				E65D41162BABF9EC002585B0 /* MyPageViewController.swift */,
-				E65D411A2BABFF5F002585B0 /* WorkoutViewController.swift */,
 				E65D411C2BABFF80002585B0 /* DescriptionViewController.swift */,
 			);
 			path = Controllers;

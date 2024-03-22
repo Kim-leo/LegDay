@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class HomeView: UIView {
-    
     lazy var legDayLabel: UILabel = {
         let label = UILabel()
         label.text = "Leg Day"
@@ -70,6 +69,6 @@ class HomeView: UIView {
         startWorkoutBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
         startWorkoutBtn.heightAnchor.constraint(equalTo: startWorkoutBtn.widthAnchor, multiplier: 0.68).isActive = true
         startWorkoutBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        startWorkoutBtn.topAnchor.constraint(equalTo: legDayLabel.bottomAnchor, constant: 100).isActive = true
+        startWorkoutBtn.topAnchor.constraint(equalTo: legDayLabel.bottomAnchor, constant: 50).isActive = true
     }
 }

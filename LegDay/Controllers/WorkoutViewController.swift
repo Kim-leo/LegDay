@@ -9,23 +9,24 @@ import UIKit
 
 class WorkoutViewController: UIViewController {
 
+    let workoutView = WorkoutView()
+    let viewModel = WorkoutViewModel(cardModel: CardModel(), workoutModel: WorkoutModel())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("WorkoutVC")
-        self.view.backgroundColor = .systemYellow
         tabBarController?.tabBar.isHidden = true
-        // Do any additional setup after loading the view.
+        self.view.addSubview(workoutView)
+        setupViewLayout(yourView: workoutView)
+
+        viewModel.componentsInitialSetting(workoutView)
+        workoutView.nextBtn.addTarget(self, action: #selector(nextBtnTappedAction), for: .touchUpInside)
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension WorkoutViewController {
+    @objc func nextBtnTappedAction(_ sender: UIButton) {
+        viewModel.nextBtnTapped(workoutView)
+        
     }
-    */
-
 }

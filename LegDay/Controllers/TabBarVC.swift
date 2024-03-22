@@ -16,11 +16,15 @@ class TabBarVC: UITabBarController {
         let settingVC = SettingViewController()
         let myPageVC = MyPageViewController()
         
-        homeVC.tabBarItem.title = "홈"
+
+        homeVC.tabBarItem.title = "운동 하기"
+        homeVC.tabBarItem.image = UIImage(systemName: "figure.strengthtraining.functional")
         
         settingVC.tabBarItem.title = "운동 설정"
+        settingVC.tabBarItem.image = UIImage(systemName: "figure.mind.and.body")
         
         myPageVC.tabBarItem.title = "마이 페이지"
+        myPageVC.tabBarItem.image = UIImage(systemName: "person.fill")
         
         tabBar.backgroundColor = .white
         tabBar.tintColor = .darkGray

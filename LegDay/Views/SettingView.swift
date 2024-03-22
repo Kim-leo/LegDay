@@ -14,8 +14,7 @@ class SettingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        self.addSubview(startWorkoutBtn)
-        self.backgroundColor = .white
+
         viewLayout()
     }
     
