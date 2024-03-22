@@ -14,6 +14,7 @@ class WorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         tabBarController?.tabBar.isHidden = true
         self.view.addSubview(workoutView)
         setupViewLayout(yourView: workoutView)

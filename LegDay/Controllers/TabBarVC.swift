@@ -26,9 +26,9 @@ class TabBarVC: UITabBarController {
         myPageVC.tabBarItem.title = "마이 페이지"
         myPageVC.tabBarItem.image = UIImage(systemName: "person.fill")
         
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .darkGray
-        tabBar.unselectedItemTintColor = .systemGray2
+        tabBar.backgroundColor = .black
+        tabBar.tintColor = Colors().redColor
+        tabBar.unselectedItemTintColor = .lightGray
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
         tabBar.layer.borderWidth = 1
         

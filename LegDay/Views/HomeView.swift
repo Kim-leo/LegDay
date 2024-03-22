@@ -14,16 +14,16 @@ class HomeView: UIView {
         label.text = "Leg Day"
         label.textAlignment = .center
         label.font = UIFont(name: "Menlo", size: 60)
-        label.textColor = .black
+        label.textColor = Colors().redColor
         return label
     }()
     
     lazy var startWorkoutBtn: UIButton = {
         let btn = UIButton()
-        btn.backgroundColor = .black
+        btn.backgroundColor = Colors().redColor
         btn.setTitle("운동 시작", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         btn.layer.cornerRadius = 20
         btn.clipsToBounds = true
         btn.isUserInteractionEnabled = true
@@ -32,8 +32,10 @@ class HomeView: UIView {
     
     lazy var descriptionBtn: UIButton = {
         let btn = UIButton()
-        btn.setImage(UIImage(systemName: "questionmark.circle"), for: .normal)
-        btn.tintColor = .darkGray
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .light)
+        let image = UIImage(systemName: "questionmark.circle", withConfiguration: imageConfig)
+        btn.setImage(image, for: .normal)
+        btn.tintColor = .white
         return btn
     }()
     
@@ -44,7 +46,7 @@ class HomeView: UIView {
         self.addSubview(legDayLabel)
         self.addSubview(startWorkoutBtn)
         self.addSubview(descriptionBtn)
-        self.backgroundColor = .white
+        self.backgroundColor = Colors().darkBlack
         viewLayout()
     }
     
@@ -67,7 +69,7 @@ class HomeView: UIView {
         
         startWorkoutBtn.translatesAutoresizingMaskIntoConstraints = false
         startWorkoutBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true
-        startWorkoutBtn.heightAnchor.constraint(equalTo: startWorkoutBtn.widthAnchor, multiplier: 0.68).isActive = true
+        startWorkoutBtn.heightAnchor.constraint(equalTo: startWorkoutBtn.widthAnchor, multiplier: 0.6).isActive = true
         startWorkoutBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         startWorkoutBtn.topAnchor.constraint(equalTo: legDayLabel.bottomAnchor, constant: 50).isActive = true
     }

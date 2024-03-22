@@ -18,12 +18,15 @@ class WorkoutView: UIView {
     
     lazy var cardCountLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         return label
     }()
     
     lazy var cardNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 25)
         return label
     }()
     
@@ -43,6 +46,8 @@ class WorkoutView: UIView {
             let label = UILabel()
             label.tag = i
             label.textAlignment = .center
+            label.textColor = .white
+            label.font = UIFont.boldSystemFont(ofSize: 30)
             labels.append(label)
         }
         return labels
@@ -52,8 +57,8 @@ class WorkoutView: UIView {
         let btn = UIButton()
         btn.setTitle("다음", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        btn.backgroundColor = .black
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        btn.backgroundColor = Colors().redColor
         btn.layer.cornerRadius = 20
         btn.clipsToBounds = true
         return btn
@@ -61,7 +66,7 @@ class WorkoutView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = Colors().darkBlack
         self.addSubview(cardImageView)
         self.addSubview(cardCountLabel)
         self.addSubview(cardNameLabel)

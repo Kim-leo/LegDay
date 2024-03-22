@@ -8,23 +8,16 @@
 import UIKit
 
 class SettingViewController: UIViewController {
+    
+    let settingView = SettingView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
-        print("SettingVC")
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        self.view.addSubview(settingView)
+        setupViewLayout(yourView: settingView)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -13,7 +13,7 @@ class SettingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        self.backgroundColor = Colors().darkBlack
 
         viewLayout()
     }

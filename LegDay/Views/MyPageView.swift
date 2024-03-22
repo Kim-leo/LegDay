@@ -13,7 +13,7 @@ class MyPageView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        self.backgroundColor = Colors().darkBlack
 //        self.addSubview(startWorkoutBtn)
         self.backgroundColor = .white
         viewLayout()

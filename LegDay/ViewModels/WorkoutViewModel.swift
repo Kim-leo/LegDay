@@ -29,11 +29,12 @@ class WorkoutViewModel {
 
 extension WorkoutViewModel {
     func componentsInitialSetting(_ view: WorkoutView) {
-        view.cardNameLabel.text = "운동 시작 클릭!"
+        view.cardNameLabel.text = "Let's go."
         view.workoutLabels[0].text = "화이팅"
-        view.workoutLabels[0].textColor = .black
+        view.workoutLabels[0].textColor = .white
         view.nextBtn.setTitle("시작", for: .normal)
-        view.nextBtn.backgroundColor = .systemBlue
+        view.nextBtn.setTitleColor(.white, for: .normal)
+        view.nextBtn.backgroundColor = Colors().redColor
         view.cardCountLabel.text = ""
     }
     
@@ -41,7 +42,7 @@ extension WorkoutViewModel {
         if pickedCard.hasPrefix("Heart") || pickedCard.hasPrefix("Diamond") {
             view.cardNameLabel.textColor = .systemRed
         } else {
-            view.cardNameLabel.textColor = .black
+            view.cardNameLabel.textColor = .white
         }
     }
     
@@ -91,20 +92,22 @@ extension WorkoutViewModel {
         
         if emptyArray.count == 52 {
             view.nextBtn.setTitle("마치기", for: .normal)
-            view.nextBtn.backgroundColor = .black
+            view.nextBtn.backgroundColor = .white
+            view.nextBtn.setTitleColor(Colors().darkBlack, for: .normal)
         }
     }
     
     func endOfWorkout(_ view: WorkoutView) {
         view.cardImageView.image = UIImage(named: "Joker")
-        view.cardNameLabel.text = "운동 끝!"
-        view.cardNameLabel.textColor = .systemBlue
-        view.workoutLabels[0].text = "축하해요~"
-        view.workoutLabels[0].textColor = .systemGreen
+        view.cardNameLabel.text = "운동 끝"
+        view.cardNameLabel.textColor = .white
+        view.workoutLabels[0].text = "Impressive!"
+        view.workoutLabels[0].textColor = .systemOrange
         view.workoutLabels[1].text = ""
         view.cardCountLabel.text = ""
         view.nextBtn.setTitle("한 번 더 하기", for: .normal)
-        view.nextBtn.backgroundColor = .black
+        view.nextBtn.setTitleColor(Colors().darkBlack, for: .normal)
+        view.nextBtn.backgroundColor = .systemOrange
         
         emptyArray.removeAll()
         cardSet = CardModel().cardSet
