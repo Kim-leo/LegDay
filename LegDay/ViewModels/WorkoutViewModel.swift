@@ -12,6 +12,7 @@ class WorkoutViewModel {
     let cardModel: CardModel
 //    var workoutModel: WorkoutModel
     
+    
     var workoutModel = WorkoutModel()
     
     var myWorkoutModel = MyWorkout.shared
