@@ -45,7 +45,18 @@ class UpperCell: UICollectionViewCell {
         typesOfWorkoutLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: 0.8).isActive = true
         
     }
+}
 
-    
-
+extension UpperCell {
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                typesOfWorkoutLabel.textColor = .white
+                typesOfWorkoutLabel.backgroundColor = Colors().redColor
+            } else {
+                typesOfWorkoutLabel.textColor = Colors().darkBlack
+                typesOfWorkoutLabel.backgroundColor = .white
+            }
+        }
+    }
 }

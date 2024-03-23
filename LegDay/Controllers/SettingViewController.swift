@@ -76,13 +76,24 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UpperCell", for: indexPath) as? UpperCell else { return UICollectionViewCell() }
             cell.typesOfWorkoutLabel.text = viewModel.typeOfWorkouts[indexPath.row]
-            cell.typesOfWorkoutLabel.backgroundColor = (indexPath.row == 0) ? Colors().redColor : .white
-            cell.typesOfWorkoutLabel.textColor = (indexPath.row == 0) ? .white : Colors().darkBlack
+            cell.isSelected = (indexPath.row == 0) ? true : false
+            if indexPath.item == 0 {
+                cell.isSelected = true
+                settingView.upperCollectinView.selectItem(at: indexPath,
+                animated: false, scrollPosition: .init())
+            }
+           
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.typesOfWorkoutLabel.text = viewModel.yourAllWorkoutsArray[indexPath.row]
             cell.typesOfWorkoutLabel.backgroundColor = (indexPath.row % 2 == 0) ? .white : .systemGray5
+            cell.isSelected = (indexPath.row == 0) ? true : false
+//            if indexPath.item == 0 {
+//                cell.isSelected = true
+//                settingView.lowerCollectinView.selectItem(at: indexPath,
+//                animated: false, scrollPosition: .init())
+//            }
             return cell
         default:
             return UICollectionViewCell()
@@ -117,9 +128,9 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                     viewModel.yourAllWorkoutsArray += Array(viewModel.workoutForCategories[indexPath.row])
                 }
                 settingView.lowerCollectinView.reloadData()
+                
             }
         case 1:
-            print(viewModel.yourAllWorkoutsArray[indexPath.row])
             switch viewModel.yourAllWorkoutsArray[indexPath.row] {
             case "+ 직접 입력":
                 viewModel.addWorkoutByYourself(view: settingView, vc: self)
@@ -130,12 +141,16 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                 viewModel.whichWorkout = viewModel.yourAllWorkoutsArray[indexPath.row]
 //                myView.pokerShapeBtns.map { $0.setTitle("\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
                 settingView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
+                
             }
+            
             
         default:
             break
         }
     }
+    
+    
     
 }
 

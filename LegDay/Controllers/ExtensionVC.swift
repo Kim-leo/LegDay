@@ -28,9 +28,11 @@ extension UIViewController {
     var rightBarBtn: UIBarButtonItem {
         get {
             let btn = UIBarButtonItem(title: "마이 운동에 저장", style: .plain, target: self, action: #selector(rightBarBtnTapped(_:)))
+            
             btn.tintColor = .lightGray
             return btn
         }
+        
     }
     
     @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {

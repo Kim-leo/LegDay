@@ -15,7 +15,7 @@ class TabBarVC: UITabBarController {
         let homeVC = UINavigationController(rootViewController: HomeViewController())
         let settingVC = UINavigationController(rootViewController: SettingViewController())
 //        let settingVC = SettingViewController()
-        let myPageVC = MyPageViewController()
+        let myPageVC = UINavigationController(rootViewController: MyPageViewController())
         
 
         homeVC.tabBarItem.title = "운동 하기"

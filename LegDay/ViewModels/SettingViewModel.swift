@@ -15,6 +15,7 @@ class SettingViewModel {
     var myWorkoutModel = MyWorkout.shared
     
     var selectedWorkoutPerPokerShapeArray = ["운동 1", "운동 2", "운동 3", "운동 4"]
+    var originalWorkoutArray = ["", "", "", ""]
     var typeOfWorkouts: [String] = ["전체", "상체", "하체", "맨몸", "유산소", "스트레칭"]
     var yourAllWorkoutsArray: [String] = ["+ 직접 입력"]
     
@@ -29,6 +30,8 @@ class SettingViewModel {
     
     var whichWorkout = ""
     var inputWorkout = ""
+    
+    
     
     init(workoutMode: WorkoutModel) {
         self.workoutModel = WorkoutModel()
@@ -47,6 +50,10 @@ extension SettingViewModel {
         
         view.categoryBtns.map {
             $0.setTitle("\(typeOfWorkouts[$0.tag])", for: .normal)
+        }
+        
+        view.setPokerShapeLabel.map {
+            $0.text = "\(originalWorkoutArray[$0.tag])"
         }
         
     }
@@ -98,5 +105,11 @@ extension SettingViewModel {
         myWorkoutModel.selectedWorkoutPerPokerShapeArray[sender.tag] = whichWorkout
         view.setPokerShapeLabel[sender.tag].text = whichWorkout
         
+        guard let cell = view.lowerCollectinView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: IndexPath()) as? LowerCell else { return }
+        cell.isSelected = false
+        view.lowerCollectinView.reloadData()
     }
+    
+    
+   
 }

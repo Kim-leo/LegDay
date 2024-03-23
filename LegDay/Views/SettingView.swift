@@ -282,6 +282,8 @@ class SettingView: UIView {
         stackViewVertical.alpha = 0
         verticalStackViewForSettingPokerShapes.alpha = 0
         
+        
+        
         viewLayout()
     }
     

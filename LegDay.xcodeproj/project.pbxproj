@@ -163,7 +163,7 @@
 				E65D411E2BAC0121002585B0 /* HomeView.swift */,
 				E65D41242BAC073A002585B0 /* WorkoutView.swift */,
 				E65D41202BAC06D2002585B0 /* SettingView.swift */,
-				E65D41322BAD81E3002585B0 /* CollectionViewCells */,
+				E65D41322BAD81E3002585B0 /* SettingViewCollectionViewCells */,
 				E65D41222BAC0720002585B0 /* MyPageView.swift */,
 				E65D41262BAC074B002585B0 /* DescriptionView.swift */,
 			);
@@ -184,7 +184,7 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		E65D41322BAD81E3002585B0 /* CollectionViewCells */ = {
+		E65D41322BAD81E3002585B0 /* SettingViewCollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				E65D41332BAD8217002585B0 /* UpperCell.swift */,
@@ -192,7 +192,7 @@
 				E65D41372BAD8223002585B0 /* LowerCell.swift */,
 				E65D41382BAD8223002585B0 /* LowerCell.xib */,
 			);
-			path = CollectionViewCells;
+			path = SettingViewCollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
