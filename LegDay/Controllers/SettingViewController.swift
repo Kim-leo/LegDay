@@ -13,6 +13,7 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationItem.rightBarButtonItem = self.rightBarBtn
         self.view.backgroundColor = .white
         self.view.addSubview(settingView)
         setupViewLayout(yourView: settingView)

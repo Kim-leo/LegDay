@@ -185,15 +185,67 @@ class SettingView: UIView {
             label.font = UIFont.systemFont(ofSize: 18)
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
+            
             labelArr.append(label)
         }
         return labelArr
     }()
     
+    lazy var setPokerShapeStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.backgroundColor = .systemGray6
+        sv.axis = .horizontal
+        sv.alignment = .center
+        sv.spacing = 5
+        sv.distribution = .fillEqually
+//        sv.alpha = 0.8
+        return sv
+    }()
+    
+    lazy var setPokerShapeEachView: [UIView] = {
+        var views = [UIView]()
+        for i in 0...3 {
+            let view = UIView()
+            views.append(view)
+        }
+        return views
+    }()
+    
+    lazy var setPokerShapeLabel: [UILabel] = {
+        var labels = [UILabel]()
+        for i in 0...3 {
+            let label = UILabel()
+            label.tag = i
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            label.text = ""
+            label.font = UIFont.systemFont(ofSize: 13)
+            label.adjustsFontSizeToFitWidth = true
+            label.minimumScaleFactor = 0.3
+            label.textColor = Colors().darkBlack
+            labels.append(label)
+        }
+        return labels
+    }()
+    
+    lazy var setPokerShapeImage: [UIImageView] = {
+        var imageViews = [UIImageView]()
+        let pokerShapeImages = ["suit.spade.fill", "diamond.fill", "heart.fill", "suit.club.fill"]
+        for i in 0...3 {
+            let iv = UIImageView()
+            iv.contentMode = .scaleAspectFit
+            iv.image = UIImage(systemName: pokerShapeImages[i])
+            iv.tintColor = (i % 3 == 0) ? .black : .red
+            imageViews.append(iv)
+        }
+        return imageViews
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
-        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes].map {
+        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes, setPokerShapeStackView].map {
             self.addSubview($0)
         }
         upperView.addSubview(upperCollectinView)
@@ -221,6 +273,10 @@ class SettingView: UIView {
         for i in 0...3 {
             pokerShapeViews[i].addSubview(pokerShapeBtns[i])
             pokerShapeViews[i].addSubview(pokerWorkoutNameLabels[i])
+            setPokerShapeStackView.addArrangedSubview(setPokerShapeEachView[i])
+            
+            setPokerShapeEachView[i].addSubview(setPokerShapeImage[i])
+            setPokerShapeEachView[i].addSubview(setPokerShapeLabel[i])
         }
         
         stackViewVertical.alpha = 0
@@ -247,11 +303,17 @@ class SettingView: UIView {
         upperCollectinView.trailingAnchor.constraint(equalTo: upperView.trailingAnchor, constant: -10).isActive = true
         upperCollectinView.bottomAnchor.constraint(equalTo: upperView.bottomAnchor).isActive = true
         
+        setPokerShapeStackView.translatesAutoresizingMaskIntoConstraints = false
+        setPokerShapeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        setPokerShapeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        setPokerShapeStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        setPokerShapeStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.08).isActive = true
+        
         lowerView.translatesAutoresizingMaskIntoConstraints = false
         lowerView.topAnchor.constraint(equalTo: upperView.bottomAnchor, constant: 5).isActive = true
         lowerView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         lowerView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        lowerView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        lowerView.bottomAnchor.constraint(equalTo: setPokerShapeStackView.topAnchor).isActive = true
         
         lowerCollectinView.translatesAutoresizingMaskIntoConstraints = false
         lowerCollectinView.topAnchor.constraint(equalTo: lowerView.topAnchor).isActive = true
@@ -278,6 +340,18 @@ class SettingView: UIView {
         verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
         
         for i in 0...3 {
+            setPokerShapeImage[i].translatesAutoresizingMaskIntoConstraints = false
+            setPokerShapeImage[i].topAnchor.constraint(equalTo: setPokerShapeEachView[i].topAnchor).isActive = true
+            setPokerShapeImage[i].leadingAnchor.constraint(equalTo: setPokerShapeEachView[i].leadingAnchor).isActive = true
+            setPokerShapeImage[i].trailingAnchor.constraint(equalTo: setPokerShapeEachView[i].trailingAnchor).isActive = true
+            setPokerShapeImage[i].heightAnchor.constraint(equalTo: setPokerShapeStackView.heightAnchor, multiplier: 0.6).isActive = true
+            
+            setPokerShapeLabel[i].translatesAutoresizingMaskIntoConstraints = false
+            setPokerShapeLabel[i].leadingAnchor.constraint(equalTo: setPokerShapeEachView[i].leadingAnchor).isActive = true
+            setPokerShapeLabel[i].trailingAnchor.constraint(equalTo: setPokerShapeEachView[i].trailingAnchor).isActive = true
+            setPokerShapeLabel[i].bottomAnchor.constraint(equalTo: setPokerShapeEachView[i].bottomAnchor).isActive = true
+            setPokerShapeLabel[i].topAnchor.constraint(equalTo: setPokerShapeImage[i].bottomAnchor).isActive = true
+            
             pokerShapeBtns[i].translatesAutoresizingMaskIntoConstraints = false
             pokerShapeBtns[i].leadingAnchor.constraint(equalTo: pokerShapeViews[i].leadingAnchor).isActive = true
             pokerShapeBtns[i].trailingAnchor.constraint(equalTo: pokerShapeViews[i].trailingAnchor).isActive = true

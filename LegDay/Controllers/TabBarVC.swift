@@ -13,7 +13,8 @@ class TabBarVC: UITabBarController {
         super.viewWillAppear(animated)
         
         let homeVC = UINavigationController(rootViewController: HomeViewController())
-        let settingVC = SettingViewController()
+        let settingVC = UINavigationController(rootViewController: SettingViewController())
+//        let settingVC = SettingViewController()
         let myPageVC = MyPageViewController()
         
 
@@ -23,7 +24,7 @@ class TabBarVC: UITabBarController {
         settingVC.tabBarItem.title = "운동 설정"
         settingVC.tabBarItem.image = UIImage(systemName: "figure.mind.and.body")
         
-        myPageVC.tabBarItem.title = "마이 페이지"
+        myPageVC.tabBarItem.title = "마이 운동"
         myPageVC.tabBarItem.image = UIImage(systemName: "person.fill")
         
         tabBar.backgroundColor = .black

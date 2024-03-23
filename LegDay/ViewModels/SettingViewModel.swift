@@ -96,6 +96,7 @@ extension SettingViewModel {
         
         selectedWorkoutPerPokerShapeArray[sender.tag] = whichWorkout
         myWorkoutModel.selectedWorkoutPerPokerShapeArray[sender.tag] = whichWorkout
+        view.setPokerShapeLabel[sender.tag].text = whichWorkout
         
     }
 }
