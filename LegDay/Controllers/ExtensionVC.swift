@@ -9,6 +9,14 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    
+//    var myWorkoutModel = MyWorkout.shared
+    var myWorkoutModel: MyWorkout {
+        get {
+            return MyWorkout.shared
+        }
+    }
+    
     var leftBarBtn: UIBarButtonItem {
         get {
             let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(leftBarBtnTapped(_:)))
@@ -30,7 +38,9 @@ extension UIViewController {
     }
     
     @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
-        print("현재 세트 저장 예정")
+        print(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
+        
+        
     }
     
     
