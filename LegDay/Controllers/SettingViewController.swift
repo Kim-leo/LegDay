@@ -81,7 +81,7 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.typesOfWorkoutLabel.text = viewModel.yourAllWorkoutsArray[indexPath.row]
-            
+            cell.typesOfWorkoutLabel.backgroundColor = (indexPath.row % 2 == 0) ? .white : .systemGray5
             return cell
         default:
             return UICollectionViewCell()
