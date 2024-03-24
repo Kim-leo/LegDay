@@ -198,7 +198,6 @@ class SettingView: UIView {
         sv.alignment = .center
         sv.spacing = 5
         sv.distribution = .fillEqually
-//        sv.alpha = 0.8
         return sv
     }()
     
