@@ -127,9 +127,10 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                 } else {
                     viewModel.yourAllWorkoutsArray += Array(viewModel.workoutForCategories[indexPath.row])
                 }
-                settingView.lowerCollectinView.reloadData()
-                
             }
+            guard let cell = settingView.lowerCollectinView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: IndexPath()) as? LowerCell else { return }
+            cell.isSelected = false
+            settingView.lowerCollectinView.reloadData()
         case 1:
             switch viewModel.yourAllWorkoutsArray[indexPath.row] {
             case "+ 직접 입력":
