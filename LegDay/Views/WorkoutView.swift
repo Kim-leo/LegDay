@@ -109,8 +109,8 @@ class WorkoutView: UIView {
         
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
         nextBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nextBtn.topAnchor.constraint(equalTo: workoutLabelStackView.bottomAnchor, constant: 50).isActive = true
-        nextBtn.widthAnchor.constraint(equalTo: cardImageView.widthAnchor).isActive = true
+        nextBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         nextBtn.heightAnchor.constraint(equalTo: nextBtn.widthAnchor, multiplier: 0.4).isActive = true
+        nextBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -100).isActive = true
     }
 }

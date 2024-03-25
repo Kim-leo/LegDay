@@ -9,11 +9,6 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-//    var myWorkoutModel: MyWorkout {
-//        get {
-//            return MyWorkout.shared
-//        }
-//    }
     
 
     

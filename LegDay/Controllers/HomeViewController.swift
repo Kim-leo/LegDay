@@ -28,8 +28,9 @@ class HomeViewController: UIViewController {
 
     
     @objc func startWorkoutBtnTapped(_ sender: UIButton) {
-        let workoutVC = WorkoutViewController()
-        navigationController?.pushViewController(workoutVC, animated: true)
+        let selectVC = SelectWorkoutViewController()
+        
+        navigationController?.pushViewController(selectVC, animated: true)
     }
     
     @objc func descriptionBtnTapped(_ sender: UIButton) {

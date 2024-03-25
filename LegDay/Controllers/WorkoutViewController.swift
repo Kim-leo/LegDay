@@ -44,12 +44,11 @@ class WorkoutViewController: UIViewController {
 
 extension WorkoutViewController {
     @objc func workoutVCleftBarBtnTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "운동 그만하기", message: "포기는 배추를 셀 때나 쓰는 법...", preferredStyle: .alert)
-        
+        let alert = UIAlertController(title: "운동 그만하기", message: "", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "그만하고 나가기", style: .default) { [self] (ok) in
             self.navigationController?.popViewController(animated: true)
         }
-        let cancel = UIAlertAction(title: "마저 끝내기", style: .cancel) { (cancel) in }
+        let cancel = UIAlertAction(title: "계속하기", style: .cancel) { (cancel) in }
         alert.addAction(yesAction)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)

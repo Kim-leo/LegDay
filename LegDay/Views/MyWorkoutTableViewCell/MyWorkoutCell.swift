@@ -18,7 +18,6 @@ class MyWorkoutCell: UITableViewCell {
 
     lazy var setPokerShapeStackView: UIStackView = {
         let sv = UIStackView()
-        sv.backgroundColor = .systemGray6
         sv.axis = .horizontal
         sv.alignment = .center
         sv.spacing = 5
@@ -70,6 +69,7 @@ class MyWorkoutCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.backgroundColor = .white
         self.contentView.addSubview(workoutTitleLabel)
         self.contentView.addSubview(setPokerShapeStackView)
         for i in 0...3 {

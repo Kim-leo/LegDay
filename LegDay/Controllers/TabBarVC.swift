@@ -14,7 +14,6 @@ class TabBarVC: UITabBarController {
         
         let homeVC = UINavigationController(rootViewController: HomeViewController())
         let settingVC = UINavigationController(rootViewController: SettingViewController())
-//        let settingVC = SettingViewController()
         let myPageVC = UINavigationController(rootViewController: MyPageViewController())
         
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -35,27 +34,18 @@ class TabBarVC: UITabBarController {
         tabBar.tintColor = Colors().redColor
         tabBar.unselectedItemTintColor = .lightGray
         tabBar.isTranslucent = false
-        
+
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithTransparentBackground()
         tabBar.standardAppearance = tabBarAppearance
         tabBar.scrollEdgeAppearance = tabBarAppearance
-        
-        
-        
         self.viewControllers = [homeVC, settingVC, myPageVC]
-        
-        
+
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
-    
-
-   
-
 }

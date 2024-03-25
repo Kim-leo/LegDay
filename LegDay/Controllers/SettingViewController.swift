@@ -102,13 +102,9 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.typesOfWorkoutLabel.text = viewModel.yourAllWorkoutsArray[indexPath.row]
-            cell.typesOfWorkoutLabel.backgroundColor = (indexPath.row % 2 == 0) ? .white : .systemGray5
-            cell.isSelected = (indexPath.row == 0) ? true : false
-//            if indexPath.item == 0 {
-//                cell.isSelected = true
-//                settingView.lowerCollectinView.selectItem(at: indexPath,
-//                animated: false, scrollPosition: .init())
-//            }
+            cell.typesOfWorkoutLabel.backgroundColor = (indexPath.row % 2 == 0) ? .white : .systemGray4
+//            cell.isSelected = (indexPath.row == 0) ? true : false
+
             return cell
         default:
             return UICollectionViewCell()

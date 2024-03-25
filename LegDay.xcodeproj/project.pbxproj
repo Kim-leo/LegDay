@@ -39,6 +39,9 @@
 		E65D413A2BAD8223002585B0 /* LowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65D41382BAD8223002585B0 /* LowerCell.xib */; };
 		E6B048032BB0AA6600C23D70 /* MyWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6B048022BB0AA6600C23D70 /* MyWorkoutCell.xib */; };
 		E6B048042BB0AA6600C23D70 /* MyWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B048012BB0AA6600C23D70 /* MyWorkoutCell.swift */; };
+		E6B0480A2BB197D600C23D70 /* SelectWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B048092BB197D600C23D70 /* SelectWorkoutViewController.swift */; };
+		E6B0480C2BB197F900C23D70 /* SelectWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B0480B2BB197F900C23D70 /* SelectWorkoutView.swift */; };
+		E6B0480E2BB1980600C23D70 /* SelectWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B0480D2BB1980600C23D70 /* SelectWorkoutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		E65D41382BAD8223002585B0 /* LowerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowerCell.xib; sourceTree = "<group>"; };
 		E6B048012BB0AA6600C23D70 /* MyWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutCell.swift; sourceTree = "<group>"; };
 		E6B048022BB0AA6600C23D70 /* MyWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWorkoutCell.xib; sourceTree = "<group>"; };
+		E6B048092BB197D600C23D70 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWorkoutViewController.swift; sourceTree = "<group>"; };
+		E6B0480B2BB197F900C23D70 /* SelectWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWorkoutView.swift; sourceTree = "<group>"; };
+		E6B0480D2BB1980600C23D70 /* SelectWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWorkoutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				E65D41282BAC0766002585B0 /* HomeViewModel.swift */,
+				E6B0480D2BB1980600C23D70 /* SelectWorkoutViewModel.swift */,
 				E65D412E2BAC079B002585B0 /* WorkoutViewModel.swift */,
 				E65D412A2BAC0785002585B0 /* SettingViewModel.swift */,
 				E65D412C2BAC0791002585B0 /* MyPageViewModel.swift */,
@@ -165,6 +172,7 @@
 				E65D40FB2BABF649002585B0 /* LaunchScreen.storyboard */,
 				E65D40F62BABF648002585B0 /* Main.storyboard */,
 				E65D411E2BAC0121002585B0 /* HomeView.swift */,
+				E6B0480B2BB197F900C23D70 /* SelectWorkoutView.swift */,
 				E65D41242BAC073A002585B0 /* WorkoutView.swift */,
 				E65D41202BAC06D2002585B0 /* SettingView.swift */,
 				E65D41322BAD81E3002585B0 /* SettingViewCollectionViewCells */,
@@ -181,6 +189,7 @@
 				E65D410A2BABF744002585B0 /* ExtensionVC.swift */,
 				E65D41182BABFC66002585B0 /* TabBarVC.swift */,
 				E65D40F42BABF648002585B0 /* HomeViewController.swift */,
+				E6B048092BB197D600C23D70 /* SelectWorkoutViewController.swift */,
 				E65D411A2BABFF5F002585B0 /* WorkoutViewController.swift */,
 				E65D41142BABF9E0002585B0 /* SettingViewController.swift */,
 				E65D41162BABF9EC002585B0 /* MyPageViewController.swift */,
@@ -286,6 +295,7 @@
 				E65D41292BAC0766002585B0 /* HomeViewModel.swift in Sources */,
 				E65D411B2BABFF5F002585B0 /* WorkoutViewController.swift in Sources */,
 				E65D41312BAC07A5002585B0 /* DescriptionViewModel.swift in Sources */,
+				E6B0480E2BB1980600C23D70 /* SelectWorkoutViewModel.swift in Sources */,
 				E65D411F2BAC0121002585B0 /* HomeView.swift in Sources */,
 				E65D40F52BABF648002585B0 /* HomeViewController.swift in Sources */,
 				E65D41272BAC074B002585B0 /* DescriptionView.swift in Sources */,
@@ -299,11 +309,13 @@
 				E65D410B2BABF744002585B0 /* ExtensionVC.swift in Sources */,
 				E65D41252BAC073A002585B0 /* WorkoutView.swift in Sources */,
 				E65D41232BAC0720002585B0 /* MyPageView.swift in Sources */,
+				E6B0480C2BB197F900C23D70 /* SelectWorkoutView.swift in Sources */,
 				E65D41172BABF9EC002585B0 /* MyPageViewController.swift in Sources */,
 				E6B048042BB0AA6600C23D70 /* MyWorkoutCell.swift in Sources */,
 				E65D41152BABF9E0002585B0 /* SettingViewController.swift in Sources */,
 				E65D412B2BAC0785002585B0 /* SettingViewModel.swift in Sources */,
 				E65D40F32BABF648002585B0 /* SceneDelegate.swift in Sources */,
+				E6B0480A2BB197D600C23D70 /* SelectWorkoutViewController.swift in Sources */,
 				E65D412D2BAC0791002585B0 /* MyPageViewModel.swift in Sources */,
 				E65D41192BABFC66002585B0 /* TabBarVC.swift in Sources */,
 				E65D410F2BABF784002585B0 /* CardModel.swift in Sources */,
