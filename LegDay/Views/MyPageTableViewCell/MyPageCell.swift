@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyWorkoutCell: UITableViewCell {
+class MyPageCell: UITableViewCell {
     
     lazy var workoutTitleLabel: UILabel = {
         let label = UILabel()
@@ -65,6 +65,8 @@ class MyWorkoutCell: UITableViewCell {
         }
         return labels
     }()
+    
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
