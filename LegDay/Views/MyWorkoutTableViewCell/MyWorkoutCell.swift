@@ -50,14 +50,14 @@ class MyWorkoutCell: UITableViewCell {
     
     lazy var setPokerShapeLabel: [UILabel] = {
         var labels = [UILabel]()
-        let sampleData2 = ["Spade", "Diamond", "Heart", "Clover"]
+        let shapeImageArray = ["Spade", "Diamond", "Heart", "Clover"]
         for i in 0...3 {
             let label = UILabel()
             label.tag = i
             label.textAlignment = .center
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
-            label.text = "\(sampleData2[i])"
+            label.text = "\(shapeImageArray[i])"
             label.font = UIFont.systemFont(ofSize: 13)
             label.adjustsFontSizeToFitWidth = true
             label.minimumScaleFactor = 0.3

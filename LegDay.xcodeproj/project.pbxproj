@@ -39,7 +39,6 @@
 		E65D413A2BAD8223002585B0 /* LowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65D41382BAD8223002585B0 /* LowerCell.xib */; };
 		E6B048032BB0AA6600C23D70 /* MyWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6B048022BB0AA6600C23D70 /* MyWorkoutCell.xib */; };
 		E6B048042BB0AA6600C23D70 /* MyWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B048012BB0AA6600C23D70 /* MyWorkoutCell.swift */; };
-		E6B048062BB13B4000C23D70 /* ExtensionNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B048052BB13B4000C23D70 /* ExtensionNavBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +76,6 @@
 		E65D41382BAD8223002585B0 /* LowerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowerCell.xib; sourceTree = "<group>"; };
 		E6B048012BB0AA6600C23D70 /* MyWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWorkoutCell.swift; sourceTree = "<group>"; };
 		E6B048022BB0AA6600C23D70 /* MyWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWorkoutCell.xib; sourceTree = "<group>"; };
-		E6B048052BB13B4000C23D70 /* ExtensionNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNavBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				E65D410A2BABF744002585B0 /* ExtensionVC.swift */,
-				E6B048052BB13B4000C23D70 /* ExtensionNavBar.swift */,
 				E65D41182BABFC66002585B0 /* TabBarVC.swift */,
 				E65D40F42BABF648002585B0 /* HomeViewController.swift */,
 				E65D411A2BABFF5F002585B0 /* WorkoutViewController.swift */,
@@ -295,7 +292,6 @@
 				E65D411D2BABFF80002585B0 /* DescriptionViewController.swift in Sources */,
 				E65D412F2BAC079B002585B0 /* WorkoutViewModel.swift in Sources */,
 				E65D410D2BABF764002585B0 /* ExtensionView.swift in Sources */,
-				E6B048062BB13B4000C23D70 /* ExtensionNavBar.swift in Sources */,
 				E65D40F12BABF648002585B0 /* AppDelegate.swift in Sources */,
 				E65D41212BAC06D2002585B0 /* SettingView.swift in Sources */,
 				E65D41112BABF795002585B0 /* WorkoutModel.swift in Sources */,

@@ -9,5 +9,16 @@ import Foundation
 import UIKit
 
 class MyPageViewModel {
+    static let shared = MyPageViewModel()
+    
+    var myWorkoutModel = MyWorkout.shared
+    var myWorkoutsTitles = [String]()
+    var myWorkoutsList = [[String]]()
+    
+    func updateTableViewCell(_ view: MyPageView) {
+        myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
+        myWorkoutsList = myWorkoutModel.myWorkoutsList
+    }
+    
     
 }

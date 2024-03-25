@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SettingViewModel {
-    static let shared = SettingViewModel(workoutMode: WorkoutModel())
+    static let shared = SettingViewModel(workoutModel: WorkoutModel())
     
     var workoutModel = WorkoutModel()
     var myWorkoutModel = MyWorkout.shared
@@ -33,7 +33,7 @@ class SettingViewModel {
     
     
     
-    init(workoutMode: WorkoutModel) {
+    init(workoutModel: WorkoutModel) {
         self.workoutModel = WorkoutModel()
     }
     
@@ -110,6 +110,27 @@ extension SettingViewModel {
         view.lowerCollectinView.reloadData()
     }
     
+    func rightBarBtnTap(_ vc: SettingViewController) {
+        // 추후 커스텀 디자인 예정
+        let alert = UIAlertController(title: "이름 설정", message: "나만의 운동 세트에 이름을 만들어봐요!", preferredStyle: .alert)
+        alert.addTextField{ (myTextField) in
+            myTextField.placeholder = "생략 가능"
+            myTextField.autocorrectionType = .no
+            myTextField.spellCheckingType = .no
+        }
+        let saveAction = UIAlertAction(title: "저장", style: .default) { [self] (ok) in
+            myWorkoutModel.myWorkoutTitles.append(alert.textFields?[0].text ?? "")
+            myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
+        alert.addAction(saveAction)
+        alert.addAction(cancel)
+        vc.present(alert, animated: true, completion: nil)
+        
+        
+        
+        
+    }
     
    
 }

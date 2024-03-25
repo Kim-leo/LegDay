@@ -11,6 +11,17 @@ class SettingViewController: UIViewController {
     let settingView = SettingView()
     let viewModel = SettingViewModel.shared
 
+    var rightBarBtn: UIBarButtonItem {
+        get {
+            let btn = UIBarButtonItem(title: "마이 운동에 저장", style: .plain, target: self, action: #selector(rightBarBtnTapped(_:)))
+            
+            btn.tintColor = .lightGray
+            return btn
+        }
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
@@ -33,11 +44,16 @@ class SettingViewController: UIViewController {
         settingView.pokerShapeBtns.map {
             $0.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
         }
+        
     }
 }
 
 
 extension SettingViewController {
+    @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
+        viewModel.rightBarBtnTap(self)
+    }
+    
     @objc func categoryBtnTapped(_ sender: UIButton) {
         viewModel.workoutForCategories[sender.tag].append(viewModel.inputWorkout)
         viewModel.categoryBtnTapped(view: settingView)
