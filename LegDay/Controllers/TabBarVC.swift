@@ -17,6 +17,10 @@ class TabBarVC: UITabBarController {
 //        let settingVC = SettingViewController()
         let myPageVC = UINavigationController(rootViewController: MyPageViewController())
         
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithTransparentBackground()
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 
         homeVC.tabBarItem.title = "운동 하기"
         homeVC.tabBarItem.image = UIImage(systemName: "figure.strengthtraining.functional")
@@ -30,8 +34,14 @@ class TabBarVC: UITabBarController {
         tabBar.backgroundColor = .black
         tabBar.tintColor = Colors().redColor
         tabBar.unselectedItemTintColor = .lightGray
-//        tabBar.layer.borderColor = UIColor.lightGray.cgColor
-//        tabBar.layer.borderWidth = 1
+        tabBar.isTranslucent = false
+        
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithTransparentBackground()
+        tabBar.standardAppearance = tabBarAppearance
+        tabBar.scrollEdgeAppearance = tabBarAppearance
+        
+        
         
         self.viewControllers = [homeVC, settingVC, myPageVC]
         

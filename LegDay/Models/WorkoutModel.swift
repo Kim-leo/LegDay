@@ -22,4 +22,5 @@ class MyWorkout {
     
     var selectedWorkoutPerPokerShapeArray: [String] = ["운동 1", "운동 2", "운동 3", "운동 4"]
     
+    var myWorkoutsList = [[String]]()
 }

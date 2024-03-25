@@ -9,9 +9,16 @@ import Foundation
 import UIKit
 
 class MyPageView: UIView {
+    lazy var viewForTableView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
+    
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
         tv.register(MyWorkoutCell.self, forCellReuseIdentifier: "MyWorkoutCell")
+        tv.backgroundColor = .clear
         return tv
     }()
     
@@ -19,7 +26,8 @@ class MyPageView: UIView {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
         
-        self.addSubview(myWorkoutTableView)
+        self.addSubview(viewForTableView)
+        viewForTableView.addSubview(myWorkoutTableView)
         viewLayout()
     }
     
@@ -28,10 +36,16 @@ class MyPageView: UIView {
     }
     
     func viewLayout() {
+        viewForTableView.translatesAutoresizingMaskIntoConstraints = false
+        viewForTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        viewForTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        viewForTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        viewForTableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         myWorkoutTableView.translatesAutoresizingMaskIntoConstraints = false
-        myWorkoutTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        myWorkoutTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        myWorkoutTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        myWorkoutTableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        myWorkoutTableView.topAnchor.constraint(equalTo: viewForTableView.topAnchor).isActive = true
+        myWorkoutTableView.leadingAnchor.constraint(equalTo: viewForTableView.leadingAnchor).isActive = true
+        myWorkoutTableView.trailingAnchor.constraint(equalTo: viewForTableView.trailingAnchor).isActive = true
+        myWorkoutTableView.bottomAnchor.constraint(equalTo: viewForTableView.bottomAnchor).isActive = true
     }
 }

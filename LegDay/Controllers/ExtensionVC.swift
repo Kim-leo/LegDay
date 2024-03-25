@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    
-//    var myWorkoutModel = MyWorkout.shared
     var myWorkoutModel: MyWorkout {
         get {
             return MyWorkout.shared
@@ -20,7 +18,7 @@ extension UIViewController {
     var leftBarBtn: UIBarButtonItem {
         get {
             let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(leftBarBtnTapped(_:)))
-            btn.tintColor = .darkGray
+            btn.tintColor = .lightGray
             return btn
         }
     }
@@ -41,10 +39,7 @@ extension UIViewController {
     
     @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
         print(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
-        
-        
     }
-    
     
     func setupViewLayout(yourView: UIView) {
         yourView.translatesAutoresizingMaskIntoConstraints = false

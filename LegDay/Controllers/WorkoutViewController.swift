@@ -12,10 +12,19 @@ class WorkoutViewController: UIViewController {
     let workoutView = WorkoutView()
     let viewModel = WorkoutViewModel(cardModel: CardModel(), workoutModel: WorkoutModel())
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.leftBarButtonItem = self.leftBarBtn
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        tabBarController?.tabBar.isHidden = true
+        
         self.view.addSubview(workoutView)
         setupViewLayout(yourView: workoutView)
 
