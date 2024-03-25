@@ -9,26 +9,13 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    var myWorkoutModel: MyWorkout {
-        get {
-            return MyWorkout.shared
-        }
-    }
+//    var myWorkoutModel: MyWorkout {
+//        get {
+//            return MyWorkout.shared
+//        }
+//    }
     
-    var leftBarBtn: UIBarButtonItem {
-        get {
-            let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(leftBarBtnTapped(_:)))
-            btn.tintColor = .lightGray
-            return btn
-        }
-    }
-    
-    
-    @objc func leftBarBtnTapped(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    
+
     
     func setupViewLayout(yourView: UIView) {
         yourView.translatesAutoresizingMaskIntoConstraints = false

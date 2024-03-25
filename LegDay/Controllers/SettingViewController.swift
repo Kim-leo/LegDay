@@ -18,7 +18,6 @@ class SettingViewController: UIViewController {
             btn.tintColor = .lightGray
             return btn
         }
-        
     }
     
     

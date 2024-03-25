@@ -9,6 +9,8 @@ import UIKit
 
 class DescriptionViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "사용 설명"
