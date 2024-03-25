@@ -22,16 +22,23 @@ class SelectWorkoutView: UIView {
     
     lazy var viewForTableView: UIView = {
         let view = UIView()
-        
+        view.backgroundColor = .lightGray
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 1
         return view
     }()
     
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
         tv.register(MyWorkoutCell.self, forCellReuseIdentifier: "MyWorkoutCell")
-        tv.layer.masksToBounds = true
-        tv.layer.cornerRadius = 10
-        tv.backgroundColor = .black
+//        tv.layer.masksToBounds = true
+//        tv.layer.cornerRadius = 10
+//        tv.layer.borderWidth = 1
+//        tv.layer.borderColor = UIColor.lightGray.cgColor
+        tv.backgroundColor = Colors().softBlack
+        
         return tv
     }()
     
