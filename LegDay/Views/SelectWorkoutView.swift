@@ -32,7 +32,7 @@ class SelectWorkoutView: UIView {
     
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
-        tv.register(MyWorkoutCell.self, forCellReuseIdentifier: "MyWorkoutCell")
+        tv.register(SelectWorkoutCell.self, forCellReuseIdentifier: "SelectWorkoutCell")
 //        tv.layer.masksToBounds = true
 //        tv.layer.cornerRadius = 10
 //        tv.layer.borderWidth = 1
@@ -68,6 +68,8 @@ class SelectWorkoutView: UIView {
     required init?(coder: NSCoder) {
         fatalError("뷰 초기화 에러 발생")
     }
+    
+    
     
     func viewLayout() {
         guideLabel.translatesAutoresizingMaskIntoConstraints = false

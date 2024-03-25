@@ -17,7 +17,7 @@ class MyPageView: UIView {
     
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
-        tv.register(MyWorkoutCell.self, forCellReuseIdentifier: "MyWorkoutCell")
+        tv.register(MyPageCell.self, forCellReuseIdentifier: "MyPageCell")
         tv.backgroundColor = .clear
         return tv
     }()

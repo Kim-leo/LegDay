@@ -25,4 +25,5 @@ class MyWorkout {
     var myWorkoutsList = [[String]]()
     var myWorkoutTitles = [String]()
     
+    
 }

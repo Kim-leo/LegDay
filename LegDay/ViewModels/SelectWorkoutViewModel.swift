@@ -15,6 +15,8 @@ class SelectWorkoutViewModel {
     var myWorkoutsTitles = [String]()
     var myWorkoutsList = [[String]]()
     
+   
+    
     func updateTableViewCell(_ view: SelectWorkoutView) {
         myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
         myWorkoutsList = myWorkoutModel.myWorkoutsList

@@ -25,6 +25,7 @@ class SelectWorkoutViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         
+        
         viewModel.updateTableViewCell(selectWorkoutView)
         selectWorkoutView.myWorkoutTableView.reloadData()
         
@@ -40,6 +41,7 @@ class SelectWorkoutViewController: UIViewController {
         selectWorkoutView.myWorkoutTableView.dataSource = self
         
         selectWorkoutView.nextBtn.addTarget(self, action: #selector(nextBtnTapped), for: .touchUpInside)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,7 +68,7 @@ extension SelectWorkoutViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyWorkoutCell", for: indexPath) as? MyWorkoutCell else { return .init() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectWorkoutCell", for: indexPath) as? SelectWorkoutCell else { return .init() }
         cell.workoutTitleLabel.text = "\(viewModel.myWorkoutsTitles[indexPath.row])"
         for i in 0...3 {
             cell.setPokerShapeLabel[i].text = "\(viewModel.myWorkoutsList[indexPath.row][i])"

@@ -15,6 +15,7 @@ class MyPageViewController: UIViewController  {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         viewModel.updateTableViewCell(myPageView)
         myPageView.myWorkoutTableView.reloadData()
         
@@ -30,7 +31,7 @@ class MyPageViewController: UIViewController  {
         myPageView.myWorkoutTableView.delegate = self
         myPageView.myWorkoutTableView.dataSource = self
         
-        print(viewModel.myWorkoutsList)
+        
     }
     
 }
@@ -41,7 +42,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyWorkoutCell", for: indexPath) as? MyWorkoutCell else { return .init() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageCell", for: indexPath) as? MyPageCell else { return .init() }
         cell.workoutTitleLabel.text = "\(viewModel.myWorkoutsTitles[indexPath.row])"
         for i in 0...3 {
             cell.setPokerShapeLabel[i].text = "\(viewModel.myWorkoutsList[indexPath.row][i])"
