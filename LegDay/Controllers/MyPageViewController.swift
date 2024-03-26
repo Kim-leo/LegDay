@@ -38,6 +38,7 @@ class MyPageViewController: UIViewController  {
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return viewModel.myWorkoutsList.count
     }
     
@@ -59,4 +60,36 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (action, view, completion) in
+            print("셀 삭제")
+            
+            completion(true)
+        }
+        deleteAction.backgroundColor = Colors().softRedColor
+        deleteAction.image = UIImage(systemName: "trash")
+        
+        let editAction = UIContextualAction(style: .normal, title: "편집") { (action, view, completion) in
+            print("셀 편집")
+            
+            completion(true)
+        }
+        editAction.backgroundColor = .darkGray
+        editAction.image = UIImage(systemName: "pencil")
+        
+        let workoutRightNowAction = UIContextualAction(style: .normal, title: "바로 운동하기") { (action, view, completion) in
+            print("셀 운동 바로 하기")
+            
+            completion(true)
+        }
+        workoutRightNowAction.backgroundColor = Colors().darkBlack
+        workoutRightNowAction.image = UIImage(systemName: "figure.strengthtraining.functional")
+
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction, workoutRightNowAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
+    }
+    
+    
 }

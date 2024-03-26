@@ -44,6 +44,8 @@ struct Colors {
     let darkBlack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.9)
     let softBlack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.85)
     let redColor: UIColor = UIColor(red: 240, green: 29, blue: 0, a: 1)
+    let softRedColor: UIColor = UIColor(red: 240, green: 29, blue: 0, a: 0.8)
+    
 }
 
 extension String {

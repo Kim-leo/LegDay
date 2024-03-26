@@ -11,14 +11,14 @@ import UIKit
 class MyPageView: UIView {
     lazy var viewForTableView: UIView = {
         let view = UIView()
-        
+        view.backgroundColor = .white
         return view
     }()
     
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
         tv.register(MyPageCell.self, forCellReuseIdentifier: "MyPageCell")
-        tv.backgroundColor = .clear
+        tv.backgroundColor = Colors().softBlack
         return tv
     }()
     
