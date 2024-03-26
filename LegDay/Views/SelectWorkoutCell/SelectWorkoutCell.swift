@@ -56,7 +56,7 @@ class SelectWorkoutCell: UITableViewCell {
             label.numberOfLines = 0
             label.lineBreakMode = .byWordWrapping
             label.text = "\(shapeImageArray[i])"
-            label.font = UIFont.systemFont(ofSize: 13)
+            label.font = UIFont.systemFont(ofSize: 10)
             label.adjustsFontSizeToFitWidth = true
             label.minimumScaleFactor = 0.3
             label.textColor = (i % 3 == 0) ? .black : .red

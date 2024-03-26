@@ -26,4 +26,5 @@ class MyWorkout {
     var myWorkoutTitles = [String]()
     
     var selectedWorkoutInSelectWorkoutVC = [String]()
+    var selectedWorkoutTitleInSelectWorkoutVC = String()
 }

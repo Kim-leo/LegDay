@@ -16,10 +16,8 @@ class SelectWorkoutViewModel {
     var myWorkoutsList = [[String]]()
     
     func selectWorkoutAndReadyToLoadOnWorkoutVC(_ view: SelectWorkoutView, indexPath: IndexPath) {
-//        print(myWorkoutsList[indexPath.row])
-//        print(myWorkoutModel.myWorkoutsList[indexPath.row])
         myWorkoutModel.selectedWorkoutInSelectWorkoutVC = myWorkoutsList[indexPath.row]
-        print(myWorkoutModel.selectedWorkoutInSelectWorkoutVC)
+        myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = myWorkoutsTitles[indexPath.row]
     }
     
     func updateTableViewCell(_ view: SelectWorkoutView) {

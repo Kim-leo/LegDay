@@ -216,7 +216,7 @@ class SettingView: UIView {
             let label = UILabel()
             label.tag = i
             label.textAlignment = .center
-            label.numberOfLines = 0
+            label.numberOfLines = 1
             label.lineBreakMode = .byWordWrapping
             label.text = ""
             label.font = UIFont.systemFont(ofSize: 13)
@@ -308,7 +308,7 @@ class SettingView: UIView {
         setPokerShapeStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         setPokerShapeStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         setPokerShapeStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        setPokerShapeStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.08).isActive = true
+        setPokerShapeStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1).isActive = true
         
         lowerView.translatesAutoresizingMaskIntoConstraints = false
         lowerView.topAnchor.constraint(equalTo: upperView.bottomAnchor, constant: 5).isActive = true

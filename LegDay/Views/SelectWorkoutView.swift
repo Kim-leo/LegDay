@@ -78,23 +78,23 @@ class SelectWorkoutView: UIView {
         guideLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
         guideLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1).isActive = true
         
+        nextBtn.translatesAutoresizingMaskIntoConstraints = false
+        nextBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        nextBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        nextBtn.heightAnchor.constraint(equalTo: nextBtn.widthAnchor, multiplier: 0.4).isActive = true
+        nextBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -100).isActive = true
+        
         viewForTableView.translatesAutoresizingMaskIntoConstraints = false
         viewForTableView.topAnchor.constraint(equalTo: guideLabel.bottomAnchor, constant: 15).isActive = true
         viewForTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         viewForTableView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
-        viewForTableView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        viewForTableView.bottomAnchor.constraint(equalTo: nextBtn.topAnchor, constant: -20).isActive = true
         
         myWorkoutTableView.translatesAutoresizingMaskIntoConstraints = false
         myWorkoutTableView.topAnchor.constraint(equalTo: viewForTableView.topAnchor).isActive = true
         myWorkoutTableView.leadingAnchor.constraint(equalTo: viewForTableView.leadingAnchor).isActive = true
         myWorkoutTableView.trailingAnchor.constraint(equalTo: viewForTableView.trailingAnchor).isActive = true
         myWorkoutTableView.bottomAnchor.constraint(equalTo: viewForTableView.bottomAnchor).isActive = true
-        
-        nextBtn.translatesAutoresizingMaskIntoConstraints = false
-        nextBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nextBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-        nextBtn.heightAnchor.constraint(equalTo: nextBtn.widthAnchor, multiplier: 0.4).isActive = true
-        nextBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -100).isActive = true
     }
 }
 

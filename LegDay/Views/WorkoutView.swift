@@ -61,7 +61,7 @@ class WorkoutView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.boldSystemFont(ofSize: 35)
         label.adjustsFontSizeToFitWidth = true

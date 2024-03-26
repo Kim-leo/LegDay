@@ -30,7 +30,7 @@ class WorkoutViewModel {
 extension WorkoutViewModel {
     func componentsInitialSetting(_ view: WorkoutView) {
         view.cardNameLabel.text = "Let's go."
-        view.workoutLabel.text = "화이팅"
+        view.workoutLabel.text = "\(myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC)"
         view.workoutLabel.textColor = .white
         view.nextBtn.setTitle("시작", for: .normal)
         view.nextBtn.setTitleColor(.white, for: .normal)
