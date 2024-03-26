@@ -25,5 +25,5 @@ class MyWorkout {
     var myWorkoutsList = [[String]]()
     var myWorkoutTitles = [String]()
     
-    
+    var selectedWorkoutInSelectWorkoutVC = [String]()
 }

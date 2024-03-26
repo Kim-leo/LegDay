@@ -30,8 +30,8 @@ class WorkoutViewModel {
 extension WorkoutViewModel {
     func componentsInitialSetting(_ view: WorkoutView) {
         view.cardNameLabel.text = "Let's go."
-        view.workoutLabels[0].text = "화이팅"
-        view.workoutLabels[0].textColor = .white
+        view.workoutLabel.text = "화이팅"
+        view.workoutLabel.textColor = .white
         view.nextBtn.setTitle("시작", for: .normal)
         view.nextBtn.setTitleColor(.white, for: .normal)
         view.nextBtn.backgroundColor = Colors().redColor
@@ -61,13 +61,13 @@ extension WorkoutViewModel {
             break
         }
         
-        view.workoutLabels[1].text = "\(workoutModel.howManyTimesNum) times"
+        view.numberOfWorkoutLabel.text = "\(workoutModel.howManyTimesNum) times"
         
         let fontSize = UIFont.boldSystemFont(ofSize: 18)
-        let attributedString = NSMutableAttributedString(string: view.workoutLabels[1].text ?? "")
+        let attributedString = NSMutableAttributedString(string: view.numberOfWorkoutLabel.text ?? "")
         
-        attributedString.addAttribute(.font, value: fontSize, range: (view.workoutLabels[1].text! as NSString).range(of: "times"))
-        view.workoutLabels[1].attributedText = attributedString
+        attributedString.addAttribute(.font, value: fontSize, range: (view.numberOfWorkoutLabel.text! as NSString).range(of: "times"))
+        view.numberOfWorkoutLabel.attributedText = attributedString
     }
     
     func distinguishTheShapeOfTheCard(_ view: WorkoutView) {
@@ -75,7 +75,8 @@ extension WorkoutViewModel {
         let endIndex = pickedCard.index(pickedCard.startIndex, offsetBy: 1)
         let pickedCardShape = String(pickedCard[startIndex..<endIndex])
         
-        view.workoutLabels[0].text = "\(myWorkoutModel.selectedWorkoutPerPokerShapeArray[cardModel.pokserShape.firstIndex(of: pickedCardShape) ?? 0])"
+        view.workoutLabel.text = "\(myWorkoutModel.selectedWorkoutInSelectWorkoutVC[cardModel.pokserShape.firstIndex(of: pickedCardShape) ?? 0])"
+        
     }
     
     func changeCardInfoUIText(_ view: WorkoutView) {
@@ -107,9 +108,9 @@ extension WorkoutViewModel {
         view.cardImageView.image = UIImage(named: "Joker")
         view.cardNameLabel.text = "운동 끝"
         view.cardNameLabel.textColor = .white
-        view.workoutLabels[0].text = "Impressive!"
-        view.workoutLabels[0].textColor = .systemOrange
-        view.workoutLabels[1].text = ""
+        view.workoutLabel.text = "Impressive!"
+        view.workoutLabel.textColor = .systemOrange
+        view.numberOfWorkoutLabel.text = ""
         view.cardCountLabel.text = ""
         view.nextBtn.setTitle("한 번 더 하기", for: .normal)
         view.nextBtn.setTitleColor(Colors().darkBlack, for: .normal)

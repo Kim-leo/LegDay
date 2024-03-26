@@ -35,7 +35,7 @@ class WorkoutView: UIView {
         sv.axis = .vertical
         sv.alignment = .fill
         sv.distribution = .fillEqually
-        sv.spacing = 10
+        sv.spacing = 20
         sv.backgroundColor = .clear
         return sv
     }()
@@ -47,10 +47,38 @@ class WorkoutView: UIView {
             label.tag = i
             label.textAlignment = .center
             label.textColor = .white
-            label.font = UIFont.boldSystemFont(ofSize: 35)
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            label.font = UIFont.boldSystemFont(ofSize: 20)
+            label.adjustsFontSizeToFitWidth = true
+            label.minimumScaleFactor = 0.3
             labels.append(label)
         }
         return labels
+    }()
+    
+    lazy var workoutLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.boldSystemFont(ofSize: 35)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.3
+        return label
+    }()
+    
+    lazy var numberOfWorkoutLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.boldSystemFont(ofSize: 35)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.3
+        return label
     }()
     
     lazy var nextBtn: UIButton = {
@@ -70,9 +98,11 @@ class WorkoutView: UIView {
         self.addSubview(cardImageView)
         self.addSubview(cardCountLabel)
         self.addSubview(cardNameLabel)
-        self.addSubview(workoutLabelStackView)
+//        self.addSubview(workoutLabelStackView)
+        self.addSubview(workoutLabel)
+        self.addSubview(numberOfWorkoutLabel)
         self.addSubview(nextBtn)
-        workoutLabels.map { workoutLabelStackView.addArrangedSubview($0) }
+//        workoutLabels.map { workoutLabelStackView.addArrangedSubview($0) }
         viewLayout()
     }
     
@@ -100,12 +130,25 @@ class WorkoutView: UIView {
         cardNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50).isActive = true
         cardNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        workoutLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-        workoutLabelStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        workoutLabelStackView.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 10).isActive = true
-        workoutLabelStackView.leadingAnchor.constraint(equalTo: cardNameLabel.leadingAnchor).isActive = true
-        workoutLabelStackView.trailingAnchor.constraint(equalTo: cardNameLabel.trailingAnchor).isActive = true
-        workoutLabelStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        workoutLabel.translatesAutoresizingMaskIntoConstraints = false
+        workoutLabel.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 10).isActive = true
+        workoutLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        workoutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        workoutLabel.heightAnchor.constraint(equalTo: workoutLabel.widthAnchor, multiplier: 0.2).isActive = true
+        
+        numberOfWorkoutLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberOfWorkoutLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        numberOfWorkoutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        numberOfWorkoutLabel.topAnchor.constraint(equalTo: workoutLabel.bottomAnchor, constant: -10).isActive = true
+        numberOfWorkoutLabel.heightAnchor.constraint(equalTo: workoutLabel.heightAnchor).isActive = true
+        
+        
+//        workoutLabelStackView.translatesAutoresizingMaskIntoConstraints = false
+//        workoutLabelStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+//        workoutLabelStackView.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 10).isActive = true
+//        workoutLabelStackView.leadingAnchor.constraint(equalTo: cardNameLabel.leadingAnchor).isActive = true
+//        workoutLabelStackView.trailingAnchor.constraint(equalTo: cardNameLabel.trailingAnchor).isActive = true
+//        workoutLabelStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
         nextBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

@@ -11,7 +11,7 @@ class SelectWorkoutCell: UITableViewCell {
     lazy var workoutTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "Menlo", size: 20)
+        label.font = UIFont(name: "Menlo", size: 17)
         return label
     }()
 

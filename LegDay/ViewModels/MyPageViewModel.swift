@@ -19,6 +19,14 @@ class MyPageViewModel {
         myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
         myWorkoutsList = myWorkoutModel.myWorkoutsList
     }
+
+    func goToWorkoutRightNow() {
+        print("셀 운동 바로 하기")
+    }
+    
+    func editMyWorkouts() {
+        print("셀 편집")
+    }
     
     func deleteCellAndMyWorkoutData(_ view: MyPageView, indexPath: IndexPath) {
         myWorkoutsTitles.remove(at: indexPath.row)
@@ -27,15 +35,5 @@ class MyPageViewModel {
         myWorkoutsList.remove(at: indexPath.row)
         myWorkoutModel.myWorkoutsList.remove(at: indexPath.row)
         view.myWorkoutTableView.deleteRows(at: [indexPath], with: .automatic)
-        
-        print(myWorkoutsList)
-    }
-    
-    func editMyWorkouts() {
-        print("셀 편집")
-    }
-    
-    func goToWorkoutRightNow() {
-        print("셀 운동 바로 하기")
     }
 }
