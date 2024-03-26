@@ -115,12 +115,18 @@ extension SettingViewModel {
         inputWorkout = view.alertTextField.text ?? ""
         myWorkoutModel.myWorkoutTitles.append(inputWorkout)
         myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
-        
-        
-        
+
+        UIView.animate(withDuration: 2) {
+            view.saveCompleteView.alpha = 1
+            view.saveCompleteView.alpha = 0
+            
+            view.lowerCollectinView.alpha = 1
+            view.upperCollectinView.alpha = 1
+        }
         view.alertView.alpha = 0
-        view.lowerCollectinView.alpha = 1
-        view.upperCollectinView.alpha = 1
+        
+        
+        
     }
     
     func categoryBtnTapped(view: SettingView) {

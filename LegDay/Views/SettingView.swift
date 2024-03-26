@@ -228,6 +228,19 @@ class SettingView: UIView {
         return labels
     }()
     
+    lazy var setPokerShapeImage: [UIImageView] = {
+        var imageViews = [UIImageView]()
+        let pokerShapeImages = ["suit.spade.fill", "diamond.fill", "heart.fill", "suit.club.fill"]
+        for i in 0...3 {
+            let iv = UIImageView()
+            iv.contentMode = .scaleAspectFit
+            iv.image = UIImage(systemName: pokerShapeImages[i])
+            iv.tintColor = (i % 3 == 0) ? .black : .red
+            imageViews.append(iv)
+        }
+        return imageViews
+    }()
+    
     lazy var alertView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -289,23 +302,38 @@ class SettingView: UIView {
         return btn
     }()
     
-    lazy var setPokerShapeImage: [UIImageView] = {
-        var imageViews = [UIImageView]()
-        let pokerShapeImages = ["suit.spade.fill", "diamond.fill", "heart.fill", "suit.club.fill"]
-        for i in 0...3 {
-            let iv = UIImageView()
-            iv.contentMode = .scaleAspectFit
-            iv.image = UIImage(systemName: pokerShapeImages[i])
-            iv.tintColor = (i % 3 == 0) ? .black : .red
-            imageViews.append(iv)
-        }
-        return imageViews
+    lazy var saveCompleteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        return view
     }()
+    
+    lazy var saveCompleteImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(systemName: "checkmark.square")
+        iv.tintColor = Colors().redColor
+        return iv
+    }()
+    
+    lazy var saveCompleteLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Colors().redColor
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.text = "세트 저장 완료!"
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        return label
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
-        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes, setPokerShapeStackView, alertView].map {
+        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes, setPokerShapeStackView, alertView, saveCompleteView].map {
             self.addSubview($0)
         }
         upperView.addSubview(upperCollectinView)
@@ -316,6 +344,9 @@ class SettingView: UIView {
         alertView.addSubview(alertBtnStackView)
         alertBtnStackView.addArrangedSubview(alertCancelBtn)
         alertBtnStackView.addArrangedSubview(alertOkBtn)
+        
+        saveCompleteView.addSubview(saveCompleteImageView)
+        saveCompleteView.addSubview(saveCompleteLabel)
         
         [stackViewHorizontal1, stackViewHorizontal2, cancelBtnView].map {
             stackViewVertical.addArrangedSubview($0)
@@ -347,7 +378,7 @@ class SettingView: UIView {
         stackViewVertical.alpha = 0
         verticalStackViewForSettingPokerShapes.alpha = 0
         alertView.alpha = 0
-        
+        saveCompleteView.alpha = 0
         
         viewLayout()
     }
@@ -461,5 +492,23 @@ class SettingView: UIView {
             pokerWorkoutNameLabels[i].topAnchor.constraint(equalTo: pokerShapeBtns[i].bottomAnchor).isActive = true
             pokerWorkoutNameLabels[i].bottomAnchor.constraint(equalTo: pokerShapeViews[i].bottomAnchor).isActive = true
         }
+        
+        saveCompleteView.translatesAutoresizingMaskIntoConstraints = false
+        saveCompleteView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        saveCompleteView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        saveCompleteView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        saveCompleteView.heightAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.7).isActive = true
+        
+        saveCompleteImageView.translatesAutoresizingMaskIntoConstraints = false
+        saveCompleteImageView.topAnchor.constraint(equalTo: saveCompleteView.topAnchor, constant: 10).isActive = true
+        saveCompleteImageView.centerXAnchor.constraint(equalTo: saveCompleteView.centerXAnchor).isActive = true
+        saveCompleteImageView.heightAnchor.constraint(equalTo: saveCompleteView.heightAnchor, multiplier: 0.4).isActive = true
+        saveCompleteImageView.widthAnchor.constraint(equalTo: saveCompleteImageView.heightAnchor).isActive = true
+        
+        saveCompleteLabel.translatesAutoresizingMaskIntoConstraints = false
+        saveCompleteLabel.bottomAnchor.constraint(equalTo: saveCompleteView.bottomAnchor, constant: -10).isActive = true
+        saveCompleteLabel.heightAnchor.constraint(equalTo: saveCompleteImageView.heightAnchor).isActive = true
+        saveCompleteLabel.widthAnchor.constraint(equalTo: saveCompleteView.widthAnchor, multiplier: 0.9).isActive = true
+        saveCompleteLabel.centerXAnchor.constraint(equalTo: saveCompleteView.centerXAnchor).isActive = true
     }
 }
