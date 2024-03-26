@@ -228,6 +228,67 @@ class SettingView: UIView {
         return labels
     }()
     
+    lazy var alertView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    lazy var alertMessageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Colors().darkBlack
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.text = "샘플 텍스트 알림입니다."
+        return label
+    }()
+    
+    lazy var alertTextField: UITextField = {
+        let tf = UITextField()
+        tf.autocorrectionType = .no
+        tf.spellCheckingType = .no
+        tf.backgroundColor = .systemGray6
+        tf.layer.cornerRadius = 5
+        tf.layer.masksToBounds = true
+        tf.layer.borderColor = UIColor.darkGray.cgColor
+        tf.layer.borderWidth = 1
+        return tf
+    }()
+    
+    lazy var alertBtnStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.alignment = .bottom
+        sv.spacing = 10
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    lazy var alertCancelBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 0
+        btn.setTitle("취소", for: .normal)
+        btn.setTitleColor(Colors().softBlack, for: .normal)
+        btn.backgroundColor = .systemGray6
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+    
+    lazy var alertOkBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 1
+        btn.setTitle("샘플", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = Colors().softBlack
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+    
     lazy var setPokerShapeImage: [UIImageView] = {
         var imageViews = [UIImageView]()
         let pokerShapeImages = ["suit.spade.fill", "diamond.fill", "heart.fill", "suit.club.fill"]
@@ -244,12 +305,17 @@ class SettingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
-        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes, setPokerShapeStackView].map {
+        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes, setPokerShapeStackView, alertView].map {
             self.addSubview($0)
         }
         upperView.addSubview(upperCollectinView)
         lowerView.addSubview(lowerCollectinView)
         
+        alertView.addSubview(alertTextField)
+        alertView.addSubview(alertMessageLabel)
+        alertView.addSubview(alertBtnStackView)
+        alertBtnStackView.addArrangedSubview(alertCancelBtn)
+        alertBtnStackView.addArrangedSubview(alertOkBtn)
         
         [stackViewHorizontal1, stackViewHorizontal2, cancelBtnView].map {
             stackViewVertical.addArrangedSubview($0)
@@ -280,7 +346,7 @@ class SettingView: UIView {
         
         stackViewVertical.alpha = 0
         verticalStackViewForSettingPokerShapes.alpha = 0
-        
+        alertView.alpha = 0
         
         
         viewLayout()
@@ -339,6 +405,36 @@ class SettingView: UIView {
         verticalStackViewForSettingPokerShapes.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
         verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
+        
+        alertView.translatesAutoresizingMaskIntoConstraints = false
+        alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        alertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        alertView.heightAnchor.constraint(equalTo: alertView.widthAnchor).isActive = true
+        
+        alertTextField.translatesAutoresizingMaskIntoConstraints = false
+        alertTextField.centerYAnchor.constraint(equalTo: alertView.centerYAnchor).isActive = true
+        alertTextField.centerXAnchor.constraint(equalTo: alertView.centerXAnchor).isActive = true
+        alertTextField.widthAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.9).isActive = true
+        alertTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
+        alertMessageLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 5).isActive = true
+        alertMessageLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor).isActive = true
+        alertMessageLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor).isActive = true
+        alertMessageLabel.bottomAnchor.constraint(equalTo: alertTextField.topAnchor, constant: -5).isActive = true
+        
+        alertBtnStackView.translatesAutoresizingMaskIntoConstraints = false
+        alertBtnStackView.leadingAnchor.constraint(equalTo: alertTextField.leadingAnchor).isActive = true
+        alertBtnStackView.trailingAnchor.constraint(equalTo: alertTextField.trailingAnchor).isActive = true
+        alertBtnStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10).isActive = true
+        alertBtnStackView.topAnchor.constraint(equalTo: alertTextField.bottomAnchor, constant: 5).isActive = true
+        
+        alertCancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        alertOkBtn.translatesAutoresizingMaskIntoConstraints = false
+        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
         
         for i in 0...3 {
             setPokerShapeImage[i].translatesAutoresizingMaskIntoConstraints = false

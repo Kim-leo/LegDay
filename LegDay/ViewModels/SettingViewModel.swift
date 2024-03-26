@@ -31,7 +31,7 @@ class SettingViewModel {
     var whichWorkout = ""
     var inputWorkout = ""
     
-    
+    var whoCalledAlertView = 0
     
     init(workoutModel: WorkoutModel) {
         self.workoutModel = WorkoutModel()
@@ -59,30 +59,75 @@ extension SettingViewModel {
         
     }
     
-    func addWorkoutByYourself(view: SettingView, vc: SettingViewController) {
-        let alert = UIAlertController(title: "추가하기", message: "수행하고 싶은 운동을 직접 추가합니다.", preferredStyle: .alert)
-        alert.addTextField{ (myTextField) in
-            myTextField.placeholder = "입력하기"
-            myTextField.autocorrectionType = .no
-            myTextField.spellCheckingType = .no
+    func settingMessageForAlertMessageLabel(_ view: SettingView) {
+        view.lowerCollectinView.alpha = 0.5
+        view.upperCollectinView.alpha = 0.5
+        switch whoCalledAlertView {
+        case 0:
+            view.alertMessageLabel.text = "운동을 직접 추가합니다."
+            view.alertOkBtn.setTitle("카테고리 지정", for: .normal)
+            view.alertTextField.placeholder = " 운동 이름"
+        case 1:
+            view.alertMessageLabel.text = "나만의 운동 세트를 만들어 보아요."
+            view.alertOkBtn.setTitle("저장", for: .normal)
+            view.alertTextField.placeholder = " 생략 가능"
+        default:
+            break
         }
-        let okAction = UIAlertAction(title: "카테고리 지정", style: .default) { [self] (ok) in
-            inputWorkout = alert.textFields?[0].text ?? ""
-            view.lowerCollectinView.alpha = 0.5
+    }
+    
+    func alertBtnTapAction(_ view: SettingView, sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            view.alertView.alpha = 0
+            view.lowerCollectinView.alpha = 1
+            view.upperCollectinView.alpha = 1
+        case 1:
+            switch whoCalledAlertView {
+            case 0:
+                addWorkoutByYourself(view, vc: SettingViewController())
+            case 1:
+                saveCurrentWorkoutSet(view)
+            default:
+                break
+            }
+        default:
+            break
+        }
+        view.alertTextField.text = ""
+    }
+    
+    func addWorkoutByYourself(_ view: SettingView, vc: SettingViewController) {
+        inputWorkout = view.alertTextField.text ?? ""
+        if inputWorkout.contains("+ 직접 입력") {
+            view.alertMessageLabel.text = "다른 이름으로 입력하세요."
+        } else if inputWorkout.isEmpty {
+            view.alertMessageLabel.text = "운동 이름을 입력해주세요."
+        } else {
+            view.alertView.alpha = 0
             view.stackViewVertical.alpha = 1
             vc.view.bringSubviewToFront(view.stackViewVertical)
+            
         }
-        let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
-        alert.addAction(okAction)
-        alert.addAction(cancel)
-        vc.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveCurrentWorkoutSet(_ view: SettingView) {
+        inputWorkout = view.alertTextField.text ?? ""
+        myWorkoutModel.myWorkoutTitles.append(inputWorkout)
+        myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
+        
+        
+        
+        view.alertView.alpha = 0
+        view.lowerCollectinView.alpha = 1
+        view.upperCollectinView.alpha = 1
     }
     
     func categoryBtnTapped(view: SettingView) {
         view.stackViewVertical.alpha = 0
         view.lowerCollectinView.alpha = 1
-        
-//        viewFile.lowerCollectinView.reloadData()
+        view.upperCollectinView.alpha = 1
+
         view.lowerCollectinView.performBatchUpdates {
             view.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
             yourAllWorkoutsArray.insert(inputWorkout, at: 1)
@@ -96,6 +141,7 @@ extension SettingViewModel {
         inputWorkout = ""
         view.stackViewVertical.alpha = 0
         view.lowerCollectinView.alpha = 1
+        view.upperCollectinView.alpha = 1
     }
     
     func pokerCardBtnTapped(view: SettingView, _ sender: UIButton) {
@@ -111,27 +157,7 @@ extension SettingViewModel {
         view.lowerCollectinView.reloadData()
     }
     
-    func rightBarBtnTap(_ vc: SettingViewController) {
-        // 추후 커스텀 디자인 예정
-        let alert = UIAlertController(title: "이름 설정", message: "나만의 운동 세트에 이름을 만들어봐요!", preferredStyle: .alert)
-        alert.addTextField{ (myTextField) in
-            myTextField.placeholder = "생략 가능"
-            myTextField.autocorrectionType = .no
-            myTextField.spellCheckingType = .no
-        }
-        let saveAction = UIAlertAction(title: "저장", style: .default) { [self] (ok) in
-            myWorkoutModel.myWorkoutTitles.append(alert.textFields?[0].text ?? "")
-            myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in }
-        alert.addAction(saveAction)
-        alert.addAction(cancel)
-        vc.present(alert, animated: true, completion: nil)
-
-    }
-    
     func changeSetPokerLabelWhenComeFromMyPage(_ view: SettingView) {
-        
         switch myWorkoutModel.isComeFromMyPageVC {
         case true:
             view.setPokerShapeLabel.map {
@@ -141,11 +167,5 @@ extension SettingViewModel {
         case false:
             break
         }
-        
-        
-        
     }
-    
-    
-   
 }

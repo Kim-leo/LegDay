@@ -47,6 +47,8 @@ class SettingViewController: UIViewController {
         settingView.pokerShapeBtns.map {
             $0.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
         }
+        settingView.alertCancelBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
+        settingView.alertOkBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
         
     }
 }
@@ -54,7 +56,9 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController {
     @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
-        viewModel.rightBarBtnTap(self)
+        settingView.alertView.alpha = 1
+        viewModel.whoCalledAlertView = 1
+        viewModel.settingMessageForAlertMessageLabel(settingView)
     }
     
     @objc func categoryBtnTapped(_ sender: UIButton) {
@@ -69,11 +73,11 @@ extension SettingViewController {
     
     @objc func pokerShapeBtnsTapped(_ sender: UIButton) {
         viewModel.pokerCardBtnTapped(view: settingView, sender)
-//        sender.setTitle(viewModel.whichWorkout, for: .normal)
-//        myView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
         settingView.pokerWorkoutNameLabels[sender.tag].text = viewModel.whichWorkout
-        
-//        viewModel.selectedWorkoutPerPokerShapeArray[sender.tag] = viewModel.whichWorkout
+    }
+    
+    @objc func alertBtnTapped(_ sender: UIButton) {
+        viewModel.alertBtnTapAction(settingView, sender: sender)
     }
 }
 
@@ -106,9 +110,7 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.typesOfWorkoutLabel.text = viewModel.yourAllWorkoutsArray[indexPath.row]
-            cell.typesOfWorkoutLabel.backgroundColor = (indexPath.row % 2 == 0) ? .white : .systemGray4
-//            cell.isSelected = (indexPath.row == 0) ? true : false
-
+            cell.typesOfWorkoutLabel.backgroundColor = (cell.typesOfWorkoutLabel.text == "+ 직접 입력") ? .systemGray3 : .systemGray6
             return cell
         default:
             return UICollectionViewCell()
@@ -149,7 +151,10 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
         case 1:
             switch viewModel.yourAllWorkoutsArray[indexPath.row] {
             case "+ 직접 입력":
-                viewModel.addWorkoutByYourself(view: settingView, vc: self)
+//                viewModel.addWorkoutByYourself(view: settingView, vc: self)
+                settingView.alertView.alpha = 1
+                viewModel.whoCalledAlertView = 0
+                viewModel.settingMessageForAlertMessageLabel(settingView)
             default:
                 collectionView.alpha = 0.5
                 settingView.verticalStackViewForSettingPokerShapes.alpha = 1
@@ -159,15 +164,10 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                 settingView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
                 
             }
-            
-            
         default:
             break
         }
     }
-    
-    
-    
 }
 
 
