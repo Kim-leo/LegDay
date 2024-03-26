@@ -78,7 +78,7 @@ extension SelectWorkoutViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectWorkoutAndReadyToLoadOnWorkoutVC(selectWorkoutView, indexPath: indexPath)
+        viewModel.selectWorkoutAndReadyToLoadOnWorkoutVC(indexPath: indexPath)
         viewModel.changeColorOfTheBtn(selectWorkoutView)
     }
    

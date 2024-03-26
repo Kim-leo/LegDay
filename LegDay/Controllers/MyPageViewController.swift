@@ -15,7 +15,7 @@ class MyPageViewController: UIViewController  {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        tabBarController?.tabBar.isHidden = false
         viewModel.updateTableViewCell(myPageView)
         myPageView.myWorkoutTableView.reloadData()
         
@@ -63,7 +63,9 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let workoutRightNowAction = UIContextualAction(style: .normal, title: "바로 운동하기") { (action, view, completion) in
-            self.viewModel.goToWorkoutRightNow()
+            self.viewModel.goToWorkoutRightNow(indexPath: indexPath)
+            let workoutVC = WorkoutViewController()
+            self.navigationController?.pushViewController(workoutVC, animated: true)
             completion(true)
         }
         workoutRightNowAction.backgroundColor = Colors().darkBlack

@@ -20,8 +20,11 @@ class MyPageViewModel {
         myWorkoutsList = myWorkoutModel.myWorkoutsList
     }
 
-    func goToWorkoutRightNow() {
-        print("셀 운동 바로 하기")
+    func goToWorkoutRightNow(indexPath: IndexPath) {
+        myWorkoutModel.selectedWorkoutInSelectWorkoutVC = myWorkoutsList[indexPath.row]
+        myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = myWorkoutsTitles[indexPath.row]
+        
+        
     }
     
     func editMyWorkouts() {

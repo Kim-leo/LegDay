@@ -15,7 +15,7 @@ class SelectWorkoutViewModel {
     var myWorkoutsTitles = [String]()
     var myWorkoutsList = [[String]]()
     
-    func selectWorkoutAndReadyToLoadOnWorkoutVC(_ view: SelectWorkoutView, indexPath: IndexPath) {
+    func selectWorkoutAndReadyToLoadOnWorkoutVC(indexPath: IndexPath) {
         myWorkoutModel.selectedWorkoutInSelectWorkoutVC = myWorkoutsList[indexPath.row]
         myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = myWorkoutsTitles[indexPath.row]
     }

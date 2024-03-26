@@ -19,7 +19,11 @@ class SettingViewController: UIViewController {
             return btn
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tabBarController?.tabBar.isHidden = false
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
