@@ -222,7 +222,7 @@ class SettingView: UIView {
             label.font = UIFont.systemFont(ofSize: 13)
             label.adjustsFontSizeToFitWidth = true
             label.minimumScaleFactor = 0.3
-            label.textColor = Colors().darkBlack
+            label.textColor = (i % 3 == 0) ? .black : .red
             labels.append(label)
         }
         return labels

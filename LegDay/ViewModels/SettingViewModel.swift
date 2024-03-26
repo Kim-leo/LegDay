@@ -42,6 +42,7 @@ class SettingViewModel {
 }
 
 extension SettingViewModel {
+ 
     func initialSetting(view: SettingView) {
         if yourAllWorkoutsArray.count == 1 {
             yourAllWorkoutsArray += Array(workoutForCategories.joined())
@@ -126,11 +127,25 @@ extension SettingViewModel {
         alert.addAction(saveAction)
         alert.addAction(cancel)
         vc.present(alert, animated: true, completion: nil)
+
+    }
+    
+    func changeSetPokerLabelWhenComeFromMyPage(_ view: SettingView) {
         
+        switch myWorkoutModel.isComeFromMyPageVC {
+        case true:
+            view.setPokerShapeLabel.map {
+                $0.text = "\(myWorkoutModel.selectedWorkoutInSelectWorkoutVC[$0.tag])"
+            }
+            myWorkoutModel.isComeFromMyPageVC = false
+        case false:
+            break
+        }
         
         
         
     }
+    
     
    
 }

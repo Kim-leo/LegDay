@@ -27,4 +27,6 @@ class MyWorkout {
     
     var selectedWorkoutInSelectWorkoutVC = [String]()
     var selectedWorkoutTitleInSelectWorkoutVC = String()
+    
+    var isComeFromMyPageVC = false
 }

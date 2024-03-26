@@ -20,15 +20,13 @@ class MyPageViewModel {
         myWorkoutsList = myWorkoutModel.myWorkoutsList
     }
 
-    func goToWorkoutRightNow(indexPath: IndexPath) {
+    func saveCurrentCellData(indexPath: IndexPath) {
         myWorkoutModel.selectedWorkoutInSelectWorkoutVC = myWorkoutsList[indexPath.row]
         myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = myWorkoutsTitles[indexPath.row]
-        
-        
     }
     
-    func editMyWorkouts() {
-        print("셀 편집")
+    func editWorkoutFromMyPageVC() {
+        myWorkoutModel.isComeFromMyPageVC = true
     }
     
     func deleteCellAndMyWorkoutData(_ view: MyPageView, indexPath: IndexPath) {

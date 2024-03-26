@@ -22,7 +22,7 @@ class SettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
-        
+        viewModel.changeSetPokerLabelWhenComeFromMyPage(settingView)
     }
     
     override func viewDidLoad() {

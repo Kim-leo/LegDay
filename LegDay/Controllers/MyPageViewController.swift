@@ -63,7 +63,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let workoutRightNowAction = UIContextualAction(style: .normal, title: "바로 운동하기") { (action, view, completion) in
-            self.viewModel.goToWorkoutRightNow(indexPath: indexPath)
+            self.viewModel.saveCurrentCellData(indexPath: indexPath)
             let workoutVC = WorkoutViewController()
             self.navigationController?.pushViewController(workoutVC, animated: true)
             completion(true)
@@ -72,7 +72,10 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         workoutRightNowAction.image = UIImage(systemName: "figure.strengthtraining.functional")
         
         let editAction = UIContextualAction(style: .normal, title: "편집") { (action, view, completion) in
-            self.viewModel.editMyWorkouts()
+            self.viewModel.saveCurrentCellData(indexPath: indexPath)
+            self.viewModel.editWorkoutFromMyPageVC()
+            self.tabBarController?.selectedIndex = 1
+            
             completion(true)
         }
         editAction.backgroundColor = .darkGray
