@@ -21,6 +21,8 @@ class WorkoutViewModel {
     var emptyArray = [String]()
     var pickedCard: String = ""
     
+    let emitter = CAEmitterLayer()
+    
     init(cardModel: CardModel, workoutModel: WorkoutModel) {
         self.cardModel = CardModel()
         self.workoutModel = WorkoutModel()
@@ -105,6 +107,7 @@ extension WorkoutViewModel {
     }
     
     func endOfWorkout(_ view: WorkoutView) {
+        confettiAnimation(view)
         view.cardImageView.image = UIImage(named: "Joker")
         view.cardNameLabel.text = "운동 끝"
         view.cardNameLabel.textColor = .white
@@ -125,9 +128,34 @@ extension WorkoutViewModel {
         case "마치기":
             endOfWorkout(view)
         case "한 번 더 하기":
+            emitter.removeFromSuperlayer()
             componentsInitialSetting(view)
         default:
             startWorkout(view)
         }
+    }
+    
+    func confettiAnimation(_ view: WorkoutView) {
+        emitter.isHidden = false
+        emitter.emitterPosition = CGPoint(
+            x: view.center.x, y: -150
+        )
+        
+        let pokerShapeImages = ["Spade 1", "Diamond 1", "Heart 1", "Clover 1"]
+        
+        let cells: [CAEmitterCell] = pokerShapeImages.compactMap {
+            let cell = CAEmitterCell()
+            cell.scale = 0.04
+            cell.emissionRange = .pi * 2
+            cell.lifetime = 10
+            cell.birthRate = 50
+            cell.velocity = 150
+            cell.contents = UIImage(named: $0)!.cgImage
+            return cell
+        }
+        
+        emitter.emitterCells = cells
+        view.layer.addSublayer(emitter)
+        
     }
 }

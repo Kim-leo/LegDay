@@ -24,8 +24,11 @@ class HomeViewController: UIViewController {
         setupViewLayout(yourView: homeView)
         homeView.startWorkoutBtn.addTarget(self, action: #selector(startWorkoutBtnTapped), for: .touchUpInside)
         homeView.descriptionBtn.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
+        
+        
     }
 
+    
     
     @objc func startWorkoutBtnTapped(_ sender: UIButton) {
         let selectVC = SelectWorkoutViewController()
