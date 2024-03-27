@@ -8,7 +8,7 @@
 import UIKit
 
 class LowerCell: UICollectionViewCell {
-    
+       
     lazy var typesOfWorkoutLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .systemGray6
@@ -24,6 +24,7 @@ class LowerCell: UICollectionViewCell {
         
         return label
     }()
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +34,10 @@ class LowerCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.addSubview(typesOfWorkoutLabel)
+        
         setupLayoutForUpperCell()
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -46,10 +50,14 @@ class LowerCell: UICollectionViewCell {
         typesOfWorkoutLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         typesOfWorkoutLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, multiplier: 0.9).isActive = true
         typesOfWorkoutLabel.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: 0.9).isActive = true
+        
+        
     }
 }
 
 extension LowerCell {
+    
+    
     override var isSelected: Bool {
         didSet {
             if isSelected {
@@ -61,4 +69,6 @@ extension LowerCell {
             }
         }
     }
+    
+    
 }

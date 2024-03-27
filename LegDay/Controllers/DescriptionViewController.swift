@@ -9,25 +9,35 @@ import UIKit
 
 class DescriptionViewController: UIViewController {
 
+    var leftBarBtn: UIBarButtonItem {
+        get {
+            let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(descriptionLeftBarBtnTapped(_:)))
+            btn.tintColor = .lightGray
+            return btn
+        }
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.leftBarButtonItem = self.leftBarBtn
+        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isTranslucent = true
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "사용 설명"
         self.view.backgroundColor = .white
-        tabBarController?.tabBar.isHidden = true
+        
         
     }
     
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension DescriptionViewController {
+    @objc func descriptionLeftBarBtnTapped(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
-    */
-
 }

@@ -33,6 +33,8 @@ class SettingViewModel {
     
     var whoCalledAlertView = 0
     
+    var isLeftBarBtnClicked = false
+    
     init(workoutModel: WorkoutModel) {
         self.workoutModel = WorkoutModel()
     }
@@ -115,7 +117,9 @@ extension SettingViewModel {
         inputWorkout = view.alertTextField.text ?? ""
         myWorkoutModel.myWorkoutTitles.append(inputWorkout)
         myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
-
+        view.alertView.alpha = 0
+        view.saveCompleteLabel.text = "세트 저장 완료!"
+        view.saveCompleteImageView.image = UIImage(systemName: "checkmark.square")
         UIView.animate(withDuration: 2) {
             view.saveCompleteView.alpha = 1
             view.saveCompleteView.alpha = 0
@@ -123,10 +127,6 @@ extension SettingViewModel {
             view.lowerCollectinView.alpha = 1
             view.upperCollectinView.alpha = 1
         }
-        view.alertView.alpha = 0
-        
-        
-        
     }
     
     func categoryBtnTapped(view: SettingView) {
@@ -174,4 +174,64 @@ extension SettingViewModel {
             break
         }
     }
+    
+    func deleteDataRelatedToCell(_ view: SettingView, indexPath: IndexPath) {
+        let dataTobeDeleted = yourAllWorkoutsArray[indexPath.row]
+        let whichIndex2DArray = workoutForCategories.map { $0.contains(dataTobeDeleted) }.firstIndex(of: true) ?? 0
+        let whichIndex1DArrayIn2DArray = workoutForCategories[whichIndex2DArray].map { $0.contains(dataTobeDeleted) }.firstIndex(of: true) ?? 0
+        
+        yourAllWorkoutsArray.remove(at: indexPath.row)
+        workoutForCategories[whichIndex2DArray].remove(at: whichIndex1DArrayIn2DArray)
+        
+        view.lowerCollectinView.deleteItems(at: [IndexPath(item: indexPath.row, section: 0)])
+        view.lowerCollectinView.reloadData()
+        
+    }
+    
+    func tryingToDeleteAddWorkoutByYourselfCell(_ view: SettingView) {
+        view.saveCompleteLabel.text = "삭제 불가능!"
+        view.saveCompleteImageView.image = UIImage(systemName: "exclamationmark.octagon")
+        
+        UIView.animate(withDuration: 2) {
+            view.saveCompleteView.alpha = 1
+            view.saveCompleteView.alpha = 0
+            
+            view.lowerCollectinView.alpha = 1
+            view.upperCollectinView.alpha = 1
+        }
+    }
+    
+    @objc func leftBarBtnItemTapped(_ view: SettingView) {
+        switch isLeftBarBtnClicked {
+        case false:
+            view.rightBarBtnItem.isEnabled = false
+            view.rightBarBtnItem.setTitleColor(.darkGray, for: .normal)
+            
+            view.leftBarBtnItem.setTitle("삭제 완료", for: .normal)
+            view.leftBarBtnItem.setTitleColor(.white, for: .normal)
+            
+            isLeftBarBtnClicked = true
+        case true:
+            view.rightBarBtnItem.isEnabled = true
+            view.rightBarBtnItem.setTitleColor(.white, for: .normal)
+            
+            view.leftBarBtnItem.setTitle("삭제", for: .normal)
+            view.leftBarBtnItem.setTitleColor(Colors().softRedColor, for: .normal)
+            
+            view.saveCompleteLabel.text = "삭제 완료!"
+            view.saveCompleteImageView.image = UIImage(systemName: "checkmark.square")
+            UIView.animate(withDuration: 2) {
+                view.saveCompleteView.alpha = 1
+                view.saveCompleteView.alpha = 0
+                
+                view.lowerCollectinView.alpha = 1
+                view.upperCollectinView.alpha = 1
+            }
+            
+            isLeftBarBtnClicked = false
+            
+        }
+    }
+    
+    
 }

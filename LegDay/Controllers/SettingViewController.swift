@@ -10,15 +10,11 @@ import UIKit
 class SettingViewController: UIViewController {
     let settingView = SettingView()
     let viewModel = SettingViewModel.shared
-
-    var rightBarBtn: UIBarButtonItem {
-        get {
-            let btn = UIBarButtonItem(title: "마이 운동에 저장", style: .plain, target: self, action: #selector(rightBarBtnTapped(_:)))
-            
-            btn.tintColor = .lightGray
-            return btn
-        }
-    }
+    
+    var leftBarBtn = UIBarButtonItem()
+    var rightBarBtn = UIBarButtonItem()
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
@@ -27,6 +23,11 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        leftBarBtn = UIBarButtonItem(customView: settingView.leftBarBtnItem)
+        rightBarBtn = UIBarButtonItem(customView: settingView.rightBarBtnItem)
+        
+        self.navigationItem.leftBarButtonItem = leftBarBtn
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
         self.view.backgroundColor = .white
         self.view.addSubview(settingView)
@@ -50,12 +51,18 @@ class SettingViewController: UIViewController {
         settingView.alertCancelBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
         settingView.alertOkBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
         
+        settingView.leftBarBtnItem.addTarget(self, action: #selector(leftBarBtnTap), for: .touchUpInside)
+        settingView.rightBarBtnItem.addTarget(self, action: #selector(rightBarBtnTap), for: .touchUpInside)
     }
 }
 
 
 extension SettingViewController {
-    @objc func rightBarBtnTapped(_ sender: UIBarButtonItem) {
+    @objc func leftBarBtnTap(_ sender: UIBarButtonItem) {
+        viewModel.leftBarBtnItemTapped(settingView)
+    }
+    
+    @objc func rightBarBtnTap(_ sender: UIBarButtonItem) {
         settingView.alertView.alpha = 1
         viewModel.whoCalledAlertView = 1
         viewModel.settingMessageForAlertMessageLabel(settingView)
@@ -64,7 +71,6 @@ extension SettingViewController {
     @objc func categoryBtnTapped(_ sender: UIButton) {
         viewModel.workoutForCategories[sender.tag].append(viewModel.inputWorkout)
         viewModel.categoryBtnTapped(view: settingView)
-//        print(viewModel.yourAllWorkoutsArray)
     }
     
     @objc func cancelBtnTapped(_ sender: UIButton) {
@@ -79,7 +85,10 @@ extension SettingViewController {
     @objc func alertBtnTapped(_ sender: UIButton) {
         viewModel.alertBtnTapAction(settingView, sender: sender)
     }
+    
+    
 }
+
 
 extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -105,12 +114,14 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                 settingView.upperCollectinView.selectItem(at: indexPath,
                 animated: false, scrollPosition: .init())
             }
-           
+            
             return cell
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.typesOfWorkoutLabel.text = viewModel.yourAllWorkoutsArray[indexPath.row]
             cell.typesOfWorkoutLabel.backgroundColor = (cell.typesOfWorkoutLabel.text == "+ 직접 입력") ? .systemGray3 : .systemGray6
+            
+            
             return cell
         default:
             return UICollectionViewCell()
@@ -134,6 +145,7 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = settingView.lowerCollectinView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: IndexPath()) as? LowerCell else { return }
         switch collectionView.tag {
         case 0:
             collectionView.performBatchUpdates {
@@ -145,25 +157,38 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                     viewModel.yourAllWorkoutsArray += Array(viewModel.workoutForCategories[indexPath.row])
                 }
             }
-            guard let cell = settingView.lowerCollectinView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: IndexPath()) as? LowerCell else { return }
+            
             cell.isSelected = false
             settingView.lowerCollectinView.reloadData()
         case 1:
-            switch viewModel.yourAllWorkoutsArray[indexPath.row] {
-            case "+ 직접 입력":
-//                viewModel.addWorkoutByYourself(view: settingView, vc: self)
-                settingView.alertView.alpha = 1
-                viewModel.whoCalledAlertView = 0
-                viewModel.settingMessageForAlertMessageLabel(settingView)
-            default:
-                collectionView.alpha = 0.5
-                settingView.verticalStackViewForSettingPokerShapes.alpha = 1
-                self.view.bringSubviewToFront(settingView.verticalStackViewForSettingPokerShapes)
-                viewModel.whichWorkout = viewModel.yourAllWorkoutsArray[indexPath.row]
-//                myView.pokerShapeBtns.map { $0.setTitle("\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
-                settingView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
-                
+            switch viewModel.isLeftBarBtnClicked {
+            case true:
+                switch viewModel.yourAllWorkoutsArray[indexPath.row] {
+                case "+ 직접 입력":
+                    viewModel.tryingToDeleteAddWorkoutByYourselfCell(settingView)
+                    break
+                default:
+                    viewModel.deleteDataRelatedToCell(settingView, indexPath: indexPath)
+                }
+            case false:
+                switch viewModel.yourAllWorkoutsArray[indexPath.row] {
+                case "+ 직접 입력":
+    //                viewModel.addWorkoutByYourself(view: settingView, vc: self)
+                    settingView.alertView.alpha = 1
+                    viewModel.whoCalledAlertView = 0
+                    viewModel.settingMessageForAlertMessageLabel(settingView)
+                default:
+                    collectionView.alpha = 0.5
+                    settingView.verticalStackViewForSettingPokerShapes.alpha = 1
+                    self.view.bringSubviewToFront(settingView.verticalStackViewForSettingPokerShapes)
+                    viewModel.whichWorkout = viewModel.yourAllWorkoutsArray[indexPath.row]
+    //                myView.pokerShapeBtns.map { $0.setTitle("\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
+                    settingView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
+                    
+                }
             }
+            
+            
         default:
             break
         }

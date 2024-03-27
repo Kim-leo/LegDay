@@ -9,6 +9,24 @@ import Foundation
 import UIKit
 
 class SettingView: UIView {
+    lazy var leftBarBtnItem: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("삭제", for: .normal)
+        btn.setTitleColor(Colors().softRedColor, for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
+        return btn
+    }()
+    
+    lazy var rightBarBtnItem: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("마이 운동에 저장", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
+        return btn
+    }()
+    
+    
+    
     lazy var stackViewVertical: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
