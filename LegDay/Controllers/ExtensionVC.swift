@@ -10,7 +10,29 @@ import UIKit
 
 extension UIViewController {
     
-
+    func confettiAnimation() {
+        let emitter = CAEmitterLayer()
+        
+        emitter.emitterPosition = CGPoint(
+            x: view.center.x,
+            y: view.center.y
+        )
+        
+        let pokerShapeImages = ["Spade 1", "Diamond 1", "Heart 1", "Clover 1"]
+        
+        let cells: [CAEmitterCell] = pokerShapeImages.compactMap {
+            let cell = CAEmitterCell()
+            cell.scale = 0.01
+            cell.emissionRange = .pi * 2
+            cell.lifetime = 100
+            cell.birthRate = 10
+            cell.velocity = 30
+            cell.contents = UIImage(named: $0)!.cgImage
+            return cell
+        }
+        emitter.emitterCells = cells
+        view.layer.addSublayer(emitter)
+    }
     
     func setupViewLayout(yourView: UIView) {
         yourView.translatesAutoresizingMaskIntoConstraints = false

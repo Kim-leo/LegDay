@@ -107,7 +107,8 @@ extension WorkoutViewModel {
     }
     
     func endOfWorkout(_ view: WorkoutView) {
-        confettiAnimation(view)
+        view.confettiAnimationForWorkoutVC(view, emitter: emitter)
+        
         view.cardImageView.image = UIImage(named: "Joker")
         view.cardNameLabel.text = "운동 끝"
         view.cardNameLabel.textColor = .white
@@ -135,27 +136,5 @@ extension WorkoutViewModel {
         }
     }
     
-    func confettiAnimation(_ view: WorkoutView) {
-        emitter.isHidden = false
-        emitter.emitterPosition = CGPoint(
-            x: view.center.x, y: -150
-        )
-        
-        let pokerShapeImages = ["Spade 1", "Diamond 1", "Heart 1", "Clover 1"]
-        
-        let cells: [CAEmitterCell] = pokerShapeImages.compactMap {
-            let cell = CAEmitterCell()
-            cell.scale = 0.04
-            cell.emissionRange = .pi * 2
-            cell.lifetime = 10
-            cell.birthRate = 50
-            cell.velocity = 150
-            cell.contents = UIImage(named: $0)!.cgImage
-            return cell
-        }
-        
-        emitter.emitterCells = cells
-        view.layer.addSublayer(emitter)
-        
-    }
+    
 }

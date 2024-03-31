@@ -54,6 +54,12 @@ class SettingViewController: UIViewController {
         settingView.leftBarBtnItem.addTarget(self, action: #selector(leftBarBtnTap), for: .touchUpInside)
         settingView.rightBarBtnItem.addTarget(self, action: #selector(rightBarBtnTap), for: .touchUpInside)
     }
+    
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            view.endEditing(true)
+        }
+    
+    
 }
 
 

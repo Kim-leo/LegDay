@@ -13,6 +13,7 @@ class WorkoutView: UIView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.image = UIImage(named: "Joker")
+        iv.backgroundColor = .systemGreen
         return iv
     }()
     
@@ -81,6 +82,12 @@ class WorkoutView: UIView {
         return label
     }()
     
+    lazy var nextBtnView: UIView = {
+        let iv = UIView()
+        iv.backgroundColor = .systemGreen
+        return iv
+    }()
+    
     lazy var nextBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("다음", for: .normal)
@@ -101,7 +108,8 @@ class WorkoutView: UIView {
 //        self.addSubview(workoutLabelStackView)
         self.addSubview(workoutLabel)
         self.addSubview(numberOfWorkoutLabel)
-        self.addSubview(nextBtn)
+        self.addSubview(nextBtnView)
+        nextBtnView.addSubview(nextBtn)
 //        workoutLabels.map { workoutLabelStackView.addArrangedSubview($0) }
         viewLayout()
     }
@@ -112,10 +120,10 @@ class WorkoutView: UIView {
     
     func viewLayout() {
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 100).isActive = true
-        cardImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 100).isActive = true
-        cardImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -100).isActive = true
-        cardImageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        cardImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
+        cardImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        cardImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        cardImageView.heightAnchor.constraint(equalTo: cardImageView.widthAnchor, multiplier: 1.6).isActive = true
         
         cardCountLabel.translatesAutoresizingMaskIntoConstraints = false
         cardCountLabel.leadingAnchor.constraint(equalTo: cardImageView.trailingAnchor, constant: 10).isActive = true
@@ -124,36 +132,34 @@ class WorkoutView: UIView {
         cardCountLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         cardNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cardNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         cardNameLabel.topAnchor.constraint(equalTo: cardImageView.bottomAnchor, constant: 10).isActive = true
-        cardNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50).isActive = true
-        cardNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50).isActive = true
+        cardNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        cardNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         cardNameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         workoutLabel.translatesAutoresizingMaskIntoConstraints = false
         workoutLabel.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 10).isActive = true
         workoutLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         workoutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        workoutLabel.heightAnchor.constraint(equalTo: workoutLabel.widthAnchor, multiplier: 0.2).isActive = true
+        workoutLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         numberOfWorkoutLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberOfWorkoutLabel.topAnchor.constraint(equalTo: workoutLabel.bottomAnchor, constant: 10).isActive = true
         numberOfWorkoutLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         numberOfWorkoutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        numberOfWorkoutLabel.topAnchor.constraint(equalTo: workoutLabel.bottomAnchor, constant: -10).isActive = true
         numberOfWorkoutLabel.heightAnchor.constraint(equalTo: workoutLabel.heightAnchor).isActive = true
         
-        
-//        workoutLabelStackView.translatesAutoresizingMaskIntoConstraints = false
-//        workoutLabelStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-//        workoutLabelStackView.topAnchor.constraint(equalTo: cardNameLabel.bottomAnchor, constant: 10).isActive = true
-//        workoutLabelStackView.leadingAnchor.constraint(equalTo: cardNameLabel.leadingAnchor).isActive = true
-//        workoutLabelStackView.trailingAnchor.constraint(equalTo: cardNameLabel.trailingAnchor).isActive = true
-//        workoutLabelStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        nextBtnView.translatesAutoresizingMaskIntoConstraints = false
+        nextBtnView.topAnchor.constraint(equalTo: numberOfWorkoutLabel.bottomAnchor).isActive = true
+        nextBtnView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        nextBtnView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        nextBtnView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
-        nextBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         nextBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         nextBtn.heightAnchor.constraint(equalTo: nextBtn.widthAnchor, multiplier: 0.4).isActive = true
-        nextBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -100).isActive = true
+        nextBtn.centerXAnchor.constraint(equalTo: nextBtnView.centerXAnchor).isActive = true
+        nextBtn.centerYAnchor.constraint(equalTo: nextBtnView.centerYAnchor).isActive = true
+        
     }
 }

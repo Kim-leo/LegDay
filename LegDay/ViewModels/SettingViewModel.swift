@@ -97,6 +97,7 @@ extension SettingViewModel {
             break
         }
         view.alertTextField.text = ""
+        view.endEditing(true)
     }
     
     func addWorkoutByYourself(_ view: SettingView, vc: SettingViewController) {
@@ -127,6 +128,7 @@ extension SettingViewModel {
             view.lowerCollectinView.alpha = 1
             view.upperCollectinView.alpha = 1
         }
+        
     }
     
     func categoryBtnTapped(view: SettingView) {

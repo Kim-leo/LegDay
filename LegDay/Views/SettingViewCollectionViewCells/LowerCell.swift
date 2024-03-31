@@ -11,7 +11,7 @@ class LowerCell: UICollectionViewCell {
        
     lazy var typesOfWorkoutLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .systemGray6
+        label.backgroundColor = .white
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)

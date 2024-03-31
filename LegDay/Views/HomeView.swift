@@ -26,7 +26,6 @@ class HomeView: UIView {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         btn.layer.cornerRadius = 20
         btn.clipsToBounds = true
-        btn.isUserInteractionEnabled = true
         return btn
     }()
     
@@ -47,7 +46,9 @@ class HomeView: UIView {
         self.addSubview(startWorkoutBtn)
         self.addSubview(descriptionBtn)
         self.backgroundColor = Colors().darkBlack
+        
         viewLayout()
+        
     }
     
     required init?(coder: NSCoder) {
