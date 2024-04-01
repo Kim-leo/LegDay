@@ -13,7 +13,7 @@ class WorkoutView: UIView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.image = UIImage(named: "Joker")
-        iv.backgroundColor = .systemGreen
+//        iv.backgroundColor = .systemGreen
         return iv
     }()
     
@@ -84,7 +84,7 @@ class WorkoutView: UIView {
     
     lazy var nextBtnView: UIView = {
         let iv = UIView()
-        iv.backgroundColor = .systemGreen
+//        iv.backgroundColor = .systemGreen
         return iv
     }()
     

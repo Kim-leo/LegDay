@@ -22,6 +22,7 @@ class MyPageView: UIView {
         return tv
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
