@@ -131,13 +131,15 @@ class DescriptionView: UIView {
         backgroundView.addSubview(xBtn)
         backgroundView.addSubview(descripTionCollectionView)
         backgroundView.addSubview(bottomMiniStackView)
-        [leftBtn, pageControlBar, rightBtn].map {
-            bottomMiniStackView.addArrangedSubview($0)
+        
+        bottomMiniStackView.addArrangedSubview(leftBtn)
+        bottomMiniStackView.addArrangedSubview(pageControlBar)
+        bottomMiniStackView.addArrangedSubview(rightBtn)
+        
+        for i in descriptionBtns {
+            stackViewFor3Btns.addArrangedSubview(i)
         }
         
-        descriptionBtns.map {
-            stackViewFor3Btns.addArrangedSubview($0)
-        }
         backgroundView.alpha = 0
         
         

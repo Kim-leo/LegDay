@@ -39,9 +39,10 @@ class DescriptionViewController: UIViewController {
         self.view.addSubview(descriptionView)
         setupViewLayout(yourView: descriptionView)
         
-        descriptionView.descriptionBtns.map {
-            $0.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
+        for btn in descriptionView.descriptionBtns {
+            btn.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
         }
+        
         descriptionView.xBtn.addTarget(self, action: #selector(xBtnTapped), for: .touchUpInside)
         descriptionView.leftBtn.addTarget(self, action: #selector(leftOrRightBtnTapped), for: .touchUpInside)
         descriptionView.rightBtn.addTarget(self, action: #selector(leftOrRightBtnTapped), for: .touchUpInside)
@@ -64,7 +65,6 @@ extension DescriptionViewController {
     }
     
     @objc func xBtnTapped(_ sender: UIButton, tag: Int) {
-        print("???")
         viewModel.xBtnTapped(view: descriptionView)
         
         

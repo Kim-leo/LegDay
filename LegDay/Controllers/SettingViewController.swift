@@ -21,6 +21,7 @@ class SettingViewController: UIViewController {
         viewModel.changeSetPokerLabelWhenComeFromMyPage(settingView)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,14 +41,14 @@ class SettingViewController: UIViewController {
         
         viewModel.initialSetting(view: settingView)
         
-        settingView.categoryBtns.map {
-            $0.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
+        for btn in settingView.categoryBtns {
+            btn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
         }
         settingView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
-        
-        settingView.pokerShapeBtns.map {
-            $0.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
+        for btn in settingView.pokerShapeBtns {
+            btn.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
         }
+        
         settingView.alertCancelBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
         settingView.alertOkBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
         
@@ -97,6 +98,7 @@ extension SettingViewController {
 
 
 extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
         case 0:
@@ -105,7 +107,6 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
             return viewModel.yourAllWorkoutsArray.count
         default:
             return 0
-            break
         }
     }
     
@@ -131,7 +132,6 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         default:
             return UICollectionViewCell()
-            break
         }
     }
     
@@ -146,7 +146,6 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
             return CGSize(width: width, height: width)
         default:
             return CGSize()
-            break
         }
     }
     
@@ -179,7 +178,6 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
             case false:
                 switch viewModel.yourAllWorkoutsArray[indexPath.row] {
                 case "+ 직접 입력":
-    //                viewModel.addWorkoutByYourself(view: settingView, vc: self)
                     settingView.alertView.alpha = 1
                     viewModel.whoCalledAlertView = 0
                     viewModel.settingMessageForAlertMessageLabel(settingView)
@@ -188,9 +186,9 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                     settingView.verticalStackViewForSettingPokerShapes.alpha = 1
                     self.view.bringSubviewToFront(settingView.verticalStackViewForSettingPokerShapes)
                     viewModel.whichWorkout = viewModel.yourAllWorkoutsArray[indexPath.row]
-    //                myView.pokerShapeBtns.map { $0.setTitle("\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])", for: .normal)}
-                    settingView.pokerWorkoutNameLabels.map { $0.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[$0.tag])" }
-                    
+                    for label in settingView.pokerWorkoutNameLabels {
+                        label.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[label.tag])"
+                    }
                 }
             }
             

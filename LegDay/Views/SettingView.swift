@@ -351,9 +351,15 @@ class SettingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
-        [upperView, lowerView, stackViewVertical, verticalStackViewForSettingPokerShapes, setPokerShapeStackView, alertView, saveCompleteView].map {
-            self.addSubview($0)
-        }
+        
+        self.addSubview(upperView)
+        self.addSubview(lowerView)
+        self.addSubview(stackViewVertical)
+        self.addSubview(verticalStackViewForSettingPokerShapes)
+        self.addSubview(setPokerShapeStackView)
+        self.addSubview(alertView)
+        self.addSubview(saveCompleteView)
+        
         upperView.addSubview(upperCollectinView)
         lowerView.addSubview(lowerCollectinView)
         
@@ -366,18 +372,18 @@ class SettingView: UIView {
         saveCompleteView.addSubview(saveCompleteImageView)
         saveCompleteView.addSubview(saveCompleteLabel)
         
-        [stackViewHorizontal1, stackViewHorizontal2, cancelBtnView].map {
-            stackViewVertical.addArrangedSubview($0)
-        }
+        stackViewVertical.addArrangedSubview(stackViewHorizontal1)
+        stackViewVertical.addArrangedSubview(stackViewHorizontal2)
+        stackViewVertical.addArrangedSubview(cancelBtnView)
+        
         for num in 0...2 {
             stackViewHorizontal1.addArrangedSubview(categoryBtns[num])
             stackViewHorizontal2.addArrangedSubview(categoryBtns[num + 3])
         }
         cancelBtnView.addSubview(cancelBtn)
         
-        [stackViewHorizontal3, stackViewHorizontal4].map {
-            verticalStackViewForSettingPokerShapes.addArrangedSubview($0)
-        }
+        verticalStackViewForSettingPokerShapes.addArrangedSubview(stackViewHorizontal3)
+        verticalStackViewForSettingPokerShapes.addArrangedSubview(stackViewHorizontal4)
         
         for i in 0...1 {
             stackViewHorizontal3.addArrangedSubview(pokerShapeViews[i])

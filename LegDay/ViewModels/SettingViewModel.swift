@@ -51,12 +51,12 @@ extension SettingViewModel {
             workoutModel.originalWorkouts = yourAllWorkoutsArray
         }
         
-        view.categoryBtns.map {
-            $0.setTitle("\(typeOfWorkouts[$0.tag])", for: .normal)
+        for btn in view.categoryBtns {
+            btn.setTitle("\(typeOfWorkouts[btn.tag])", for: .normal)
         }
         
-        view.setPokerShapeLabel.map {
-            $0.text = "\(originalWorkoutArray[$0.tag])"
+        for label in view.setPokerShapeLabel {
+            label.text = "\(originalWorkoutArray[label.tag])"
         }
         
     }
@@ -139,7 +139,6 @@ extension SettingViewModel {
         view.lowerCollectinView.performBatchUpdates {
             view.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
             yourAllWorkoutsArray.insert(inputWorkout, at: 1)
-        } completion: { [weak self] _ in
         }
         workoutModel.originalWorkouts.append(inputWorkout)
         print(workoutModel.originalWorkouts)
@@ -168,9 +167,10 @@ extension SettingViewModel {
     func changeSetPokerLabelWhenComeFromMyPage(_ view: SettingView) {
         switch myWorkoutModel.isComeFromMyPageVC {
         case true:
-            view.setPokerShapeLabel.map {
-                $0.text = "\(myWorkoutModel.selectedWorkoutInSelectWorkoutVC[$0.tag])"
+            for label in view.setPokerShapeLabel {
+                label.text = "\(myWorkoutModel.selectedWorkoutInSelectWorkoutVC[label.tag])"
             }
+            
             myWorkoutModel.isComeFromMyPageVC = false
         case false:
             break
