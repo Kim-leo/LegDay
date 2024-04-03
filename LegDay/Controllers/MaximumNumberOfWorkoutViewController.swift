@@ -38,12 +38,7 @@ class MaximumNumberOfWorkoutViewController: UIViewController {
         
         maxNumWorkoutView.maxNumPickerView.delegate = self
         maxNumWorkoutView.maxNumPickerView.dataSource = self
-        
-        
     }
-    
-
-    
 }
 
 extension MaximumNumberOfWorkoutViewController {
@@ -52,6 +47,7 @@ extension MaximumNumberOfWorkoutViewController {
     }
     
     @objc func nextBtnTapped(_ sender: UIButton) {
+        viewModel.readyToLoadOnWorkoutVC()
         let workoutVC = WorkoutViewController()
         navigationController?.pushViewController(workoutVC, animated: true)
     }
@@ -75,7 +71,7 @@ extension MaximumNumberOfWorkoutViewController: UIPickerViewDelegate, UIPickerVi
     // PickerView 에서 특정 row가 focus되었을 때 어떤 행동을 할지 정의하는 메서드입니다.
     // 여기서는 정오를 확인하고, 정답일 경우 다음 복습활동으로 넘어간다.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        viewModel.setMaximumNumberOfWorkoutAndReadyToLoadOnWorkoutVC(row: row)
+        viewModel.setMaximumNumberOfWorkout(row: row)
         viewModel.showMaxNumberOnLabel(view: maxNumWorkoutView, row: row)
         viewModel.changeColorOfTheBtn(maxNumWorkoutView)
         
@@ -89,9 +85,7 @@ extension MaximumNumberOfWorkoutViewController: UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         view.backgroundColor = .black
-        
-        
-        
+
         let cardImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         cardImage.contentMode = .scaleAspectFit
         cardImage.image = UIImage(named: viewModel.images.randomElement()![row])
