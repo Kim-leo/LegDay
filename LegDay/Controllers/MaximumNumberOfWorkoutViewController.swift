@@ -64,7 +64,7 @@ extension MaximumNumberOfWorkoutViewController: UIPickerViewDelegate, UIPickerVi
     
     // PickerView 내에서 특정한 위치(row)를 가리키게 될 때, 그 위치에 해당하는 문자열을 반환하는 메서드
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return viewModel.maximumNumberOfWorkout[row]
+        return String(viewModel.maximumNumberOfWorkout[row])
     }
     
    

@@ -13,8 +13,8 @@ class MaximumNumberOfWorkoutViewModel {
     
     var myWorkoutModel = MyWorkout.shared
     
-    var myMaximumNumber = String()
-    var maximumNumberOfWorkout = ["5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    var myMaximumNumber = Int()
+    var maximumNumberOfWorkout = Array(5...13)
     
     let images = [["Spade 5", "Spade 6", "Spade 7", "Spade 8", "Spade 9", "Spade 10", "Spade J", "Spade Q", "Spade K"],
                   ["Heart 5", "Heart 6", "Heart 7", "Heart 8", "Heart 9", "Heart 10", "Heart J", "Heart Q", "Heart K"],

@@ -53,7 +53,7 @@ class DescriptionView: UIView {
     
     lazy var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = Colors().darkBlack
         return view
     }()
 

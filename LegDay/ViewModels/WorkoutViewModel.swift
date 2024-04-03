@@ -18,6 +18,10 @@ class WorkoutViewModel {
     var myWorkoutModel = MyWorkout.shared
     
     var cardSet = CardModel().cardSet
+    var cardArrayPerShape = CardModel().cardsArrayPerShape
+    var cardSetWithMaximumNumber = [String]()
+    var totalCardNumber = Int()
+    
     var emptyArray = [String]()
     var pickedCard: String = ""
     
@@ -30,7 +34,19 @@ class WorkoutViewModel {
 }
 
 extension WorkoutViewModel {
+    func settingMaxNumberOfWorkout() {
+        for i in 0..<myWorkoutModel.setMaximumNumberOfWorkout {
+            for j in 0...3 {
+                cardSetWithMaximumNumber.append(cardArrayPerShape[j][i])
+            }
+        }
+        print(cardSetWithMaximumNumber)
+        totalCardNumber = cardSetWithMaximumNumber.count
+    }
+    
     func componentsInitialSetting(_ view: WorkoutView) {
+        settingMaxNumberOfWorkout()
+        
         view.cardNameLabel.text = "Let's go."
         view.workoutLabel.text = (myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC.isEmpty) ? "오늘도 화이팅!" : "\(myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC)"
         view.workoutLabel.textColor = .white
@@ -84,14 +100,20 @@ extension WorkoutViewModel {
     func changeCardInfoUIText(_ view: WorkoutView) {
         view.cardNameLabel.text = pickedCard
         view.cardImageView.image = UIImage(named: pickedCard)
-        view.cardCountLabel.text = "\(emptyArray.count) / 52"
+        view.cardCountLabel.text = "\(emptyArray.count) / \(totalCardNumber)"
     }
     
     func startWorkout(_ view: WorkoutView) {
         view.nextBtn.setTitle("다음", for: .normal)
         
-        pickedCard = cardSet.randomElement() ?? ""
-        cardSet.remove(pickedCard)
+//        pickedCard = cardSet.randomElement() ?? ""
+//        cardSet.remove(pickedCard)
+        
+        pickedCard = cardSetWithMaximumNumber.randomElement() ?? ""
+        let indexOfPickedCard = Int(cardSetWithMaximumNumber.firstIndex(of: pickedCard) ?? 0)
+        cardSetWithMaximumNumber.remove(at: indexOfPickedCard)
+//        print(pickedCard)
+        
         emptyArray.append(pickedCard)
     
         changeCardNameLabelTextColor(view)
@@ -99,7 +121,7 @@ extension WorkoutViewModel {
         distinguishTheShapeOfTheCard(view)
         changeCardInfoUIText(view)
         
-        if emptyArray.count == 52 {
+        if emptyArray.count == totalCardNumber {
             view.nextBtn.setTitle("마치기", for: .normal)
             view.nextBtn.backgroundColor = .white
             view.nextBtn.setTitleColor(Colors().darkBlack, for: .normal)
@@ -121,7 +143,8 @@ extension WorkoutViewModel {
         view.nextBtn.backgroundColor = .systemOrange
         
         emptyArray.removeAll()
-        cardSet = CardModel().cardSet
+//        cardSet = CardModel().cardSet
+        cardSetWithMaximumNumber.removeAll()
     }
     
     func nextBtnTapped(_ view: WorkoutView) {
@@ -132,6 +155,7 @@ extension WorkoutViewModel {
             emitter.removeFromSuperlayer()
             componentsInitialSetting(view)
         default:
+            
             startWorkout(view)
         }
     }

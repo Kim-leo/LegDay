@@ -30,5 +30,5 @@ class MyWorkout {
     
     var isComeFromMyPageVC = false
     
-    var setMaximumNumberOfWorkout = String()
+    var setMaximumNumberOfWorkout = Int()
 }
