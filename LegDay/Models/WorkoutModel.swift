@@ -29,4 +29,6 @@ class MyWorkout {
     var selectedWorkoutTitleInSelectWorkoutVC = String()
     
     var isComeFromMyPageVC = false
+    
+    var setMaximumNumberOfWorkout = String()
 }

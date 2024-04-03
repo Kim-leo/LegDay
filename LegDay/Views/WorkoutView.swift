@@ -153,7 +153,7 @@ class WorkoutView: UIView {
         nextBtnView.topAnchor.constraint(equalTo: numberOfWorkoutLabel.bottomAnchor).isActive = true
         nextBtnView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         nextBtnView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        nextBtnView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        nextBtnView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
         nextBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
