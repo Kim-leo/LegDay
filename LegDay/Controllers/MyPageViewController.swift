@@ -64,8 +64,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let workoutRightNowAction = UIContextualAction(style: .normal, title: "바로 운동하기") { (action, view, completion) in
             self.viewModel.saveCurrentCellData(indexPath: indexPath)
-            let workoutVC = WorkoutViewController()
-            self.navigationController?.pushViewController(workoutVC, animated: true)
+            let maxNumVC = MaximumNumberOfWorkoutViewController()
+            self.navigationController?.pushViewController(maxNumVC, animated: true)
             completion(true)
         }
         workoutRightNowAction.backgroundColor = Colors().darkBlack

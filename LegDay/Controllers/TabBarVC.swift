@@ -15,6 +15,8 @@ class TabBarVC: UITabBarController {
         let homeVC = UINavigationController(rootViewController: HomeViewController())
         let settingVC = UINavigationController(rootViewController: SettingViewController())
         let myPageVC = UINavigationController(rootViewController: MyPageViewController())
+        let statsVC = UINavigationController(rootViewController: StatsViewController())
+        
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithTransparentBackground()
@@ -30,6 +32,9 @@ class TabBarVC: UITabBarController {
         myPageVC.tabBarItem.title = "마이 운동"
         myPageVC.tabBarItem.image = UIImage(systemName: "person.fill")
         
+        statsVC.tabBarItem.title = "통계"
+        statsVC.tabBarItem.image = UIImage(systemName: "chart.bar.xaxis")
+        
         tabBar.backgroundColor = .black
         tabBar.tintColor = Colors().redColor
         tabBar.unselectedItemTintColor = .lightGray
@@ -39,7 +44,7 @@ class TabBarVC: UITabBarController {
         tabBarAppearance.configureWithTransparentBackground()
         tabBar.standardAppearance = tabBarAppearance
         tabBar.scrollEdgeAppearance = tabBarAppearance
-        self.viewControllers = [homeVC, settingVC, myPageVC]
+        self.viewControllers = [homeVC, settingVC, myPageVC, statsVC]
 
     }
     
