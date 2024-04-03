@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+class MaximumNumberOfWorkoutViewModel {
+    static let shared = MaximumNumberOfWorkoutViewModel()
+    
+    
+}

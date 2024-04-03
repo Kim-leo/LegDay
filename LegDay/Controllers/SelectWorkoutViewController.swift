@@ -57,8 +57,8 @@ extension SelectWorkoutViewController {
     }
     
     @objc func nextBtnTapped(_ sender: UIButton) {
-        let workoutVC = WorkoutViewController()
-        navigationController?.pushViewController(workoutVC, animated: true)
+        let maxNumVC = MaximumNumberOfWorkoutViewController()
+        navigationController?.pushViewController(maxNumVC, animated: true)
     }
 }
 

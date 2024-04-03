@@ -46,6 +46,9 @@
 		E6CFB4412BBA060E0048F6A6 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB4402BBA060E0048F6A6 /* DescriptionView.swift */; };
 		E6CFB4452BBA08AC0048F6A6 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB4432BBA08AC0048F6A6 /* DescriptionCell.swift */; };
 		E6CFB4462BBA08AC0048F6A6 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6CFB4442BBA08AC0048F6A6 /* DescriptionCell.xib */; };
+		E6CFB46D2BBD14AC0048F6A6 /* MaximumNumberOfWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB46C2BBD14AC0048F6A6 /* MaximumNumberOfWorkoutViewController.swift */; };
+		E6CFB46F2BBD15210048F6A6 /* MaximumNumberOfWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB46E2BBD15210048F6A6 /* MaximumNumberOfWorkoutView.swift */; };
+		E6CFB4712BBD15580048F6A6 /* MaximumNumberOfWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB4702BBD15580048F6A6 /* MaximumNumberOfWorkoutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,9 @@
 		E6CFB4402BBA060E0048F6A6 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		E6CFB4432BBA08AC0048F6A6 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		E6CFB4442BBA08AC0048F6A6 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
+		E6CFB46C2BBD14AC0048F6A6 /* MaximumNumberOfWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumNumberOfWorkoutViewController.swift; sourceTree = "<group>"; };
+		E6CFB46E2BBD15210048F6A6 /* MaximumNumberOfWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumNumberOfWorkoutView.swift; sourceTree = "<group>"; };
+		E6CFB4702BBD15580048F6A6 /* MaximumNumberOfWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaximumNumberOfWorkoutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 			children = (
 				E65D41282BAC0766002585B0 /* HomeViewModel.swift */,
 				E6B0480D2BB1980600C23D70 /* SelectWorkoutViewModel.swift */,
+				E6CFB4702BBD15580048F6A6 /* MaximumNumberOfWorkoutViewModel.swift */,
 				E65D412E2BAC079B002585B0 /* WorkoutViewModel.swift */,
 				E65D412A2BAC0785002585B0 /* SettingViewModel.swift */,
 				E65D412C2BAC0791002585B0 /* MyPageViewModel.swift */,
@@ -181,6 +188,7 @@
 				E65D40F62BABF648002585B0 /* Main.storyboard */,
 				E65D411E2BAC0121002585B0 /* HomeView.swift */,
 				E6B0480B2BB197F900C23D70 /* SelectWorkoutView.swift */,
+				E6CFB46E2BBD15210048F6A6 /* MaximumNumberOfWorkoutView.swift */,
 				E6B0480F2BB1AD7500C23D70 /* SelectWorkoutCell */,
 				E65D41242BAC073A002585B0 /* WorkoutView.swift */,
 				E65D41202BAC06D2002585B0 /* SettingView.swift */,
@@ -200,6 +208,7 @@
 				E65D41182BABFC66002585B0 /* TabBarVC.swift */,
 				E65D40F42BABF648002585B0 /* HomeViewController.swift */,
 				E6B048092BB197D600C23D70 /* SelectWorkoutViewController.swift */,
+				E6CFB46C2BBD14AC0048F6A6 /* MaximumNumberOfWorkoutViewController.swift */,
 				E65D411A2BABFF5F002585B0 /* WorkoutViewController.swift */,
 				E65D41142BABF9E0002585B0 /* SettingViewController.swift */,
 				E65D41162BABF9EC002585B0 /* MyPageViewController.swift */,
@@ -322,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6CFB46D2BBD14AC0048F6A6 /* MaximumNumberOfWorkoutViewController.swift in Sources */,
 				E65D41292BAC0766002585B0 /* HomeViewModel.swift in Sources */,
 				E6CFB4452BBA08AC0048F6A6 /* DescriptionCell.swift in Sources */,
 				E6B048122BB1AD8F00C23D70 /* SelectWorkoutCell.swift in Sources */,
@@ -330,12 +340,14 @@
 				E6B0480E2BB1980600C23D70 /* SelectWorkoutViewModel.swift in Sources */,
 				E65D411F2BAC0121002585B0 /* HomeView.swift in Sources */,
 				E65D40F52BABF648002585B0 /* HomeViewController.swift in Sources */,
+				E6CFB4712BBD15580048F6A6 /* MaximumNumberOfWorkoutViewModel.swift in Sources */,
 				E65D411D2BABFF80002585B0 /* DescriptionViewController.swift in Sources */,
 				E65D412F2BAC079B002585B0 /* WorkoutViewModel.swift in Sources */,
 				E6CFB4412BBA060E0048F6A6 /* DescriptionView.swift in Sources */,
 				E65D410D2BABF764002585B0 /* ExtensionView.swift in Sources */,
 				E65D40F12BABF648002585B0 /* AppDelegate.swift in Sources */,
 				E65D41212BAC06D2002585B0 /* SettingView.swift in Sources */,
+				E6CFB46F2BBD15210048F6A6 /* MaximumNumberOfWorkoutView.swift in Sources */,
 				E65D41112BABF795002585B0 /* WorkoutModel.swift in Sources */,
 				E65D41392BAD8223002585B0 /* LowerCell.swift in Sources */,
 				E65D410B2BABF744002585B0 /* ExtensionVC.swift in Sources */,
