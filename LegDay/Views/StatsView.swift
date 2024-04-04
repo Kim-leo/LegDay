@@ -29,24 +29,27 @@ class StatsView: UIView {
         return label
     }()
     
-    lazy var maxNumCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 0
-        layout.footerReferenceSize = .zero
-        layout.headerReferenceSize = .zero
-        
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.tag = 0
-        cv.isScrollEnabled = true
-        cv.isPagingEnabled = true
-        cv.showsHorizontalScrollIndicator = false
-        cv.register(maxNumCell.self, forCellWithReuseIdentifier: "maxNumCell")
-        cv.backgroundColor = .clear
-        cv.layer.borderColor = UIColor.lightGray.cgColor
-        cv.layer.borderWidth = 1
-        return cv
+    lazy var maxNumStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.distribution = .fillEqually
+        sv.layer.borderColor = UIColor.lightGray.cgColor
+        sv.layer.borderWidth = 1
+        return sv
+    }()
+    
+    lazy var eachStatsBtns: [UIButton] = {
+        var btns = [UIButton]()
+        let maxNumbersArray = ["5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+        for i in 0..<9 {
+            let btn = UIButton()
+            btn.tag = i
+            btn.setTitle(maxNumbersArray[i], for: .normal)
+            btn.setTitleColor(.white, for: .normal)
+            btn.backgroundColor = .clear
+            btns.append(btn)
+        }
+        return btns
     }()
     
     lazy var eachStatsCollectionView: UICollectionView = {
@@ -63,7 +66,7 @@ class StatsView: UIView {
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
         cv.register(EachStatsCell.self, forCellWithReuseIdentifier: "EachStatsCell")
-        cv.backgroundColor = .lightGray
+        cv.backgroundColor = .white
         return cv
     }()
     
@@ -71,7 +74,11 @@ class StatsView: UIView {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
         self.addSubview(guideLabel)
-        self.addSubview(maxNumCollectionView)
+        self.addSubview(maxNumStackView)
+        for i in 0..<9 {
+            maxNumStackView.addArrangedSubview(eachStatsBtns[i])
+        }
+        eachStatsBtns[0].setTitleColor(Colors().redColor, for: .normal)
         self.addSubview(eachStatsCollectionView)
         viewLayout()
         
@@ -88,16 +95,20 @@ class StatsView: UIView {
         guideLabel.heightAnchor.constraint(equalTo: guideLabel.widthAnchor, multiplier: 0.1).isActive = true
         guideLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        maxNumCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        maxNumCollectionView.topAnchor.constraint(equalTo: guideLabel.bottomAnchor, constant: 10).isActive = true
-        maxNumCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2).isActive = true
-        maxNumCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 2).isActive = true
-        maxNumCollectionView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        maxNumStackView.translatesAutoresizingMaskIntoConstraints = false
+        maxNumStackView.topAnchor.constraint(equalTo: guideLabel.bottomAnchor, constant: 5).isActive = true
+        maxNumStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -2).isActive = true
+        maxNumStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 2).isActive = true
+        maxNumStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         eachStatsCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        eachStatsCollectionView.topAnchor.constraint(equalTo: maxNumCollectionView.bottomAnchor).isActive = true
+        eachStatsCollectionView.topAnchor.constraint(equalTo: maxNumStackView.bottomAnchor).isActive = true
         eachStatsCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         eachStatsCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         eachStatsCollectionView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
+    
+    
 }
+
+
