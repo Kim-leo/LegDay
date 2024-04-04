@@ -33,10 +33,6 @@ class SelectWorkoutView: UIView {
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
         tv.register(SelectWorkoutCell.self, forCellReuseIdentifier: "SelectWorkoutCell")
-//        tv.layer.masksToBounds = true
-//        tv.layer.cornerRadius = 10
-//        tv.layer.borderWidth = 1
-//        tv.layer.borderColor = UIColor.lightGray.cgColor
         tv.backgroundColor = Colors().softBlack
         
         return tv

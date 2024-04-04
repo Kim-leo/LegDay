@@ -72,7 +72,6 @@ class DescriptionView: UIView {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         layout.footerReferenceSize = .zero
         layout.headerReferenceSize = .zero
         
@@ -89,7 +88,6 @@ class DescriptionView: UIView {
     lazy var bottomMiniStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .horizontal
-//        sv.spacing = 20
         sv.alignment = .fill
         sv.distribution = .fillEqually
         return sv
@@ -141,9 +139,7 @@ class DescriptionView: UIView {
         }
         
         backgroundView.alpha = 0
-        
-        
-        
+   
         viewLayout()
         
     }

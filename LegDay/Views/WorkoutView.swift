@@ -13,7 +13,6 @@ class WorkoutView: UIView {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.image = UIImage(named: "Joker")
-//        iv.backgroundColor = .systemGreen
         return iv
     }()
     
@@ -84,7 +83,6 @@ class WorkoutView: UIView {
     
     lazy var nextBtnView: UIView = {
         let iv = UIView()
-//        iv.backgroundColor = .systemGreen
         return iv
     }()
     
@@ -105,12 +103,10 @@ class WorkoutView: UIView {
         self.addSubview(cardImageView)
         self.addSubview(cardCountLabel)
         self.addSubview(cardNameLabel)
-//        self.addSubview(workoutLabelStackView)
         self.addSubview(workoutLabel)
         self.addSubview(numberOfWorkoutLabel)
         self.addSubview(nextBtnView)
         nextBtnView.addSubview(nextBtn)
-//        workoutLabels.map { workoutLabelStackView.addArrangedSubview($0) }
         viewLayout()
     }
     

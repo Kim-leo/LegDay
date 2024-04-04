@@ -10,8 +10,6 @@ import UIKit
 
 class WorkoutViewModel {
     let cardModel: CardModel
-//    var workoutModel: WorkoutModel
-    
     
     var workoutModel = WorkoutModel()
     
@@ -106,13 +104,10 @@ extension WorkoutViewModel {
     func startWorkout(_ view: WorkoutView) {
         view.nextBtn.setTitle("다음", for: .normal)
         
-//        pickedCard = cardSet.randomElement() ?? ""
-//        cardSet.remove(pickedCard)
-        
         pickedCard = cardSetWithMaximumNumber.randomElement() ?? ""
         let indexOfPickedCard = Int(cardSetWithMaximumNumber.firstIndex(of: pickedCard) ?? 0)
         cardSetWithMaximumNumber.remove(at: indexOfPickedCard)
-//        print(pickedCard)
+
         
         emptyArray.append(pickedCard)
     
@@ -143,7 +138,7 @@ extension WorkoutViewModel {
         view.nextBtn.backgroundColor = .systemOrange
         
         emptyArray.removeAll()
-//        cardSet = CardModel().cardSet
+
         cardSetWithMaximumNumber.removeAll()
     }
     

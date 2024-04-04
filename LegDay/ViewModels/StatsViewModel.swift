@@ -92,7 +92,6 @@ extension StatsViewModel {
     func entryData(values: [Double]) -> [ChartDataEntry] {
         var pieDataEntries: [ChartDataEntry] = []
         for i in 0 ..< values.count {
-//            let pieDataEntry = ChartDataEntry(x: Double(i), y: values[i])
             let pieDataEntry = PieChartDataEntry(value: values[i], label: ["시작한 운동", "미완수"][i], data: "" as AnyObject)
             pieDataEntries.append(pieDataEntry)
         }
