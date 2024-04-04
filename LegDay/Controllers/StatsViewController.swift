@@ -12,7 +12,7 @@ class StatsViewController: UIViewController {
     let statsView = StatsView()
     var viewModel = StatsViewModel.shared
     
-    
+    var rightBarBtn = UIBarButtonItem()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,14 +21,20 @@ class StatsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rightBarBtn = UIBarButtonItem(customView: statsView.rightBarBtnItem)
+        
         self.navigationItem.titleView = statsView.titleLabel
+        self.navigationItem.rightBarButtonItem = rightBarBtn
         self.view.backgroundColor = .white
         self.view.addSubview(statsView)
         setupViewLayout(yourView: statsView)
+        
+        statsView.rightBarBtnItem.addTarget(self, action: #selector(rightBarBtnTap), for: .touchUpInside)
         for btn in statsView.eachStatsBtns {
             btn.addTarget(self, action: #selector(eachStatsBtnsTapped), for: .touchUpInside)
         }
-        statsView.initializingBtn.addTarget(self, action: #selector(initializingBtnTapped), for: .touchUpInside)
+        
         
         viewModel.workoutInfo(statsView)
         
@@ -37,14 +43,16 @@ class StatsViewController: UIViewController {
 }
 
 extension StatsViewController {
+    @objc func rightBarBtnTap(_ sender: UIBarButtonItem) {
+        print("데이터 초기화")
+    }
+    
     @objc func eachStatsBtnsTapped(_ sender: UIButton) {
         print(sender.tag)
         viewModel.eachStatsBtnTapped(statsView, sender: sender)
         
     }
     
-    @objc func initializingBtnTapped(_ sender: UIButton) {
-        print("initialize data")
-    }
+    
 }
 

@@ -10,6 +10,15 @@ import UIKit
 import DGCharts
 
 class StatsView: UIView {
+    lazy var rightBarBtnItem: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("초기화", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
+        return btn
+    }()
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "통계"
@@ -26,7 +35,7 @@ class StatsView: UIView {
         label.textColor = .white
         label.backgroundColor = .clear
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 25)
+        label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
     
@@ -118,7 +127,7 @@ class StatsView: UIView {
             label.tag = i
             label.text = infoDescriptionArray[i]
             label.textAlignment = .left
-            label.font = UIFont.systemFont(ofSize: 20)
+            label.font = UIFont.systemFont(ofSize: 15)
             labels.append(label)
         }
         return labels
@@ -131,17 +140,10 @@ class StatsView: UIView {
             label.tag = i
             label.text = "\(i + 1)"
             label.textAlignment = .right
-            label.font = UIFont.systemFont(ofSize: 20)
+            label.font = UIFont.systemFont(ofSize: 15)
             labels.append(label)
         }
         return labels
-    }()
-    
-    lazy var initializingBtn: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("기록 초기화", for: .normal)
-        btn.setTitleColor(.systemGray4, for: .normal)
-        return btn
     }()
     
     override init(frame: CGRect) {
@@ -154,7 +156,6 @@ class StatsView: UIView {
         }
         eachStatsBtns[0].setTitleColor(Colors().redColor, for: .normal)
         
-        self.addSubview(initializingBtn)
         self.addSubview(infoBackgroundView)
         self.addSubview(chartBackgroundView)
         chartBackgroundView.addSubview(pieChart)
@@ -188,17 +189,11 @@ class StatsView: UIView {
         maxNumStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 2).isActive = true
         maxNumStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        initializingBtn.translatesAutoresizingMaskIntoConstraints = false
-        initializingBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        initializingBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        initializingBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
-        initializingBtn.heightAnchor.constraint(equalTo: initializingBtn.widthAnchor, multiplier: 0.3).isActive = true
-        
         infoBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         infoBackgroundView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
         infoBackgroundView.heightAnchor.constraint(equalTo: infoBackgroundView.widthAnchor, multiplier: 0.5).isActive = true
         infoBackgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        infoBackgroundView.bottomAnchor.constraint(equalTo: initializingBtn.topAnchor, constant: -10).isActive = true
+        infoBackgroundView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         
         eachStatsEntireStackView.translatesAutoresizingMaskIntoConstraints = false
         eachStatsEntireStackView.widthAnchor.constraint(equalTo: infoBackgroundView.widthAnchor, multiplier: 0.9).isActive = true

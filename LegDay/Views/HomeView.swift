@@ -44,7 +44,7 @@ class HomeView: UIView {
         
         self.addSubview(legDayLabel)
         self.addSubview(startWorkoutBtn)
-        self.addSubview(descriptionBtn)
+        
         self.backgroundColor = Colors().darkBlack
         
         viewLayout()
@@ -56,17 +56,11 @@ class HomeView: UIView {
     }
     
     func viewLayout() {
-        descriptionBtn.translatesAutoresizingMaskIntoConstraints = false
-        descriptionBtn.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        descriptionBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        descriptionBtn.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        descriptionBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        
         legDayLabel.translatesAutoresizingMaskIntoConstraints = false
         legDayLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         legDayLabel.heightAnchor.constraint(equalTo: legDayLabel.widthAnchor, multiplier: 0.68).isActive = true
         legDayLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        legDayLabel.topAnchor.constraint(equalTo: descriptionBtn.bottomAnchor, constant: 20).isActive = true
+        legDayLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         
         startWorkoutBtn.translatesAutoresizingMaskIntoConstraints = false
         startWorkoutBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4).isActive = true

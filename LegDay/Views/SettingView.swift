@@ -13,6 +13,7 @@ class SettingView: UIView {
         let btn = UIButton()
         btn.setTitle("삭제", for: .normal)
         btn.setTitleColor(Colors().softRedColor, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
         return btn
     }()
@@ -31,6 +32,7 @@ class SettingView: UIView {
         let btn = UIButton()
         btn.setTitle("세트 저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
         return btn
     }()

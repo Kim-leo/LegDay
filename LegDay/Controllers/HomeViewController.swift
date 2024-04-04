@@ -11,6 +11,7 @@ class HomeViewController: UIViewController {
 
     let homeView = HomeView()
     
+    var rightBarButton = UIBarButtonItem()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -21,12 +22,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        rightBarButton = UIBarButtonItem(customView: homeView.descriptionBtn)
+        self.navigationItem.rightBarButtonItem = rightBarButton
         self.view.backgroundColor = .white
         
         self.view.addSubview(homeView)
         setupViewLayout(yourView: homeView)
         
-
         homeView.startWorkoutBtn.addTarget(self, action: #selector(startWorkoutBtnTapped), for: .touchUpInside)
         homeView.descriptionBtn.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
         
