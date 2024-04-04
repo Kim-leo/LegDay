@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import DGCharts
 
 class StatsView: UIView {
     lazy var titleLabel: UILabel = {
@@ -52,22 +53,95 @@ class StatsView: UIView {
         return btns
     }()
     
-    lazy var eachStatsCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.footerReferenceSize = .zero
-        layout.headerReferenceSize = .zero
+    lazy var chartBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 1
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    lazy var pieChart: PieChartView = {
+        let pc = PieChartView()
+        pc.backgroundColor = .clear
+        pc.centerText = "수행 횟수 기록"
+        return pc
+    }()
+    
+    lazy var transparentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    lazy var infoBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderWidth = 1
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    lazy var eachStatsEntireStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.distribution = .fillEqually
         
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.tag = 1
-        cv.isScrollEnabled = false
-        cv.isPagingEnabled = true
-        cv.showsHorizontalScrollIndicator = false
-        cv.register(EachStatsCell.self, forCellWithReuseIdentifier: "EachStatsCell")
-        cv.backgroundColor = .white
-        return cv
+        return sv
+    }()
+    
+    lazy var leftStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 10
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    lazy var rightStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .vertical
+        sv.spacing = 10
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    lazy var leftStatsLabels: [UILabel] = {
+        var labels = [UILabel]()
+        let infoDescriptionArray = ["시작한 운동", "완료한 운동", "완료율", "최다 연속 기록"]
+        for i in 0...3 {
+            let label = UILabel()
+            label.tag = i
+            label.text = infoDescriptionArray[i]
+            label.textAlignment = .left
+            label.font = UIFont.systemFont(ofSize: 20)
+            labels.append(label)
+        }
+        return labels
+    }()
+    
+    lazy var rightStatsLabels: [UILabel] = {
+        var labels = [UILabel]()
+        for i in 0...3 {
+            let label = UILabel()
+            label.tag = i
+            label.text = "\(i + 1)"
+            label.textAlignment = .right
+            label.font = UIFont.systemFont(ofSize: 20)
+            labels.append(label)
+        }
+        return labels
+    }()
+    
+    lazy var initializingBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("기록 초기화", for: .normal)
+        btn.setTitleColor(.systemGray4, for: .normal)
+        return btn
     }()
     
     override init(frame: CGRect) {
@@ -79,7 +153,20 @@ class StatsView: UIView {
             maxNumStackView.addArrangedSubview(eachStatsBtns[i])
         }
         eachStatsBtns[0].setTitleColor(Colors().redColor, for: .normal)
-        self.addSubview(eachStatsCollectionView)
+        
+        self.addSubview(initializingBtn)
+        self.addSubview(infoBackgroundView)
+        self.addSubview(chartBackgroundView)
+        chartBackgroundView.addSubview(pieChart)
+        chartBackgroundView.addSubview(transparentView)
+        infoBackgroundView.addSubview(eachStatsEntireStackView)
+        eachStatsEntireStackView.addArrangedSubview(leftStackView)
+        eachStatsEntireStackView.addArrangedSubview(rightStackView)
+        for tag in 0...3 {
+            leftStackView.addArrangedSubview(leftStatsLabels[tag])
+            rightStackView.addArrangedSubview(rightStatsLabels[tag])
+        }
+        
         viewLayout()
         
     }
@@ -101,11 +188,41 @@ class StatsView: UIView {
         maxNumStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 2).isActive = true
         maxNumStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        eachStatsCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        eachStatsCollectionView.topAnchor.constraint(equalTo: maxNumStackView.bottomAnchor).isActive = true
-        eachStatsCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        eachStatsCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        eachStatsCollectionView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        initializingBtn.translatesAutoresizingMaskIntoConstraints = false
+        initializingBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        initializingBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        initializingBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3).isActive = true
+        initializingBtn.heightAnchor.constraint(equalTo: initializingBtn.widthAnchor, multiplier: 0.3).isActive = true
+        
+        infoBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        infoBackgroundView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
+        infoBackgroundView.heightAnchor.constraint(equalTo: infoBackgroundView.widthAnchor, multiplier: 0.5).isActive = true
+        infoBackgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        infoBackgroundView.bottomAnchor.constraint(equalTo: initializingBtn.topAnchor, constant: -10).isActive = true
+        
+        eachStatsEntireStackView.translatesAutoresizingMaskIntoConstraints = false
+        eachStatsEntireStackView.widthAnchor.constraint(equalTo: infoBackgroundView.widthAnchor, multiplier: 0.9).isActive = true
+        eachStatsEntireStackView.heightAnchor.constraint(equalTo: infoBackgroundView.heightAnchor, multiplier: 0.9).isActive = true
+        eachStatsEntireStackView.centerXAnchor.constraint(equalTo: infoBackgroundView.centerXAnchor).isActive = true
+        eachStatsEntireStackView.centerYAnchor.constraint(equalTo: infoBackgroundView.centerYAnchor).isActive = true
+        
+        chartBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        chartBackgroundView.topAnchor.constraint(equalTo: maxNumStackView.bottomAnchor, constant: 10).isActive = true
+        chartBackgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        chartBackgroundView.widthAnchor.constraint(equalTo: infoBackgroundView.widthAnchor).isActive = true
+        chartBackgroundView.bottomAnchor.constraint(equalTo: infoBackgroundView.topAnchor, constant: -10).isActive = true
+        
+        pieChart.translatesAutoresizingMaskIntoConstraints = false
+        pieChart.topAnchor.constraint(equalTo: chartBackgroundView.topAnchor).isActive = true
+        pieChart.leadingAnchor.constraint(equalTo: chartBackgroundView.leadingAnchor).isActive = true
+        pieChart.trailingAnchor.constraint(equalTo: chartBackgroundView.trailingAnchor).isActive = true
+        pieChart.bottomAnchor.constraint(equalTo: chartBackgroundView.bottomAnchor).isActive = true
+        
+        transparentView.translatesAutoresizingMaskIntoConstraints = false
+        transparentView.topAnchor.constraint(equalTo: chartBackgroundView.topAnchor).isActive = true
+        transparentView.leadingAnchor.constraint(equalTo: chartBackgroundView.leadingAnchor).isActive = true
+        transparentView.trailingAnchor.constraint(equalTo: chartBackgroundView.trailingAnchor).isActive = true
+        transparentView.bottomAnchor.constraint(equalTo: chartBackgroundView.bottomAnchor).isActive = true
     }
     
     
