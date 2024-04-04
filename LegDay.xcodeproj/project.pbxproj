@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E622349C2BBEC9B000FB1612 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = E622349B2BBEC9B000FB1612 /* DGCharts */; };
-		E622349E2BBEC9B000FB1612 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E622349D2BBEC9B000FB1612 /* DGChartsDynamic */; };
+		898A131FA119C1D33C3248A6 /* Pods_LegDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFE98652944E10A71134540 /* Pods_LegDay.framework */; };
+		E622349C2BBEC9B000FB1612 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = E622349B2BBEC9B000FB1612 /* DGCharts */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E65D40F12BABF648002585B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D40F02BABF648002585B0 /* AppDelegate.swift */; };
 		E65D40F32BABF648002585B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D40F22BABF648002585B0 /* SceneDelegate.swift */; };
 		E65D40F52BABF648002585B0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D40F42BABF648002585B0 /* HomeViewController.swift */; };
@@ -56,7 +56,22 @@
 		E6CFB4772BBDBA360048F6A6 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB4762BBDBA360048F6A6 /* StatsViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E64CA6D12BBEF51C00E25DD8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		06739C476F0D1AE943739C45 /* Pods-LegDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegDay.release.xcconfig"; path = "Target Support Files/Pods-LegDay/Pods-LegDay.release.xcconfig"; sourceTree = "<group>"; };
+		DBFE98652944E10A71134540 /* Pods_LegDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LegDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65D40ED2BABF648002585B0 /* LegDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65D40F02BABF648002585B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E65D40F22BABF648002585B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +119,7 @@
 		E6CFB4722BBDB8550048F6A6 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		E6CFB4742BBDBA150048F6A6 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		E6CFB4762BBDBA360048F6A6 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
+		FF9D7FEF795D2CFB17900789 /* Pods-LegDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegDay.debug.xcconfig"; path = "Target Support Files/Pods-LegDay/Pods-LegDay.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,19 +127,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E622349E2BBEC9B000FB1612 /* DGChartsDynamic in Frameworks */,
 				E622349C2BBEC9B000FB1612 /* DGCharts in Frameworks */,
+				898A131FA119C1D33C3248A6 /* Pods_LegDay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A298075918EC9A3A3983EE8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBFE98652944E10A71134540 /* Pods_LegDay.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E65D40E42BABF648002585B0 = {
 			isa = PBXGroup;
 			children = (
 				E65D40EF2BABF648002585B0 /* LegDay */,
 				E65D40EE2BABF648002585B0 /* Products */,
+				EB558E907D070A2B6FF62E24 /* Pods */,
+				A298075918EC9A3A3983EE8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -268,6 +294,15 @@
 			path = DescriptionViewCell;
 			sourceTree = "<group>";
 		};
+		EB558E907D070A2B6FF62E24 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D7FEF795D2CFB17900789 /* Pods-LegDay.debug.xcconfig */,
+				06739C476F0D1AE943739C45 /* Pods-LegDay.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,9 +310,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E65D41012BABF649002585B0 /* Build configuration list for PBXNativeTarget "LegDay" */;
 			buildPhases = (
+				43ED3C2167EFE8E702328F51 /* [CP] Check Pods Manifest.lock */,
 				E65D40E92BABF648002585B0 /* Sources */,
 				E65D40EA2BABF648002585B0 /* Frameworks */,
 				E65D40EB2BABF648002585B0 /* Resources */,
+				E64CA6D12BBEF51C00E25DD8 /* Embed Frameworks */,
+				CC7522F4339C3C9F5B2CC0D5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,7 +324,6 @@
 			name = LegDay;
 			packageProductDependencies = (
 				E622349B2BBEC9B000FB1612 /* DGCharts */,
-				E622349D2BBEC9B000FB1612 /* DGChartsDynamic */,
 			);
 			productName = LegDay;
 			productReference = E65D40ED2BABF648002585B0 /* LegDay.app */;
@@ -345,6 +382,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		43ED3C2167EFE8E702328F51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LegDay-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC7522F4339C3C9F5B2CC0D5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LegDay/Pods-LegDay-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LegDay/Pods-LegDay-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LegDay/Pods-LegDay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E65D40E92BABF648002585B0 /* Sources */ = {
@@ -450,7 +529,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -465,7 +544,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -513,7 +592,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -522,7 +601,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -534,6 +613,7 @@
 		};
 		E65D41022BABF649002585B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF9D7FEF795D2CFB17900789 /* Pods-LegDay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -545,8 +625,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -563,6 +644,7 @@
 		};
 		E65D41032BABF649002585B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06739C476F0D1AE943739C45 /* Pods-LegDay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -574,8 +656,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -629,11 +712,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E622349A2BBEC9B000FB1612 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = DGCharts;
-		};
-		E622349D2BBEC9B000FB1612 /* DGChartsDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E622349A2BBEC9B000FB1612 /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = DGChartsDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
