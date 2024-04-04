@@ -10,4 +10,7 @@ import UIKit
 
 class StatsViewModel {
     static let shared = StatsViewModel()
+    
+    let maxNumbersArray = ["5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    
 }

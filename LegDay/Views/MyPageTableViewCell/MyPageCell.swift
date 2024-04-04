@@ -9,6 +9,14 @@ import UIKit
 
 class MyPageCell: UITableViewCell {
     
+    lazy var cellView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
     lazy var workoutTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -79,16 +87,16 @@ class MyPageCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = .white
-        self.contentView.addSubview(workoutTitleLabel)
-        self.contentView.addSubview(setPokerShapeStackView)
+        
+        self.contentView.addSubview(cellView)
+        cellView.addSubview(workoutTitleLabel)
+        cellView.addSubview(setPokerShapeStackView)
         for i in 0...3 {
             setPokerShapeStackView.addArrangedSubview(setPokerShapeEachView[i])
-            
             setPokerShapeEachView[i].addSubview(setPokerShapeImage[i])
             setPokerShapeEachView[i].addSubview(setPokerShapeLabel[i])
         }
-        self.contentView.addSubview(rightArrowImageView)
+        cellView.addSubview(rightArrowImageView)
         
         
         setupLayoutForMyWorkoutCell()
@@ -98,34 +106,29 @@ class MyPageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-    
     func setupLayoutForMyWorkoutCell() {
+        cellView.translatesAutoresizingMaskIntoConstraints = false
+        cellView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        cellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        cellView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        cellView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        
         workoutTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        workoutTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        workoutTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
-        workoutTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-        workoutTitleLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2).isActive = true
+        workoutTitleLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 5).isActive = true
+        workoutTitleLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -5).isActive = true
+        workoutTitleLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 5).isActive = true
+        workoutTitleLabel.heightAnchor.constraint(equalTo: cellView.heightAnchor, multiplier: 0.2).isActive = true
         
         setPokerShapeStackView.translatesAutoresizingMaskIntoConstraints = false
         setPokerShapeStackView.topAnchor.constraint(equalTo: workoutTitleLabel.bottomAnchor).isActive = true
         setPokerShapeStackView.leadingAnchor.constraint(equalTo: workoutTitleLabel.leadingAnchor).isActive = true
         setPokerShapeStackView.trailingAnchor.constraint(equalTo: workoutTitleLabel.trailingAnchor, constant: -10).isActive = true
-        setPokerShapeStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+        setPokerShapeStackView.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -5).isActive = true
         
         rightArrowImageView.translatesAutoresizingMaskIntoConstraints = false
         rightArrowImageView.topAnchor.constraint(equalTo: workoutTitleLabel.topAnchor).isActive = true
         rightArrowImageView.leadingAnchor.constraint(equalTo: setPokerShapeStackView.trailingAnchor).isActive = true
-        rightArrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
+        rightArrowImageView.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -5).isActive = true
         rightArrowImageView.bottomAnchor.constraint(equalTo: setPokerShapeStackView.bottomAnchor).isActive = true
         
         for i in 0...3 {

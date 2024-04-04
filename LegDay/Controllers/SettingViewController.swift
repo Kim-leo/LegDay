@@ -29,6 +29,7 @@ class SettingViewController: UIViewController {
         rightBarBtn = UIBarButtonItem(customView: settingView.rightBarBtnItem)
         
         self.navigationItem.leftBarButtonItem = leftBarBtn
+        self.navigationItem.titleView = settingView.titleLabel
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
         self.view.backgroundColor = .white
         self.view.addSubview(settingView)

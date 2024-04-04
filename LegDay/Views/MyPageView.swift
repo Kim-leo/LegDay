@@ -9,16 +9,26 @@ import Foundation
 import UIKit
 
 class MyPageView: UIView {
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "저장한 세트"
+        label.textColor = .white
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }()
+    
     lazy var viewForTableView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         return view
     }()
     
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
         tv.register(MyPageCell.self, forCellReuseIdentifier: "MyPageCell")
-        tv.backgroundColor = Colors().softBlack
+        tv.backgroundColor = .clear
         return tv
     }()
     
@@ -44,9 +54,9 @@ class MyPageView: UIView {
         viewForTableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         myWorkoutTableView.translatesAutoresizingMaskIntoConstraints = false
-        myWorkoutTableView.topAnchor.constraint(equalTo: viewForTableView.topAnchor).isActive = true
-        myWorkoutTableView.leadingAnchor.constraint(equalTo: viewForTableView.leadingAnchor).isActive = true
-        myWorkoutTableView.trailingAnchor.constraint(equalTo: viewForTableView.trailingAnchor).isActive = true
-        myWorkoutTableView.bottomAnchor.constraint(equalTo: viewForTableView.bottomAnchor).isActive = true
+        myWorkoutTableView.topAnchor.constraint(equalTo: viewForTableView.topAnchor, constant: 5).isActive = true
+        myWorkoutTableView.leadingAnchor.constraint(equalTo: viewForTableView.leadingAnchor, constant: 5).isActive = true
+        myWorkoutTableView.trailingAnchor.constraint(equalTo: viewForTableView.trailingAnchor, constant: -5).isActive = true
+        myWorkoutTableView.bottomAnchor.constraint(equalTo: viewForTableView.bottomAnchor, constant: -5).isActive = true
     }
 }

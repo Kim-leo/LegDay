@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E62234942BBE686200FB1612 /* maxNumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E62234932BBE686200FB1612 /* maxNumCell.xib */; };
+		E62234952BBE686200FB1612 /* maxNumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62234922BBE686200FB1612 /* maxNumCell.swift */; };
+		E62234982BBE6A2E00FB1612 /* EachStatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E62234972BBE6A2E00FB1612 /* EachStatsCell.xib */; };
+		E62234992BBE6A2E00FB1612 /* EachStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62234962BBE6A2E00FB1612 /* EachStatsCell.swift */; };
 		E65D40F12BABF648002585B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D40F02BABF648002585B0 /* AppDelegate.swift */; };
 		E65D40F32BABF648002585B0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D40F22BABF648002585B0 /* SceneDelegate.swift */; };
 		E65D40F52BABF648002585B0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D40F42BABF648002585B0 /* HomeViewController.swift */; };
@@ -55,6 +59,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E62234922BBE686200FB1612 /* maxNumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maxNumCell.swift; sourceTree = "<group>"; };
+		E62234932BBE686200FB1612 /* maxNumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = maxNumCell.xib; sourceTree = "<group>"; };
+		E62234962BBE6A2E00FB1612 /* EachStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachStatsCell.swift; sourceTree = "<group>"; };
+		E62234972BBE6A2E00FB1612 /* EachStatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EachStatsCell.xib; sourceTree = "<group>"; };
 		E65D40ED2BABF648002585B0 /* LegDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65D40F02BABF648002585B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E65D40F22BABF648002585B0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +123,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E62234912BBE683B00FB1612 /* StatsViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E62234922BBE686200FB1612 /* maxNumCell.swift */,
+				E62234932BBE686200FB1612 /* maxNumCell.xib */,
+				E62234962BBE6A2E00FB1612 /* EachStatsCell.swift */,
+				E62234972BBE6A2E00FB1612 /* EachStatsCell.xib */,
+			);
+			path = StatsViewCell;
+			sourceTree = "<group>";
+		};
 		E65D40E42BABF648002585B0 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +224,7 @@
 				E6CFB4402BBA060E0048F6A6 /* DescriptionView.swift */,
 				E6CFB4422BBA08840048F6A6 /* DescriptionViewCell */,
 				E6CFB4742BBDBA150048F6A6 /* StatsView.swift */,
+				E62234912BBE683B00FB1612 /* StatsViewCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,10 +344,12 @@
 			files = (
 				E6CFB4462BBA08AC0048F6A6 /* DescriptionCell.xib in Resources */,
 				E6B048132BB1AD8F00C23D70 /* SelectWorkoutCell.xib in Resources */,
+				E62234982BBE6A2E00FB1612 /* EachStatsCell.xib in Resources */,
 				E65D40FA2BABF649002585B0 /* Assets.xcassets in Resources */,
 				E6B048032BB0AA6600C23D70 /* MyPageCell.xib in Resources */,
 				E65D40FD2BABF649002585B0 /* Base in Resources */,
 				E65D413A2BAD8223002585B0 /* LowerCell.xib in Resources */,
+				E62234942BBE686200FB1612 /* maxNumCell.xib in Resources */,
 				E65D41362BAD8217002585B0 /* UpperCell.xib in Resources */,
 				E65D40F82BABF648002585B0 /* Base in Resources */,
 			);
@@ -345,6 +367,7 @@
 				E6CFB4452BBA08AC0048F6A6 /* DescriptionCell.swift in Sources */,
 				E6B048122BB1AD8F00C23D70 /* SelectWorkoutCell.swift in Sources */,
 				E65D411B2BABFF5F002585B0 /* WorkoutViewController.swift in Sources */,
+				E62234952BBE686200FB1612 /* maxNumCell.swift in Sources */,
 				E65D41312BAC07A5002585B0 /* DescriptionViewModel.swift in Sources */,
 				E6B0480E2BB1980600C23D70 /* SelectWorkoutViewModel.swift in Sources */,
 				E65D411F2BAC0121002585B0 /* HomeView.swift in Sources */,
@@ -376,6 +399,7 @@
 				E65D41192BABFC66002585B0 /* TabBarVC.swift in Sources */,
 				E65D410F2BABF784002585B0 /* CardModel.swift in Sources */,
 				E65D41352BAD8217002585B0 /* UpperCell.swift in Sources */,
+				E62234992BBE6A2E00FB1612 /* EachStatsCell.swift in Sources */,
 				E65D41132BABF7A6002585B0 /* ImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@ class MaximumNumberOfWorkoutView: UIView {
     lazy var guideLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "한 운동 당 횟수를 설정하세요"
+        label.text = "최대 횟수를 설정하세요"
         label.textColor = .white
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

@@ -23,7 +23,7 @@ class MyPageViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.titleView = myPageView.titleLabel
         self.view.backgroundColor = .white
         self.view.addSubview(myPageView)
         setupViewLayout(yourView: myPageView)
@@ -44,6 +44,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageCell", for: indexPath) as? MyPageCell else { return .init() }
+        cell.backgroundColor = .clear
         cell.workoutTitleLabel.text = "\(viewModel.myWorkoutsTitles[indexPath.row])"
         for i in 0...3 {
             cell.setPokerShapeLabel[i].text = "\(viewModel.myWorkoutsList[indexPath.row][i])"
@@ -70,6 +71,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         }
         workoutRightNowAction.backgroundColor = Colors().darkBlack
         workoutRightNowAction.image = UIImage(systemName: "figure.strengthtraining.functional")
+        
         
         let editAction = UIContextualAction(style: .normal, title: "편집") { (action, view, completion) in
             self.viewModel.saveCurrentCellData(indexPath: indexPath)

@@ -17,9 +17,19 @@ class SettingView: UIView {
         return btn
     }()
     
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "운동 설정"
+        label.textColor = .white
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }()
+    
     lazy var rightBarBtnItem: UIButton = {
         let btn = UIButton()
-        btn.setTitle("마이 운동에 저장", for: .normal)
+        btn.setTitle("세트 저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
         return btn
