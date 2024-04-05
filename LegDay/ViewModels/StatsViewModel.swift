@@ -19,6 +19,7 @@ class StatsViewModel {
     var selectMaxNumberInBtns = Int()
     
     var pieChartLabelText = String()
+    let pieChartColorArray = [[UIColor.systemGreen, UIColor.darkGray], [UIColor.systemOrange, UIColor.darkGray], [Colors().redColor, UIColor.darkGray]]
     
     var numberOfWorkoutsStartedArray = [Int]()
     var numberOfWorkoutsFinishedArray = [Int]()
@@ -99,7 +100,9 @@ extension StatsViewModel {
     
     func setPieData(pieChartView: PieChartView, pieChartDataEntries: [ChartDataEntry]) {
         let pieChartdataSet = PieChartDataSet(entries: pieChartDataEntries, label: "")
-        pieChartdataSet.colors = [.systemGreen, .darkGray]
+        
+        pieChartdataSet.colors = pieChartColorArray[selectMaxNumberInBtns / 3]
+        
         
         let pieChartData = PieChartData(dataSet: pieChartdataSet)
         pieChartView.data = pieChartData

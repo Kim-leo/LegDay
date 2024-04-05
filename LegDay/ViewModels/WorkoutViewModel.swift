@@ -25,6 +25,7 @@ class WorkoutViewModel {
     
     let emitter = CAEmitterLayer()
     
+    var countContinuousNumberOfWorkoutSet: Int = 0
     
     init(cardModel: CardModel, workoutModel: WorkoutModel) {
         self.cardModel = CardModel()
@@ -150,29 +151,24 @@ extension WorkoutViewModel {
         case "마치기":
             endOfWorkout(view)
             myWorkoutModel.numberOfWorkoutsFinishedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
+            countContinuousNumberOfWorkoutSet += 1
+            countMaximumOfcontinuousProgress()
         case "한 번 더 하기":
             emitter.removeFromSuperlayer()
             componentsInitialSetting(view)
-            countMaximumOfcontinuousProgress()
-            
         case "시작":
             myWorkoutModel.numberOfWorkoutsStartedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
             fallthrough
         default:
             startWorkout(view)
         }
-        print(myWorkoutModel.numberOfWorkoutsStartedArray)
-        print(myWorkoutModel.numberOfWorkoutsFinishedArray)
-        print(myWorkoutModel.maximumOfcontinuousProgress)
-        print("--------")
     }
     
     func countMaximumOfcontinuousProgress() {
-        if myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5] == 0 {
-            myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5] = 1
-        } else {
-            myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
-        }
+
+        myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5] = (countContinuousNumberOfWorkoutSet >= myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5]) ? countContinuousNumberOfWorkoutSet : myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5]
+        
+        
         
     }
     
