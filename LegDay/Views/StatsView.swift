@@ -19,6 +19,57 @@ class StatsView: UIView {
         return btn
     }()
     
+    lazy var alertView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        view.layer.borderColor = UIColor.darkGray.cgColor
+        view.layer.borderWidth = 1
+        return view
+    }()
+    
+    lazy var alertMessageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Colors().darkBlack
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.text = "이 페이지의 기록을 초기화 할까요?" + "\n\n" + "초기화 후에는 되돌릴 수 없습니다."
+        return label
+    }()
+    
+    lazy var alertBtnStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.alignment = .bottom
+        sv.spacing = 10
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    lazy var alertCancelBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 0
+        btn.setTitle("취소", for: .normal)
+        btn.setTitleColor(Colors().softBlack, for: .normal)
+        btn.backgroundColor = .systemGray6
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+    
+    lazy var alertOkBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 1
+        btn.setTitle("초기화", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = Colors().softBlack
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "통계"
@@ -168,7 +219,16 @@ class StatsView: UIView {
             rightStackView.addArrangedSubview(rightStatsLabels[tag])
         }
         
+        self.addSubview(alertView)
+        alertView.addSubview(alertMessageLabel)
+        alertView.addSubview(alertBtnStackView)
+        alertBtnStackView.addArrangedSubview(alertCancelBtn)
+        alertBtnStackView.addArrangedSubview(alertOkBtn)
+        
+        alertView.alpha = 0
+        
         viewLayout()
+        
         
     }
     
@@ -218,6 +278,30 @@ class StatsView: UIView {
         transparentView.leadingAnchor.constraint(equalTo: chartBackgroundView.leadingAnchor).isActive = true
         transparentView.trailingAnchor.constraint(equalTo: chartBackgroundView.trailingAnchor).isActive = true
         transparentView.bottomAnchor.constraint(equalTo: chartBackgroundView.bottomAnchor).isActive = true
+        
+        alertView.translatesAutoresizingMaskIntoConstraints = false
+        alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        alertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        alertView.heightAnchor.constraint(equalTo: alertView.widthAnchor).isActive = true
+        
+        alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
+        alertMessageLabel.topAnchor.constraint(equalTo: alertView.topAnchor).isActive = true
+        alertMessageLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor).isActive = true
+        alertMessageLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor).isActive = true
+        alertMessageLabel.heightAnchor.constraint(equalTo: alertView.heightAnchor, multiplier: 0.6).isActive = true
+        
+        alertBtnStackView.translatesAutoresizingMaskIntoConstraints = false
+        alertBtnStackView.widthAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.8).isActive = true
+        alertBtnStackView.centerXAnchor.constraint(equalTo: alertView.centerXAnchor).isActive = true
+        alertBtnStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10).isActive = true
+        alertBtnStackView.topAnchor.constraint(equalTo: alertMessageLabel.bottomAnchor, constant: 5).isActive = true
+        
+        alertCancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        alertOkBtn.translatesAutoresizingMaskIntoConstraints = false
+        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
     }
     
     

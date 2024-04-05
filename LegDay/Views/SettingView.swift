@@ -37,8 +37,6 @@ class SettingView: UIView {
         return btn
     }()
     
-    
-    
     lazy var stackViewVertical: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical

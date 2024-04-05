@@ -61,10 +61,30 @@ class StatsViewModel {
             view.rightStatsLabels[2].text = "\(0)" + "%"
             break
         default:
-            view.pieChart.centerText = "수행 횟수 기록"
+            view.pieChart.centerText = "세트 완료 기록"
             let percentNumber = round((Double(numberOfWorkoutsFinishedArray[selectMaxNumberInBtns]) / Double(numberOfWorkoutsStartedArray[selectMaxNumberInBtns])) * 100)
             view.rightStatsLabels[2].text = "\(Int(percentNumber))" + "%"
             
+        }
+    }
+    
+    func alertViewAppears(_ view: StatsView) {
+        view.alertView.alpha = 1
+    }
+    
+    func initializingBtnTapped(_ view: StatsView, sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            myWorkoutModel.numberOfWorkoutsStartedArray[selectMaxNumberInBtns] = 0
+            myWorkoutModel.numberOfWorkoutsFinishedArray[selectMaxNumberInBtns] = 0
+            myWorkoutModel.maximumOfcontinuousProgress[selectMaxNumberInBtns] = 0
+            
+            workoutInfo(view)
+            view.alertView.alpha = 0
+            
+        default:
+            view.alertView.alpha = 0
+            break
         }
     }
     

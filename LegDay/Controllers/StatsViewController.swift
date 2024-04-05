@@ -17,6 +17,7 @@ class StatsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        viewModel.workoutInfo(statsView)
     }
 
     override func viewDidLoad() {
@@ -34,9 +35,9 @@ class StatsViewController: UIViewController {
         for btn in statsView.eachStatsBtns {
             btn.addTarget(self, action: #selector(eachStatsBtnsTapped), for: .touchUpInside)
         }
+        statsView.alertCancelBtn.addTarget(self, action: #selector(alertBtnTap), for: .touchUpInside)
+        statsView.alertOkBtn.addTarget(self, action: #selector(alertBtnTap), for: .touchUpInside)
         
-        
-        viewModel.workoutInfo(statsView)
         
     }
 
@@ -44,13 +45,16 @@ class StatsViewController: UIViewController {
 
 extension StatsViewController {
     @objc func rightBarBtnTap(_ sender: UIBarButtonItem) {
-        print("데이터 초기화")
+        viewModel.alertViewAppears(statsView)
     }
     
     @objc func eachStatsBtnsTapped(_ sender: UIButton) {
         print(sender.tag)
         viewModel.eachStatsBtnTapped(statsView, sender: sender)
-        
+    }
+    
+    @objc func alertBtnTap(_ sender: UIButton) {
+        viewModel.initializingBtnTapped(statsView, sender: sender)
     }
     
     

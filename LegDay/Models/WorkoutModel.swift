@@ -30,7 +30,7 @@ class MyWorkout {
     
     var setMaximumNumberOfWorkout = Int()
     
-    var numberOfWorkoutsStartedArray =  [1,2,0,1,2,0,1,2,0]
+    var numberOfWorkoutsStartedArray =  Array(repeating: 0, count: 9)
     var numberOfWorkoutsFinishedArray = Array(repeating: 0, count: 9)
     var maximumOfcontinuousProgress = Array(repeating: 0, count: 9)
 }
