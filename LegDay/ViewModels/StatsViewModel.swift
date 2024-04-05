@@ -69,8 +69,10 @@ class StatsViewModel {
         }
     }
     
-    func alertViewAppears(_ view: StatsView) {
+    func alertViewAppears(_ view: StatsView, vc: StatsViewController) {
+        view.allClearView.alpha = 0.5
         view.alertView.alpha = 1
+        
     }
     
     func initializingBtnTapped(_ view: StatsView, sender: UIButton) {
@@ -82,9 +84,15 @@ class StatsViewModel {
             
             workoutInfo(view)
             view.alertView.alpha = 0
+            view.allClearView.alpha = 1
+            UIView.animate(withDuration: 2) {
+                view.initializingCompleteView.alpha = 1
+                view.initializingCompleteView.alpha = 0
+            }
             
         default:
             view.alertView.alpha = 0
+            view.allClearView.alpha = 1
             break
         }
     }

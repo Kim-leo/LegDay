@@ -19,6 +19,12 @@ class StatsView: UIView {
         return btn
     }()
     
+    lazy var alertAllWhiteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     lazy var alertView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -197,18 +203,55 @@ class StatsView: UIView {
         return labels
     }()
     
+    
+    
+    lazy var initializingCompleteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    lazy var initializingCompleteImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.image = UIImage(systemName: "tray")
+        iv.tintColor = Colors().redColor
+        return iv
+    }()
+    
+    lazy var initializingCompleteLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Colors().redColor
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.text = "기록 초기화 완료"
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        return label
+    }()
+    
+    lazy var allClearView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
-        self.addSubview(guideLabel)
-        self.addSubview(maxNumStackView)
+        
+        self.addSubview(allClearView)
+        allClearView.addSubview(guideLabel)
+        allClearView.addSubview(maxNumStackView)
         for i in 0..<9 {
             maxNumStackView.addArrangedSubview(eachStatsBtns[i])
         }
         eachStatsBtns[0].setTitleColor(Colors().redColor, for: .normal)
         
-        self.addSubview(infoBackgroundView)
-        self.addSubview(chartBackgroundView)
+        allClearView.addSubview(infoBackgroundView)
+        allClearView.addSubview(chartBackgroundView)
         chartBackgroundView.addSubview(pieChart)
         chartBackgroundView.addSubview(transparentView)
         infoBackgroundView.addSubview(eachStatsEntireStackView)
@@ -219,14 +262,21 @@ class StatsView: UIView {
             rightStackView.addArrangedSubview(rightStatsLabels[tag])
         }
         
-        self.addSubview(alertView)
+        self.addSubview(alertAllWhiteView)
+        alertAllWhiteView.addSubview(alertView)
         alertView.addSubview(alertMessageLabel)
         alertView.addSubview(alertBtnStackView)
         alertBtnStackView.addArrangedSubview(alertCancelBtn)
         alertBtnStackView.addArrangedSubview(alertOkBtn)
-        
         alertView.alpha = 0
         
+        self.addSubview(initializingCompleteView)
+        initializingCompleteView.addSubview(initializingCompleteImageView)
+        initializingCompleteView.addSubview(initializingCompleteLabel)
+        initializingCompleteView.alpha = 0
+        
+       
+                
         viewLayout()
         
         
@@ -237,6 +287,12 @@ class StatsView: UIView {
     }
     
     func viewLayout() {
+        allClearView.translatesAutoresizingMaskIntoConstraints = false
+        allClearView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        allClearView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        allClearView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        allClearView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         guideLabel.translatesAutoresizingMaskIntoConstraints = false
         guideLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         guideLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
@@ -279,6 +335,12 @@ class StatsView: UIView {
         transparentView.trailingAnchor.constraint(equalTo: chartBackgroundView.trailingAnchor).isActive = true
         transparentView.bottomAnchor.constraint(equalTo: chartBackgroundView.bottomAnchor).isActive = true
         
+        alertAllWhiteView.translatesAutoresizingMaskIntoConstraints = false
+        alertAllWhiteView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        alertAllWhiteView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        alertAllWhiteView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        alertAllWhiteView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
         alertView.translatesAutoresizingMaskIntoConstraints = false
         alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         alertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -302,6 +364,24 @@ class StatsView: UIView {
         
         alertOkBtn.translatesAutoresizingMaskIntoConstraints = false
         alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        initializingCompleteView.translatesAutoresizingMaskIntoConstraints = false
+        initializingCompleteView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        initializingCompleteView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        initializingCompleteView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        initializingCompleteView.heightAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.7).isActive = true
+        
+        initializingCompleteImageView.translatesAutoresizingMaskIntoConstraints = false
+        initializingCompleteImageView.topAnchor.constraint(equalTo: initializingCompleteView.topAnchor, constant: 10).isActive = true
+        initializingCompleteImageView.centerXAnchor.constraint(equalTo: initializingCompleteView.centerXAnchor).isActive = true
+        initializingCompleteImageView.heightAnchor.constraint(equalTo: initializingCompleteView.heightAnchor, multiplier: 0.4).isActive = true
+        initializingCompleteImageView.widthAnchor.constraint(equalTo: initializingCompleteImageView.heightAnchor).isActive = true
+        
+        initializingCompleteLabel.translatesAutoresizingMaskIntoConstraints = false
+        initializingCompleteLabel.bottomAnchor.constraint(equalTo: initializingCompleteView.bottomAnchor, constant: -10).isActive = true
+        initializingCompleteLabel.heightAnchor.constraint(equalTo: initializingCompleteImageView.heightAnchor).isActive = true
+        initializingCompleteLabel.widthAnchor.constraint(equalTo: initializingCompleteView.widthAnchor, multiplier: 0.9).isActive = true
+        initializingCompleteLabel.centerXAnchor.constraint(equalTo: initializingCompleteView.centerXAnchor).isActive = true
     }
     
     

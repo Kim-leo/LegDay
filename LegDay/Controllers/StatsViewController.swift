@@ -45,7 +45,7 @@ class StatsViewController: UIViewController {
 
 extension StatsViewController {
     @objc func rightBarBtnTap(_ sender: UIBarButtonItem) {
-        viewModel.alertViewAppears(statsView)
+        viewModel.alertViewAppears(statsView, vc: self)
     }
     
     @objc func eachStatsBtnsTapped(_ sender: UIButton) {
