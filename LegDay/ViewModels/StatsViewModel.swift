@@ -71,7 +71,7 @@ class StatsViewModel {
     
     func alertViewAppears(_ view: StatsView, vc: StatsViewController) {
         view.allClearView.alpha = 0.5
-        view.alertView.alpha = 1
+        view.alertAllWhiteView.alpha = 0.95
         
     }
     
@@ -83,7 +83,7 @@ class StatsViewModel {
             myWorkoutModel.maximumOfcontinuousProgress[selectMaxNumberInBtns] = 0
             
             workoutInfo(view)
-            view.alertView.alpha = 0
+            view.alertAllWhiteView.alpha = 0
             view.allClearView.alpha = 1
             UIView.animate(withDuration: 2) {
                 view.initializingCompleteView.alpha = 1
@@ -91,7 +91,7 @@ class StatsViewModel {
             }
             
         default:
-            view.alertView.alpha = 0
+            view.alertAllWhiteView.alpha = 0
             view.allClearView.alpha = 1
             break
         }

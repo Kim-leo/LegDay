@@ -21,7 +21,8 @@ class StatsView: UIView {
     
     lazy var alertAllWhiteView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .black
+        
         return view
     }()
     
@@ -234,7 +235,7 @@ class StatsView: UIView {
     
     lazy var allClearView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -243,15 +244,15 @@ class StatsView: UIView {
         self.backgroundColor = Colors().darkBlack
         
         self.addSubview(allClearView)
-        allClearView.addSubview(guideLabel)
-        allClearView.addSubview(maxNumStackView)
+        self.addSubview(guideLabel)
+        self.addSubview(maxNumStackView)
         for i in 0..<9 {
             maxNumStackView.addArrangedSubview(eachStatsBtns[i])
         }
         eachStatsBtns[0].setTitleColor(Colors().redColor, for: .normal)
         
-        allClearView.addSubview(infoBackgroundView)
-        allClearView.addSubview(chartBackgroundView)
+        self.addSubview(infoBackgroundView)
+        self.addSubview(chartBackgroundView)
         chartBackgroundView.addSubview(pieChart)
         chartBackgroundView.addSubview(transparentView)
         infoBackgroundView.addSubview(eachStatsEntireStackView)
@@ -268,7 +269,7 @@ class StatsView: UIView {
         alertView.addSubview(alertBtnStackView)
         alertBtnStackView.addArrangedSubview(alertCancelBtn)
         alertBtnStackView.addArrangedSubview(alertOkBtn)
-        alertView.alpha = 0
+        alertAllWhiteView.alpha = 0
         
         self.addSubview(initializingCompleteView)
         initializingCompleteView.addSubview(initializingCompleteImageView)
