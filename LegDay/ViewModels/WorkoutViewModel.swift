@@ -137,9 +137,7 @@ extension WorkoutViewModel {
         view.workoutLabel.textColor = .systemOrange
         view.numberOfWorkoutLabel.text = ""
         view.cardCountLabel.text = ""
-        view.nextBtn.setTitle("한 번 더 하기", for: .normal)
-        view.nextBtn.setTitleColor(Colors().darkBlack, for: .normal)
-        view.nextBtn.backgroundColor = .systemOrange
+        view.finishBtnStackView.alpha = 1
         
         emptyArray.removeAll()
 
@@ -153,9 +151,6 @@ extension WorkoutViewModel {
             myWorkoutModel.numberOfWorkoutsFinishedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
             countContinuousNumberOfWorkoutSet += 1
             countMaximumOfcontinuousProgress()
-        case "한 번 더 하기":
-            emitter.removeFromSuperlayer()
-            componentsInitialSetting(view)
         case "시작":
             myWorkoutModel.numberOfWorkoutsStartedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
             fallthrough
@@ -164,12 +159,21 @@ extension WorkoutViewModel {
         }
     }
     
+    func finishBtnTapped(_ view: WorkoutView, vc: WorkoutViewController, sender: UIButton) {
+        view.finishBtnStackView.alpha = 0
+        switch sender.tag {
+        case 0:
+            vc.navigationController?.popToRootViewController(animated: true)
+        case 1:
+            emitter.removeFromSuperlayer()
+            componentsInitialSetting(view)
+        default:
+            break
+        }
+    }
+    
     func countMaximumOfcontinuousProgress() {
-
         myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5] = (countContinuousNumberOfWorkoutSet >= myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5]) ? countContinuousNumberOfWorkoutSet : myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5]
-        
-        
-        
     }
     
     

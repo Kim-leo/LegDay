@@ -97,6 +97,37 @@ class WorkoutView: UIView {
         return btn
     }()
     
+    lazy var finishBtnStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.spacing = 20
+        sv.distribution = .fillEqually
+        sv.backgroundColor = Colors().darkBlack
+        return sv
+    }()
+    
+    lazy var doneAndLeaveBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("종료하기", for: .normal)
+        btn.setTitleColor(Colors().darkBlack, for: .normal)
+        btn.backgroundColor = .white
+        btn.layer.cornerRadius = 15
+        btn.clipsToBounds = true
+        btn.tag = 0
+        return btn
+    }()
+    
+    lazy var oneMoreTimeBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("한 번 더 하기", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = Colors().redColor
+        btn.layer.cornerRadius = 15
+        btn.clipsToBounds = true
+        btn.tag = 1
+        return btn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Colors().darkBlack
@@ -107,7 +138,13 @@ class WorkoutView: UIView {
         self.addSubview(numberOfWorkoutLabel)
         self.addSubview(nextBtnView)
         nextBtnView.addSubview(nextBtn)
+        self.addSubview(finishBtnStackView)
+        finishBtnStackView.addArrangedSubview(doneAndLeaveBtn)
+        finishBtnStackView.addArrangedSubview(oneMoreTimeBtn)
         viewLayout()
+        
+        finishBtnStackView.alpha = 0
+        
     }
     
     required init?(coder: NSCoder) {
@@ -157,5 +194,10 @@ class WorkoutView: UIView {
         nextBtn.centerXAnchor.constraint(equalTo: nextBtnView.centerXAnchor).isActive = true
         nextBtn.centerYAnchor.constraint(equalTo: nextBtnView.centerYAnchor).isActive = true
         
+        finishBtnStackView.translatesAutoresizingMaskIntoConstraints = false
+        finishBtnStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        finishBtnStackView.heightAnchor.constraint(equalTo: nextBtn.heightAnchor).isActive = true
+        finishBtnStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        finishBtnStackView.centerYAnchor.constraint(equalTo: nextBtnView.centerYAnchor).isActive = true
     }
 }

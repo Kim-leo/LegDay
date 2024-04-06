@@ -38,6 +38,8 @@ class WorkoutViewController: UIViewController {
 
         viewModel.componentsInitialSetting(workoutView)
         workoutView.nextBtn.addTarget(self, action: #selector(nextBtnTappedAction), for: .touchUpInside)
+        workoutView.doneAndLeaveBtn.addTarget(self, action: #selector(finishBtnTapped), for: .touchUpInside)
+        workoutView.oneMoreTimeBtn.addTarget(self, action: #selector(finishBtnTapped), for: .touchUpInside)
     }
 
 }
@@ -59,4 +61,10 @@ extension WorkoutViewController {
         viewModel.nextBtnTapped(workoutView)
         
     }
+    
+    @objc func finishBtnTapped(_ sender: UIButton) {
+        viewModel.finishBtnTapped(workoutView, vc: self, sender: sender)
+    }
+    
+    
 }
