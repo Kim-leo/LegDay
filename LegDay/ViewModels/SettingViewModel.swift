@@ -59,11 +59,11 @@ extension SettingViewModel {
             label.text = "\(originalWorkoutArray[label.tag])"
         }
         
+        
     }
     
     func settingMessageForAlertMessageLabel(_ view: SettingView) {
-        view.lowerCollectinView.alpha = 0.5
-        view.upperCollectinView.alpha = 0.5
+        view.backGroundTransparentView.alpha = 0.5
         switch whoCalledAlertView {
         case 0:
             view.alertMessageLabel.text = "운동을 직접 추가합니다."
@@ -82,8 +82,7 @@ extension SettingViewModel {
         switch sender.tag {
         case 0:
             view.alertView.alpha = 0
-            view.lowerCollectinView.alpha = 1
-            view.upperCollectinView.alpha = 1
+            view.backGroundTransparentView.alpha = 0
         case 1:
             switch whoCalledAlertView {
             case 0:
@@ -109,7 +108,7 @@ extension SettingViewModel {
         } else {
             view.alertView.alpha = 0
             view.stackViewVertical.alpha = 1
-            vc.view.bringSubviewToFront(view.stackViewVertical)
+            
             
         }
     }
@@ -121,21 +120,19 @@ extension SettingViewModel {
         view.alertView.alpha = 0
         view.saveCompleteLabel.text = "세트 저장 완료!"
         view.saveCompleteImageView.image = UIImage(systemName: "checkmark.square")
+        view.backGroundTransparentView.alpha = 0
         UIView.animate(withDuration: 2) {
             view.saveCompleteView.alpha = 1
             view.saveCompleteView.alpha = 0
             
-            view.lowerCollectinView.alpha = 1
-            view.upperCollectinView.alpha = 1
         }
         
     }
     
     func categoryBtnTapped(view: SettingView) {
         view.stackViewVertical.alpha = 0
-        view.lowerCollectinView.alpha = 1
-        view.upperCollectinView.alpha = 1
-
+        view.backGroundTransparentView.alpha = 0
+        
         view.lowerCollectinView.performBatchUpdates {
             view.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
             yourAllWorkoutsArray.insert(inputWorkout, at: 1)
@@ -147,12 +144,12 @@ extension SettingViewModel {
     func cancelBtnTapped(view: SettingView) {
         inputWorkout = ""
         view.stackViewVertical.alpha = 0
-        view.lowerCollectinView.alpha = 1
-        view.upperCollectinView.alpha = 1
+        view.backGroundTransparentView.alpha = 0
     }
     
     func pokerCardBtnTapped(view: SettingView, _ sender: UIButton) {
-        view.verticalStackViewForSettingPokerShapes.alpha = 0
+        view.backGroundTransparentView.alpha = 0
+        view.backgroundViewForSettingPokerShapes.alpha = 0
         view.lowerCollectinView.alpha = 1
         
         selectedWorkoutPerPokerShapeArray[sender.tag] = whichWorkout
@@ -162,6 +159,11 @@ extension SettingViewModel {
         guard let cell = view.lowerCollectinView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: IndexPath()) as? LowerCell else { return }
         cell.isSelected = false
         view.lowerCollectinView.reloadData()
+    }
+    
+    func backgroundViewForSettingPokerShapeTap(_ view: SettingView) {
+        view.backGroundTransparentView.alpha = 0
+        view.backgroundViewForSettingPokerShapes.alpha = 0
     }
     
     func changeSetPokerLabelWhenComeFromMyPage(_ view: SettingView) {
@@ -193,13 +195,10 @@ extension SettingViewModel {
     func tryingToDeleteAddWorkoutByYourselfCell(_ view: SettingView) {
         view.saveCompleteLabel.text = "삭제 불가능!"
         view.saveCompleteImageView.image = UIImage(systemName: "exclamationmark.octagon")
-        
         UIView.animate(withDuration: 2) {
             view.saveCompleteView.alpha = 1
             view.saveCompleteView.alpha = 0
             
-            view.lowerCollectinView.alpha = 1
-            view.upperCollectinView.alpha = 1
         }
     }
     
@@ -222,12 +221,11 @@ extension SettingViewModel {
             
             view.saveCompleteLabel.text = "삭제 완료!"
             view.saveCompleteImageView.image = UIImage(systemName: "checkmark.square")
+            view.backGroundTransparentView.alpha = 0
             UIView.animate(withDuration: 2) {
                 view.saveCompleteView.alpha = 1
                 view.saveCompleteView.alpha = 0
                 
-                view.lowerCollectinView.alpha = 1
-                view.upperCollectinView.alpha = 1
             }
             
             isLeftBarBtnClicked = false

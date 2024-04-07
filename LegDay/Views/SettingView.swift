@@ -144,6 +144,18 @@ class SettingView: UIView {
         return btn
     }()
     
+    lazy var backGroundTransparentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    lazy var backgroundViewForSettingPokerShapes: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     lazy var verticalStackViewForSettingPokerShapes: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
@@ -364,8 +376,11 @@ class SettingView: UIView {
         
         self.addSubview(upperView)
         self.addSubview(lowerView)
+        self.addSubview(backGroundTransparentView)
         self.addSubview(stackViewVertical)
-        self.addSubview(verticalStackViewForSettingPokerShapes)
+        self.addSubview(backgroundViewForSettingPokerShapes)
+//        self.addSubview(verticalStackViewForSettingPokerShapes)
+        backgroundViewForSettingPokerShapes.addSubview(verticalStackViewForSettingPokerShapes)
         self.addSubview(setPokerShapeStackView)
         self.addSubview(alertView)
         self.addSubview(saveCompleteView)
@@ -410,7 +425,9 @@ class SettingView: UIView {
         }
         
         stackViewVertical.alpha = 0
-        verticalStackViewForSettingPokerShapes.alpha = 0
+        backGroundTransparentView.alpha = 0
+        backgroundViewForSettingPokerShapes.alpha = 0
+//        verticalStackViewForSettingPokerShapes.alpha = 0
         alertView.alpha = 0
         saveCompleteView.alpha = 0
         
@@ -458,6 +475,19 @@ class SettingView: UIView {
         stackViewVertical.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackViewVertical.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
         stackViewVertical.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+        
+        
+        backGroundTransparentView.translatesAutoresizingMaskIntoConstraints = false
+        backGroundTransparentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backGroundTransparentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backGroundTransparentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backGroundTransparentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        backgroundViewForSettingPokerShapes.translatesAutoresizingMaskIntoConstraints = false
+        backgroundViewForSettingPokerShapes.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        backgroundViewForSettingPokerShapes.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundViewForSettingPokerShapes.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundViewForSettingPokerShapes.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         cancelBtn.translatesAutoresizingMaskIntoConstraints = false
         cancelBtn.centerXAnchor.constraint(equalTo: stackViewVertical.centerXAnchor).isActive = true

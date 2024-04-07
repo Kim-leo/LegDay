@@ -42,6 +42,7 @@ class SettingViewController: UIViewController {
         
         viewModel.initialSetting(view: settingView)
         
+        
         for btn in settingView.categoryBtns {
             btn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
         }
@@ -55,6 +56,10 @@ class SettingViewController: UIViewController {
         
         settingView.leftBarBtnItem.addTarget(self, action: #selector(leftBarBtnTap), for: .touchUpInside)
         settingView.rightBarBtnItem.addTarget(self, action: #selector(rightBarBtnTap), for: .touchUpInside)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
+        settingView.backgroundViewForSettingPokerShapes.addGestureRecognizer(tapGestureRecognizer)
+        
     }
     
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -94,7 +99,9 @@ extension SettingViewController {
         viewModel.alertBtnTapAction(settingView, sender: sender)
     }
     
-    
+    @objc func backgroundViewTapped(_ sender: UITapGestureRecognizer) {
+        viewModel.backgroundViewForSettingPokerShapeTap(settingView)
+    }
 }
 
 
@@ -183,9 +190,9 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                     viewModel.whoCalledAlertView = 0
                     viewModel.settingMessageForAlertMessageLabel(settingView)
                 default:
-                    collectionView.alpha = 0.5
-                    settingView.verticalStackViewForSettingPokerShapes.alpha = 1
-                    self.view.bringSubviewToFront(settingView.verticalStackViewForSettingPokerShapes)
+                    settingView.backGroundTransparentView.alpha = 0.5
+                    settingView.backgroundViewForSettingPokerShapes.alpha = 1
+                    self.view.bringSubviewToFront(settingView.backgroundViewForSettingPokerShapes)
                     viewModel.whichWorkout = viewModel.yourAllWorkoutsArray[indexPath.row]
                     for label in settingView.pokerWorkoutNameLabels {
                         label.text = "\(viewModel.selectedWorkoutPerPokerShapeArray[label.tag])"

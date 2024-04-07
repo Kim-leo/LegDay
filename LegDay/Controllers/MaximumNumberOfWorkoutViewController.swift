@@ -17,8 +17,6 @@ class MaximumNumberOfWorkoutViewController: UIViewController {
         }
     }
     
-    let sampleData = ["A", "B", "C", "D", "E", "F", "G"]
-    
     let maxNumWorkoutView = MaximumNumberOfWorkoutView()
     let viewModel = MaximumNumberOfWorkoutViewModel.shared
     
@@ -38,6 +36,7 @@ class MaximumNumberOfWorkoutViewController: UIViewController {
         
         maxNumWorkoutView.maxNumPickerView.delegate = self
         maxNumWorkoutView.maxNumPickerView.dataSource = self
+        maxNumWorkoutView.maxNumPickerView.selectRow(viewModel.maximumNumberOfWorkout[0] - 1, inComponent: 0, animated: false)
     }
 }
 
@@ -90,4 +89,6 @@ extension MaximumNumberOfWorkoutViewController: UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return viewModel.maximumNumberOfWorkout.count
     }
+    
+    
 }
