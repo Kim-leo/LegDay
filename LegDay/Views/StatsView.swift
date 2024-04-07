@@ -10,6 +10,11 @@ import UIKit
 import DGCharts
 
 class StatsView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var rightBarBtnItem: UIButton = {
         let btn = UIButton()
         btn.setTitle("초기화", for: .normal)
@@ -18,11 +23,16 @@ class StatsView: UIView {
         btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
         return btn
     }()
-    
-    lazy var alertAllWhiteView: UIView = {
+
+    lazy var backGroundTransparentView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
-        
+        return view
+    }()
+    
+    lazy var backgroundViewForAlertView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -241,9 +251,7 @@ class StatsView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Colors().darkBlack
-        
-        self.addSubview(allClearView)
+        self.addSubview(backgroundGradientView)
         self.addSubview(guideLabel)
         self.addSubview(maxNumStackView)
         for i in 0..<9 {
@@ -262,14 +270,15 @@ class StatsView: UIView {
             leftStackView.addArrangedSubview(leftStatsLabels[tag])
             rightStackView.addArrangedSubview(rightStatsLabels[tag])
         }
-        
-        self.addSubview(alertAllWhiteView)
-        alertAllWhiteView.addSubview(alertView)
+        self.addSubview(backGroundTransparentView)
+        self.addSubview(backgroundViewForAlertView)
+        backgroundViewForAlertView.addSubview(alertView)
         alertView.addSubview(alertMessageLabel)
         alertView.addSubview(alertBtnStackView)
         alertBtnStackView.addArrangedSubview(alertCancelBtn)
         alertBtnStackView.addArrangedSubview(alertOkBtn)
-        alertAllWhiteView.alpha = 0
+        backGroundTransparentView.alpha = 0
+        backgroundViewForAlertView.alpha = 0
         
         self.addSubview(initializingCompleteView)
         initializingCompleteView.addSubview(initializingCompleteImageView)
@@ -288,11 +297,11 @@ class StatsView: UIView {
     }
     
     func viewLayout() {
-        allClearView.translatesAutoresizingMaskIntoConstraints = false
-        allClearView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        allClearView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        allClearView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        allClearView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         guideLabel.translatesAutoresizingMaskIntoConstraints = false
         guideLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
@@ -336,11 +345,17 @@ class StatsView: UIView {
         transparentView.trailingAnchor.constraint(equalTo: chartBackgroundView.trailingAnchor).isActive = true
         transparentView.bottomAnchor.constraint(equalTo: chartBackgroundView.bottomAnchor).isActive = true
         
-        alertAllWhiteView.translatesAutoresizingMaskIntoConstraints = false
-        alertAllWhiteView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        alertAllWhiteView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        alertAllWhiteView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        alertAllWhiteView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        backGroundTransparentView.translatesAutoresizingMaskIntoConstraints = false
+        backGroundTransparentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backGroundTransparentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backGroundTransparentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backGroundTransparentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        backgroundViewForAlertView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundViewForAlertView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        backgroundViewForAlertView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundViewForAlertView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundViewForAlertView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         alertView.translatesAutoresizingMaskIntoConstraints = false
         alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 class MyPageView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "저장한 세트"
@@ -35,8 +40,7 @@ class MyPageView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Colors().darkBlack
-        
+        self.addSubview(backgroundGradientView)
         self.addSubview(viewForTableView)
         viewForTableView.addSubview(myWorkoutTableView)
         viewLayout()
@@ -47,10 +51,18 @@ class MyPageView: UIView {
     }
     
     func viewLayout() {
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         viewForTableView.translatesAutoresizingMaskIntoConstraints = false
         viewForTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        viewForTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        viewForTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        viewForTableView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
+        viewForTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+//        viewForTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+//        viewForTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         viewForTableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         myWorkoutTableView.translatesAutoresizingMaskIntoConstraints = false

@@ -15,7 +15,7 @@ class DescriptionViewController: UIViewController {
     var leftBarBtn: UIBarButtonItem {
         get {
             let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(descriptionLeftBarBtnTapped(_:)))
-            btn.tintColor = .lightGray
+            btn.tintColor = .white
             return btn
         }
     }
@@ -32,10 +32,7 @@ class DescriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        self.view.backgroundColor = .white
-        
+        backgroundGradientColor(descriptionView.backgroundGradientView, topColor: UIColor.darkGray.cgColor, bottomColor: UIColor.lightGray.cgColor)
         self.view.addSubview(descriptionView)
         setupViewLayout(yourView: descriptionView)
         
@@ -66,7 +63,7 @@ extension DescriptionViewController {
     
     @objc func xBtnTapped(_ sender: UIButton, tag: Int) {
         viewModel.xBtnTapped(view: descriptionView)
-        
+        print("tap")
         
     }
     

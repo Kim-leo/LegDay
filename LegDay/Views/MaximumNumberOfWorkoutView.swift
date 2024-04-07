@@ -9,11 +9,16 @@ import Foundation
 import UIKit
 
 class MaximumNumberOfWorkoutView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var guideLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.text = "최대 횟수를 설정하세요"
-        label.textColor = .white
+        label.textColor = Colors().darkBlack
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.boldSystemFont(ofSize: 25)
@@ -38,7 +43,7 @@ class MaximumNumberOfWorkoutView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.text = "  한 운동 당 총 횟수:"
-        label.textColor = .white
+        label.textColor = Colors().darkBlack
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -49,7 +54,7 @@ class MaximumNumberOfWorkoutView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.text = "-" + " 회"
-        label.textColor = .white
+        label.textColor = Colors().darkBlack
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -60,7 +65,7 @@ class MaximumNumberOfWorkoutView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.text = "  모든 운동 횟수:"
-        label.textColor = .white
+        label.textColor = Colors().darkBlack
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -71,7 +76,7 @@ class MaximumNumberOfWorkoutView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.text = "-" + " 회"
-        label.textColor = .white
+        label.textColor = Colors().darkBlack
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -80,7 +85,7 @@ class MaximumNumberOfWorkoutView: UIView {
     
     lazy var viewForPickerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 10
         view.layer.borderColor = UIColor.lightGray.cgColor
@@ -108,7 +113,7 @@ class MaximumNumberOfWorkoutView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Colors().darkBlack
+        self.addSubview(backgroundGradientView)
         self.addSubview(guideLabel)
         self.addSubview(guideLabelStackView)
         self.addSubview(numberLabelStackView)
@@ -137,6 +142,12 @@ class MaximumNumberOfWorkoutView: UIView {
     }
     
     func viewLayout() {
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         guideLabel.translatesAutoresizingMaskIntoConstraints = false
         guideLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         guideLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true

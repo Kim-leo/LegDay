@@ -41,4 +41,15 @@ extension UIViewController {
         yourView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         yourView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
+    
+    func backgroundGradientColor(_ myView: UIView, topColor: CGColor, bottomColor: CGColor) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.colors = [bottomColor, topColor]
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = self.view.bounds
+        myView.layer.addSublayer(gradientLayer)
+    }
+    
 }

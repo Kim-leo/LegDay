@@ -23,8 +23,8 @@ class MyPageViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundGradientColor(myPageView.backgroundGradientView, topColor: UIColor.darkGray.cgColor, bottomColor: UIColor.black.cgColor)
         self.navigationItem.titleView = myPageView.titleLabel
-        self.view.backgroundColor = .white
         self.view.addSubview(myPageView)
         setupViewLayout(yourView: myPageView)
         

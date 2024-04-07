@@ -9,12 +9,17 @@ import Foundation
 import UIKit
 
 class HomeView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var legDayLabel: UILabel = {
         let label = UILabel()
         label.text = "Leg Day"
         label.textAlignment = .center
         label.font = UIFont(name: "Menlo", size: 60)
-        label.textColor = Colors().redColor
+        label.textColor = .white
         return label
     }()
     
@@ -39,13 +44,13 @@ class HomeView: UIView {
     }()
     
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.addSubview(backgroundGradientView)
         self.addSubview(legDayLabel)
         self.addSubview(startWorkoutBtn)
-        
-        self.backgroundColor = Colors().darkBlack
         
         viewLayout()
         
@@ -55,7 +60,15 @@ class HomeView: UIView {
         fatalError("뷰 초기화 에러 발생")
     }
     
+    
+    
     func viewLayout() {
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         legDayLabel.translatesAutoresizingMaskIntoConstraints = false
         legDayLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         legDayLabel.heightAnchor.constraint(equalTo: legDayLabel.widthAnchor, multiplier: 0.68).isActive = true

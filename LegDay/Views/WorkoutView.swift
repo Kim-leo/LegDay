@@ -9,10 +9,15 @@ import Foundation
 import UIKit
 
 class WorkoutView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var cardImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "Joker")
+        iv.image = UIImage(named: "Start")
         return iv
     }()
     
@@ -130,7 +135,7 @@ class WorkoutView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Colors().darkBlack
+        self.addSubview(backgroundGradientView)
         self.addSubview(cardImageView)
         self.addSubview(cardCountLabel)
         self.addSubview(cardNameLabel)
@@ -152,6 +157,12 @@ class WorkoutView: UIView {
     }
     
     func viewLayout() {
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
         cardImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
         cardImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

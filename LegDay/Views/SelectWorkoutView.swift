@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 class SelectWorkoutView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var guideLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -22,7 +27,7 @@ class SelectWorkoutView: UIView {
     
     lazy var viewForTableView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = Colors().softBlack
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 10
         view.layer.borderColor = UIColor.lightGray.cgColor
@@ -33,7 +38,7 @@ class SelectWorkoutView: UIView {
     lazy var myWorkoutTableView: UITableView = {
         let tv = UITableView()
         tv.register(SelectWorkoutCell.self, forCellReuseIdentifier: "SelectWorkoutCell")
-        tv.backgroundColor = Colors().softBlack
+        tv.backgroundColor = .clear
         
         return tv
     }()
@@ -52,22 +57,27 @@ class SelectWorkoutView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Colors().darkBlack
+        self.addSubview(backgroundGradientView)
         self.addSubview(guideLabel)
         self.addSubview(viewForTableView)
         viewForTableView.addSubview(myWorkoutTableView)
         self.addSubview(nextBtn)
         
         viewLayout()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("뷰 초기화 에러 발생")
     }
     
-    
-    
     func viewLayout() {
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         guideLabel.translatesAutoresizingMaskIntoConstraints = false
         guideLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         guideLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true

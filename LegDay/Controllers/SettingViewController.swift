@@ -24,14 +24,13 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backgroundGradientColor(settingView.backgroundGradientView, topColor: Colors().darkRedColor.cgColor, bottomColor: UIColor.black.cgColor)
         leftBarBtn = UIBarButtonItem(customView: settingView.leftBarBtnItem)
         rightBarBtn = UIBarButtonItem(customView: settingView.rightBarBtnItem)
         
         self.navigationItem.leftBarButtonItem = leftBarBtn
         self.navigationItem.titleView = settingView.titleLabel
         self.navigationItem.rightBarButtonItem = self.rightBarBtn
-        self.view.backgroundColor = .white
         self.view.addSubview(settingView)
         setupViewLayout(yourView: settingView)
         
@@ -184,12 +183,15 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                     viewModel.deleteDataRelatedToCell(settingView, indexPath: indexPath)
                 }
             case false:
+                settingView.leftBarBtnItem.isEnabled = false
+                settingView.rightBarBtnItem.isEnabled = false
                 switch viewModel.yourAllWorkoutsArray[indexPath.row] {
                 case "+ 직접 입력":
                     settingView.alertView.alpha = 1
                     viewModel.whoCalledAlertView = 0
                     viewModel.settingMessageForAlertMessageLabel(settingView)
                 default:
+                    
                     settingView.backGroundTransparentView.alpha = 0.5
                     settingView.backgroundViewForSettingPokerShapes.alpha = 1
                     self.view.bringSubviewToFront(settingView.backgroundViewForSettingPokerShapes)

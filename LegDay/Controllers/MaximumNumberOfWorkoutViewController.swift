@@ -28,7 +28,7 @@ class MaximumNumberOfWorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        backgroundGradientColor(maxNumWorkoutView.backgroundGradientView, topColor: UIColor.white.cgColor, bottomColor: UIColor.black.cgColor)
         self.view.addSubview(maxNumWorkoutView)
         setupViewLayout(yourView: maxNumWorkoutView)
         

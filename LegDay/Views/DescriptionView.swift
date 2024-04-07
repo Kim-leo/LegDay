@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class DescriptionView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     lazy var stackViewFor3Btns: UIStackView = {
         let sv = UIStackView()
@@ -77,7 +81,7 @@ class DescriptionView: UIView {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.tag = 0
-        cv.isScrollEnabled = false
+        cv.isScrollEnabled = true
         cv.isPagingEnabled = true
         cv.showsHorizontalScrollIndicator = false
         cv.register(DescriptionCell.self, forCellWithReuseIdentifier: "DescriptionCell")
@@ -123,11 +127,11 @@ class DescriptionView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Colors().darkBlack
+        self.addSubview(backgroundGradientView)
         self.addSubview(stackViewFor3Btns)
         self.addSubview(backgroundView)
-        backgroundView.addSubview(xBtn)
         backgroundView.addSubview(descripTionCollectionView)
+        backgroundView.addSubview(xBtn)
         backgroundView.addSubview(bottomMiniStackView)
         
         bottomMiniStackView.addArrangedSubview(leftBtn)
@@ -149,6 +153,12 @@ class DescriptionView: UIView {
     }
     
     func viewLayout() {
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         stackViewFor3Btns.translatesAutoresizingMaskIntoConstraints = false
         stackViewFor3Btns.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackViewFor3Btns.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -156,10 +166,10 @@ class DescriptionView: UIView {
         stackViewFor3Btns.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
         
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        backgroundView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         descripTionCollectionView.translatesAutoresizingMaskIntoConstraints = false
         descripTionCollectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -168,16 +178,16 @@ class DescriptionView: UIView {
         descripTionCollectionView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor, multiplier: 0.8).isActive = true
         
         xBtn.translatesAutoresizingMaskIntoConstraints = false
-        xBtn.topAnchor.constraint(equalTo: backgroundView.topAnchor).isActive = true
-        xBtn.trailingAnchor.constraint(equalTo: descripTionCollectionView.trailingAnchor).isActive = true
-        xBtn.bottomAnchor.constraint(equalTo: descripTionCollectionView.topAnchor).isActive = true
+        xBtn.topAnchor.constraint(equalTo: descripTionCollectionView.topAnchor).isActive = true
+        xBtn.trailingAnchor.constraint(equalTo: descripTionCollectionView.trailingAnchor, constant: -15).isActive = true
+        xBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.15).isActive = true
         xBtn.widthAnchor.constraint(equalTo: xBtn.heightAnchor).isActive = true
         
         bottomMiniStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomMiniStackView.topAnchor.constraint(equalTo: descripTionCollectionView.bottomAnchor).isActive = true
         bottomMiniStackView.leadingAnchor.constraint(equalTo: descripTionCollectionView.leadingAnchor).isActive = true
         bottomMiniStackView.trailingAnchor.constraint(equalTo: descripTionCollectionView.trailingAnchor).isActive = true
-        bottomMiniStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        bottomMiniStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         leftBtn.translatesAutoresizingMaskIntoConstraints = false
         leftBtn.widthAnchor.constraint(equalTo: bottomMiniStackView.widthAnchor, multiplier: 0.15).isActive = true

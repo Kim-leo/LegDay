@@ -81,6 +81,8 @@ extension SettingViewModel {
     func alertBtnTapAction(_ view: SettingView, sender: UIButton) {
         switch sender.tag {
         case 0:
+            view.leftBarBtnItem.isEnabled = true
+            view.rightBarBtnItem.isEnabled = true
             view.alertView.alpha = 0
             view.backGroundTransparentView.alpha = 0
         case 1:
@@ -130,6 +132,8 @@ extension SettingViewModel {
     }
     
     func categoryBtnTapped(view: SettingView) {
+        view.leftBarBtnItem.isEnabled = true
+        view.rightBarBtnItem.isEnabled = true
         view.stackViewVertical.alpha = 0
         view.backGroundTransparentView.alpha = 0
         
@@ -138,16 +142,19 @@ extension SettingViewModel {
             yourAllWorkoutsArray.insert(inputWorkout, at: 1)
         }
         workoutModel.originalWorkouts.append(inputWorkout)
-        print(workoutModel.originalWorkouts)
     }
     
     func cancelBtnTapped(view: SettingView) {
         inputWorkout = ""
+        view.leftBarBtnItem.isEnabled = true
+        view.rightBarBtnItem.isEnabled = true
         view.stackViewVertical.alpha = 0
         view.backGroundTransparentView.alpha = 0
     }
     
     func pokerCardBtnTapped(view: SettingView, _ sender: UIButton) {
+        view.leftBarBtnItem.isEnabled = true
+        view.rightBarBtnItem.isEnabled = true
         view.backGroundTransparentView.alpha = 0
         view.backgroundViewForSettingPokerShapes.alpha = 0
         view.lowerCollectinView.alpha = 1
@@ -206,11 +213,9 @@ extension SettingViewModel {
         switch isLeftBarBtnClicked {
         case false:
             view.rightBarBtnItem.isEnabled = false
-            view.rightBarBtnItem.setTitleColor(.darkGray, for: .normal)
+            view.rightBarBtnItem.setTitleColor(Colors().darkBlack, for: .normal)
             
             view.leftBarBtnItem.setTitle("삭제 완료", for: .normal)
-            view.leftBarBtnItem.setTitleColor(.white, for: .normal)
-            
             isLeftBarBtnClicked = true
         case true:
             view.rightBarBtnItem.isEnabled = true

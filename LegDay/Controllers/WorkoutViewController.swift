@@ -31,8 +31,7 @@ class WorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        
+        backgroundGradientColor(workoutView.backgroundGradientView, topColor: UIColor.darkGray.cgColor, bottomColor: UIColor.black.cgColor)
         self.view.addSubview(workoutView)
         setupViewLayout(yourView: workoutView)
 

@@ -16,11 +16,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundColor" translatesAutoresizingMaskIntoConstraints="NO" id="6SP-9Z-JcG">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leg Day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOM-8d-4Jx">
                                 <rect key="frame" x="70" y="391" width="253" height="70"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="60"/>
-                                <color key="textColor" red="0.94117647058823528" green="0.11372549019607843" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="스트레칭 중..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qeg-TI-2R6">
@@ -31,10 +34,14 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="6SP-9Z-JcG" secondAttribute="bottom" id="Pdk-2n-BL2"/>
                             <constraint firstItem="Qeg-TI-2R6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SNA-eR-Icq"/>
+                            <constraint firstItem="6SP-9Z-JcG" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="U9c-Ev-3f5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6SP-9Z-JcG" secondAttribute="trailing" id="cBL-Ug-fuR"/>
                             <constraint firstItem="iOM-8d-4Jx" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ie6-ye-weI"/>
+                            <constraint firstItem="6SP-9Z-JcG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kRK-AY-OLj"/>
                             <constraint firstItem="Qeg-TI-2R6" firstAttribute="top" secondItem="iOM-8d-4Jx" secondAttribute="bottom" constant="50" id="r11-9v-MOl"/>
                             <constraint firstItem="iOM-8d-4Jx" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uAA-zr-Ihz"/>
                         </constraints>
@@ -45,4 +52,7 @@
             <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backgroundColor" width="2603" height="2342"/>
+    </resources>
 </document>

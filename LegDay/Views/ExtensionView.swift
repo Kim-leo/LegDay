@@ -45,7 +45,7 @@ struct Colors {
     let softBlack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.85)
     let redColor: UIColor = UIColor(red: 240, green: 29, blue: 0, a: 1)
     let softRedColor: UIColor = UIColor(red: 240, green: 29, blue: 0, a: 0.8)
-    
+    let darkRedColor: UIColor = UIColor(red: 95, green: 12, blue: 0, a: 1)
 }
 
 extension String {
@@ -59,8 +59,6 @@ extension String {
 }
 
 extension UIView {
-    
-    
     func confettiAnimationForWorkoutVC(_ view: WorkoutView, emitter: CAEmitterLayer) {
         emitter.emitterPosition = CGPoint(
             x: view.center.x, y: -150
@@ -70,7 +68,7 @@ extension UIView {
         
         let cells: [CAEmitterCell] = pokerShapeImages.compactMap {
             let cell = CAEmitterCell()
-            cell.scale = 0.04
+            cell.scale = 0.02
             cell.emissionRange = .pi * 2
             cell.lifetime = 10
             cell.birthRate = 50

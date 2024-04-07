@@ -50,12 +50,13 @@ extension WorkoutViewModel {
         settingMaxNumberOfWorkout()
         
         view.cardNameLabel.text = "Let's go."
-        view.workoutLabel.text = (myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC.isEmpty) ? "오늘도 화이팅!" : "\(myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC)"
+        view.workoutLabel.text = (myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC.isEmpty) ? "운동을 시작합니다!" : "\(myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC)"
         view.workoutLabel.textColor = .white
         view.nextBtn.setTitle("시작", for: .normal)
         view.nextBtn.setTitleColor(.white, for: .normal)
         view.nextBtn.backgroundColor = Colors().redColor
         view.cardCountLabel.text = ""
+        view.cardImageView.image = UIImage(named: "Start")
     }
     
     func changeCardNameLabelTextColor(_ view: WorkoutView) {
@@ -130,7 +131,7 @@ extension WorkoutViewModel {
     func endOfWorkout(_ view: WorkoutView) {
         view.confettiAnimationForWorkoutVC(view, emitter: emitter)
         
-        view.cardImageView.image = UIImage(named: "Joker")
+        view.cardImageView.image = UIImage(named: "Complete")
         view.cardNameLabel.text = "운동 끝"
         view.cardNameLabel.textColor = .white
         view.workoutLabel.text = "Impressive!"

@@ -25,17 +25,15 @@ class SelectWorkoutViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
         
-        
         viewModel.updateTableViewCell(selectWorkoutView)
         selectWorkoutView.myWorkoutTableView.reloadData()
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
         self.view.addSubview(selectWorkoutView)
         setupViewLayout(yourView: selectWorkoutView)
+        backgroundGradientColor(selectWorkoutView.backgroundGradientView, topColor: Colors().darkRedColor.cgColor, bottomColor: UIColor.black.cgColor)
         
         selectWorkoutView.myWorkoutTableView.delegate = self
         selectWorkoutView.myWorkoutTableView.dataSource = self

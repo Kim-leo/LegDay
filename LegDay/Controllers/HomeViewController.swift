@@ -19,13 +19,13 @@ class HomeViewController: UIViewController {
         
     }
     
+    var gradientLayer: CAGradientLayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backgroundGradientColor(homeView.backgroundGradientView, topColor: Colors().darkRedColor.cgColor, bottomColor: UIColor.black.cgColor)
         rightBarButton = UIBarButtonItem(customView: homeView.descriptionBtn)
         self.navigationItem.rightBarButtonItem = rightBarButton
-        self.view.backgroundColor = .white
-        
         self.view.addSubview(homeView)
         setupViewLayout(yourView: homeView)
         

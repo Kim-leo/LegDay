@@ -70,9 +70,8 @@ class StatsViewModel {
     }
     
     func alertViewAppears(_ view: StatsView, vc: StatsViewController) {
-        view.allClearView.alpha = 0.5
-        view.alertAllWhiteView.alpha = 0.95
-        
+        view.backGroundTransparentView.alpha = 0.5
+        view.backgroundViewForAlertView.alpha = 1
     }
     
     func initializingBtnTapped(_ view: StatsView, sender: UIButton) {
@@ -83,16 +82,16 @@ class StatsViewModel {
             myWorkoutModel.maximumOfcontinuousProgress[selectMaxNumberInBtns] = 0
             
             workoutInfo(view)
-            view.alertAllWhiteView.alpha = 0
-            view.allClearView.alpha = 1
+            view.backGroundTransparentView.alpha = 0
+            view.backgroundViewForAlertView.alpha = 0
             UIView.animate(withDuration: 2) {
                 view.initializingCompleteView.alpha = 1
                 view.initializingCompleteView.alpha = 0
             }
             
         default:
-            view.alertAllWhiteView.alpha = 0
-            view.allClearView.alpha = 1
+            view.backGroundTransparentView.alpha = 0
+            view.backgroundViewForAlertView.alpha = 0
             break
         }
     }
@@ -123,7 +122,7 @@ extension StatsViewModel {
     func entryData(values: [Double]) -> [ChartDataEntry] {
         var pieDataEntries: [ChartDataEntry] = []
         for i in 0 ..< values.count {
-            let pieDataEntry = PieChartDataEntry(value: values[i], label: ["시작한 운동", "미완수"][i], data: "" as AnyObject)
+            let pieDataEntry = PieChartDataEntry(value: values[i], label: ["완수", "미완수"][i], data: "" as AnyObject)
             pieDataEntries.append(pieDataEntry)
         }
         return pieDataEntries

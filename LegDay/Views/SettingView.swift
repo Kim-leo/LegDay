@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 class SettingView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var leftBarBtnItem: UIButton = {
         let btn = UIButton()
         btn.setTitle("삭제", for: .normal)
@@ -372,8 +377,7 @@ class SettingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Colors().darkBlack
-        
+        self.addSubview(backgroundGradientView)
         self.addSubview(upperView)
         self.addSubview(lowerView)
         self.addSubview(backGroundTransparentView)
@@ -439,6 +443,12 @@ class SettingView: UIView {
     }
     
     func viewLayout() {
+        backgroundGradientView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundGradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundGradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundGradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundGradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         upperView.translatesAutoresizingMaskIntoConstraints = false
         upperView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         upperView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
