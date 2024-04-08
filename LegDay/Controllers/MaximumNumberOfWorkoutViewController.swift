@@ -9,13 +9,15 @@ import UIKit
 
 class MaximumNumberOfWorkoutViewController: UIViewController {
 
-    var leftBarBtn: UIBarButtonItem {
-        get {
-            let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(maximumNumberOfWorkoutVCleftBarBtnTapped(_:)))
-            btn.tintColor = .lightGray
-            return btn
-        }
-    }
+//    var leftBarBtn: UIBarButtonItem {
+//        get {
+//            let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(maximumNumberOfWorkoutVCleftBarBtnTapped(_:)))
+//            btn.tintColor = Colors().darkBlack
+//            return btn
+//        }
+//    }
+    
+    var leftBarBtn = UIBarButtonItem()
     
     let maxNumWorkoutView = MaximumNumberOfWorkoutView()
     let viewModel = MaximumNumberOfWorkoutViewModel.shared
@@ -32,8 +34,10 @@ class MaximumNumberOfWorkoutViewController: UIViewController {
         self.view.addSubview(maxNumWorkoutView)
         setupViewLayout(yourView: maxNumWorkoutView)
         
-        maxNumWorkoutView.nextBtn.addTarget(self, action: #selector(nextBtnTapped), for: .touchUpInside)
+        leftBarBtn = UIBarButtonItem(customView: maxNumWorkoutView.leftBarBtnItem)
         
+        maxNumWorkoutView.nextBtn.addTarget(self, action: #selector(nextBtnTapped), for: .touchUpInside)
+        maxNumWorkoutView.leftBarBtnItem.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         maxNumWorkoutView.maxNumPickerView.delegate = self
         maxNumWorkoutView.maxNumPickerView.dataSource = self
         maxNumWorkoutView.maxNumPickerView.selectRow(viewModel.maximumNumberOfWorkout[0] - 1, inComponent: 0, animated: false)
@@ -75,10 +79,10 @@ extension MaximumNumberOfWorkoutViewController: UIPickerViewDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
 
         let cardImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        cardImage.contentMode = .scaleAspectFit
+        cardImage.contentMode = .scaleAspectFill
         cardImage.image = UIImage(named: viewModel.images.randomElement()![row])
         
         view.transform = CGAffineTransform(rotationAngle:  90 * (.pi / 180))

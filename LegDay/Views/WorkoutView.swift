@@ -133,6 +133,18 @@ class WorkoutView: UIView {
         return btn
     }()
     
+    lazy var backgroundAlphaView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    lazy var alertBackgroundTransparentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     lazy var tryingToLeaveAlertView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -196,7 +208,9 @@ class WorkoutView: UIView {
         finishBtnStackView.addArrangedSubview(doneAndLeaveBtn)
         finishBtnStackView.addArrangedSubview(oneMoreTimeBtn)
         
-        self.addSubview(tryingToLeaveAlertView)
+        self.addSubview(backgroundAlphaView)
+        self.addSubview(alertBackgroundTransparentView)
+        alertBackgroundTransparentView.addSubview(tryingToLeaveAlertView)
         tryingToLeaveAlertView.addSubview(alertMessageLabel)
         tryingToLeaveAlertView.addSubview(alertBtnStackView)
         alertBtnStackView.addArrangedSubview(alertCancelBtn)
@@ -205,7 +219,8 @@ class WorkoutView: UIView {
         viewLayout()
         
         finishBtnStackView.alpha = 0
-        tryingToLeaveAlertView.alpha = 0
+        backgroundAlphaView.alpha = 0
+        alertBackgroundTransparentView.alpha = 0
         
     }
     
@@ -268,10 +283,22 @@ class WorkoutView: UIView {
         finishBtnStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         finishBtnStackView.centerYAnchor.constraint(equalTo: nextBtnView.centerYAnchor).isActive = true
         
+        backgroundAlphaView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundAlphaView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundAlphaView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundAlphaView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundAlphaView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        alertBackgroundTransparentView.translatesAutoresizingMaskIntoConstraints = false
+        alertBackgroundTransparentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        alertBackgroundTransparentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        alertBackgroundTransparentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        alertBackgroundTransparentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         tryingToLeaveAlertView.translatesAutoresizingMaskIntoConstraints = false
         tryingToLeaveAlertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         tryingToLeaveAlertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        tryingToLeaveAlertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        tryingToLeaveAlertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         tryingToLeaveAlertView.heightAnchor.constraint(equalTo: tryingToLeaveAlertView.widthAnchor, multiplier: 0.6).isActive = true
         
         alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false

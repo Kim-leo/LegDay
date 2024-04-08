@@ -179,17 +179,20 @@ extension WorkoutViewModel {
     }
     
     func tryingToLeaveDuringWorkout(_ view: WorkoutView) {
-        view.tryingToLeaveAlertView.alpha = 1
+        view.backgroundAlphaView.alpha = 0.5
+        view.alertBackgroundTransparentView.alpha = 1
     }
     
     
     func alertBtnsTap(_ view: WorkoutView, vc: WorkoutViewController, sender: UIButton) {
         switch sender.tag {
         case 1:
-            view.tryingToLeaveAlertView.alpha = 0
+            view.backgroundAlphaView.alpha = 0
+            view.alertBackgroundTransparentView.alpha = 0
             vc.navigationController?.popViewController(animated: true)
         default:
-            view.tryingToLeaveAlertView.alpha = 0
+            view.backgroundAlphaView.alpha = 0
+            view.alertBackgroundTransparentView.alpha = 0
             break
         }
         

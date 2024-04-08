@@ -45,6 +45,7 @@ struct Colors {
     let softBlack: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.85)
     let redColor: UIColor = UIColor(red: 240, green: 29, blue: 0, a: 1)
     let softRedColor: UIColor = UIColor(red: 240, green: 29, blue: 0, a: 0.8)
+    let lightRedColor: UIColor = UIColor(red: 254, green: 132, blue: 132, a: 1)
     let darkRedColor: UIColor = UIColor(red: 95, green: 12, blue: 0, a: 1)
 }
 

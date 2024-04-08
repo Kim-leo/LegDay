@@ -15,6 +15,7 @@ class MaximumNumberOfWorkoutViewModel {
     
     var myMaximumNumber = Int()
     var maximumNumberOfWorkout = Array(5...13)
+    let cardStringArray = ["5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     
     let images = [["Spade 5", "Spade 6", "Spade 7", "Spade 8", "Spade 9", "Spade 10", "Spade J", "Spade Q", "Spade K"],
                   ["Heart 5", "Heart 6", "Heart 7", "Heart 8", "Heart 9", "Heart 10", "Heart J", "Heart Q", "Heart K"],
@@ -36,6 +37,8 @@ class MaximumNumberOfWorkoutViewModel {
         totalNumberPerCards = maxNumberPerCards * 4
         view.totalNumberLabel.text = "\(totalNumberPerCards)" + " 회"
         
+        view.detailDescriptionLabel.text = "하나의 운동별로 표시될 카드는 A 부터 \(cardStringArray[row]) 입니다"
+        
         changeTextColorOfNumberLabels(view: view)
         
     }
@@ -49,7 +52,7 @@ class MaximumNumberOfWorkoutViewModel {
         
         let attributedString2 = NSMutableAttributedString(string: view.totalNumberLabel.text ?? "")
         attributedString2.addAttribute(.font, value: fontSize, range: (view.totalNumberLabel.text! as NSString).range(of: "\(totalNumberPerCards)"))
-        attributedString2.addAttribute(.foregroundColor, value: Colors().softRedColor, range: (view.totalNumberLabel.text! as NSString).range(of: "\(totalNumberPerCards)"))
+        attributedString2.addAttribute(.foregroundColor, value: Colors().redColor, range: (view.totalNumberLabel.text! as NSString).range(of: "\(totalNumberPerCards)"))
         view.totalNumberLabel.attributedText = attributedString2
     }
     

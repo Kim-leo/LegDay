@@ -14,6 +14,15 @@ class MaximumNumberOfWorkoutView: UIView {
         return view
     }()
     
+    lazy var leftBarBtnItem: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("돌아가기", for: .normal)
+        btn.setTitleColor(Colors().darkBlack, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
+        return btn
+    }()
+    
     lazy var guideLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -53,11 +62,11 @@ class MaximumNumberOfWorkoutView: UIView {
     lazy var maxNumLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.text = "-" + " 회"
-        label.textColor = Colors().darkBlack
+        label.text = "45 회"
+        label.textColor = Colors().redColor
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         return label
     }()
     
@@ -75,11 +84,20 @@ class MaximumNumberOfWorkoutView: UIView {
     lazy var totalNumberLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.text = "-" + " 회"
-        label.textColor = Colors().darkBlack
+        label.text = "180 회"
+        label.textColor = Colors().redColor
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        return label
+    }()
+    
+    lazy var detailDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "하나의 운동별로 표시될 카드는 A 부터 9 입니다"
+        label.textAlignment = .center
+        label.textColor = .darkGray
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
@@ -117,6 +135,7 @@ class MaximumNumberOfWorkoutView: UIView {
         self.addSubview(guideLabel)
         self.addSubview(guideLabelStackView)
         self.addSubview(numberLabelStackView)
+        self.addSubview(detailDescriptionLabel)
         guideLabelStackView.addArrangedSubview(maxNumGuideLabel)
         guideLabelStackView.addArrangedSubview(totalNumGuideLabel)
         numberLabelStackView.addArrangedSubview(maxNumLabel)
@@ -152,7 +171,7 @@ class MaximumNumberOfWorkoutView: UIView {
         guideLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         guideLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         guideLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        guideLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1).isActive = true
+        guideLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         guideLabelStackView.translatesAutoresizingMaskIntoConstraints = false
         guideLabelStackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
@@ -166,6 +185,12 @@ class MaximumNumberOfWorkoutView: UIView {
         numberLabelStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         numberLabelStackView.heightAnchor.constraint(equalTo: guideLabel.heightAnchor, multiplier: 2).isActive = true
         
+        detailDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        detailDescriptionLabel.topAnchor.constraint(equalTo: guideLabelStackView.bottomAnchor).isActive = true
+        detailDescriptionLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        detailDescriptionLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
+        detailDescriptionLabel.heightAnchor.constraint(equalTo: guideLabelStackView.heightAnchor, multiplier: 0.5).isActive = true
+        
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
         nextBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         nextBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
@@ -173,7 +198,7 @@ class MaximumNumberOfWorkoutView: UIView {
         nextBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         
         viewForPickerView.translatesAutoresizingMaskIntoConstraints = false
-        viewForPickerView.topAnchor.constraint(equalTo: guideLabelStackView.bottomAnchor, constant: 15).isActive = true
+        viewForPickerView.topAnchor.constraint(equalTo: detailDescriptionLabel.bottomAnchor, constant: 15).isActive = true
         viewForPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         viewForPickerView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
         viewForPickerView.bottomAnchor.constraint(equalTo: nextBtn.topAnchor, constant: -20).isActive = true

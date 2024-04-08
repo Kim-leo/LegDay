@@ -8,17 +8,11 @@
 import UIKit
 
 class SelectWorkoutViewController: UIViewController {
-
-    var leftBarBtn: UIBarButtonItem {
-        get {
-            let btn = UIBarButtonItem(title: "돌아가기", style: .plain, target: self, action: #selector(selectWorkoutVCleftBarBtnTapped(_:)))
-            btn.tintColor = .lightGray
-            return btn
-        }
-    }
     
     let selectWorkoutView = SelectWorkoutView()
     let viewModel = SelectWorkoutViewModel.shared
+    
+    var leftBarBtn = UIBarButtonItem()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,10 +28,12 @@ class SelectWorkoutViewController: UIViewController {
         self.view.addSubview(selectWorkoutView)
         setupViewLayout(yourView: selectWorkoutView)
         backgroundGradientColor(selectWorkoutView.backgroundGradientView, topColor: Colors().darkRedColor.cgColor, bottomColor: UIColor.black.cgColor)
+        leftBarBtn = UIBarButtonItem(customView: selectWorkoutView.leftBarBtnItem)
         
         selectWorkoutView.myWorkoutTableView.delegate = self
         selectWorkoutView.myWorkoutTableView.dataSource = self
         
+        selectWorkoutView.leftBarBtnItem.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         selectWorkoutView.nextBtn.addTarget(self, action: #selector(nextBtnTapped), for: .touchUpInside)
         
     }

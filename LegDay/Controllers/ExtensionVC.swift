@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    @objc func popVC(vc: UIViewController, sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func confettiAnimation() {
         let emitter = CAEmitterLayer()
