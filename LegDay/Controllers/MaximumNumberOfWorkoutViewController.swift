@@ -45,10 +45,6 @@ class MaximumNumberOfWorkoutViewController: UIViewController {
 }
 
 extension MaximumNumberOfWorkoutViewController {
-    @objc func maximumNumberOfWorkoutVCleftBarBtnTapped(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     @objc func nextBtnTapped(_ sender: UIButton) {
         viewModel.readyToLoadOnWorkoutVC()
         let workoutVC = WorkoutViewController()

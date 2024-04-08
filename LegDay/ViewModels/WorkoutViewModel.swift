@@ -9,13 +9,20 @@ import Foundation
 import UIKit
 
 class WorkoutViewModel {
+    var timer: Timer = Timer()
+    var count: Int = 0
+    var timerCounting: Bool = false
+    /*
+     timer initializing
+     
+     count = 0
+     timer.invalidate()
+     workoutView.timerNavigationBarLabel.text = makeTimeString(hours: 0, minutes: 0, seconds: 0)
+     */
+    
     let cardModel: CardModel
-    
     var workoutModel = WorkoutModel()
-    
     var myWorkoutModel = MyWorkout.shared
-    
-//    var cardSet = CardModel().cardSet
     var cardArrayPerShape = CardModel().cardsArrayPerShape
     var cardSetWithMaximumNumber = [String]()
     var totalCardNumber = Int()
@@ -44,10 +51,39 @@ extension WorkoutViewModel {
         totalCardNumber = cardSetWithMaximumNumber.count
     }
     
+    func startTimerAndPrintTimeToLabel(_ view: WorkoutView) {
+        count = count + 1
+        let time = secondsToHoursMinutesSeconds(seconds: count)
+        let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
+        view.timerNavigationBarLabel.text = timeString
+    }
     
+    func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
+        return ((seconds / 3600), ((seconds % 3600) / 60), ((seconds % 3600) % 60))
+    }
+    
+    func makeTimeString(hours: Int, minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        timeString += String(format: "%02d", hours)
+        timeString += " : "
+        timeString += String(format: "%02d", minutes)
+        timeString += " : "
+        timeString += String(format: "%02d", seconds)
+        return timeString
+    }
+    
+    func stopTimerAndResetTime(_ view: WorkoutView) {
+        count = 0
+        timer.invalidate()
+//        view.timerNavigationBarLabel.text = makeTimeString(hours: 0, minutes: 0, seconds: 0)
+        view.timerNavigationBarLabel.text = ""
+    }
     
     func componentsInitialSetting(_ view: WorkoutView) {
         settingMaxNumberOfWorkout()
+        
+        count = 0
+        view.timerNavigationBarLabel.text = "00 : 00 : 00"
         
         view.cardNameLabel.text = "Let's go."
         view.workoutLabel.text = (myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC.isEmpty) ? "운동을 시작합니다!" : "\(myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC)"
@@ -57,6 +93,8 @@ extension WorkoutViewModel {
         view.nextBtn.backgroundColor = Colors().redColor
         view.cardCountLabel.text = ""
         view.cardImageView.image = UIImage(named: "Start")
+        view.leftBarBtnItem.isHidden = false
+
     }
     
     func changeCardNameLabelTextColor(_ view: WorkoutView) {
@@ -130,9 +168,8 @@ extension WorkoutViewModel {
     
     func endOfWorkout(_ view: WorkoutView) {
         view.confettiAnimationForWorkoutVC(view, emitter: emitter)
-        
         view.cardImageView.image = UIImage(named: "Complete")
-        view.cardNameLabel.text = "운동 끝"
+        view.cardNameLabel.text = "운동 시간: \(String(describing: view.timerNavigationBarLabel.text ?? ""))"
         view.cardNameLabel.textColor = .white
         view.workoutLabel.text = "Impressive!"
         view.workoutLabel.textColor = .systemOrange
@@ -140,25 +177,21 @@ extension WorkoutViewModel {
         view.cardCountLabel.text = ""
         view.finishBtnStackView.alpha = 1
         view.nextBtn.alpha = 0
+        view.leftBarBtnItem.isHidden = true
         emptyArray.removeAll()
 
         cardSetWithMaximumNumber.removeAll()
     }
     
-    func nextBtnTapped(_ view: WorkoutView) {
-        switch view.nextBtn.currentTitle ?? "" {
-        case "마치기":
-            endOfWorkout(view)
-            myWorkoutModel.numberOfWorkoutsFinishedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
-            countContinuousNumberOfWorkoutSet += 1
-            countMaximumOfcontinuousProgress()
-        case "시작":
-            myWorkoutModel.numberOfWorkoutsStartedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
-            fallthrough
-        default:
-            startWorkout(view)
-        }
+    func saveFinishedWorkoutData() {
+        myWorkoutModel.numberOfWorkoutsFinishedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
+        countContinuousNumberOfWorkoutSet += 1
     }
+    
+    func saveStartWorkoutData() {
+        myWorkoutModel.numberOfWorkoutsStartedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
+    }
+    
     
     func finishBtnTapped(_ view: WorkoutView, vc: WorkoutViewController, sender: UIButton) {
         view.finishBtnStackView.alpha = 0
@@ -181,22 +214,6 @@ extension WorkoutViewModel {
     func tryingToLeaveDuringWorkout(_ view: WorkoutView) {
         view.backgroundAlphaView.alpha = 0.5
         view.alertBackgroundTransparentView.alpha = 1
-    }
-    
-    
-    func alertBtnsTap(_ view: WorkoutView, vc: WorkoutViewController, sender: UIButton) {
-        switch sender.tag {
-        case 1:
-            view.backgroundAlphaView.alpha = 0
-            view.alertBackgroundTransparentView.alpha = 0
-            vc.navigationController?.popViewController(animated: true)
-        default:
-            view.backgroundAlphaView.alpha = 0
-            view.alertBackgroundTransparentView.alpha = 0
-            break
-        }
-        
-        
     }
     
     

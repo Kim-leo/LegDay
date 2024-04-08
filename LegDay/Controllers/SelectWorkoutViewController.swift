@@ -46,10 +46,6 @@ class SelectWorkoutViewController: UIViewController {
 }
 
 extension SelectWorkoutViewController {
-    @objc func selectWorkoutVCleftBarBtnTapped(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     @objc func nextBtnTapped(_ sender: UIButton) {
         let maxNumVC = MaximumNumberOfWorkoutViewController()
         navigationController?.pushViewController(maxNumVC, animated: true)

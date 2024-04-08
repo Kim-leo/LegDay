@@ -14,6 +14,25 @@ class WorkoutView: UIView {
         return view
     }()
     
+    lazy var leftBarBtnItem: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("돌아가기", for: .normal)
+        btn.setTitleColor(.lightGray, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
+        return btn
+    }()
+    
+    lazy var timerNavigationBarLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.text = "00 : 00 : 00"
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.frame = CGRect(x: 0, y: 0, width: 120, height: 30)
+        return label
+    }()
+    
     lazy var cardImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
