@@ -64,6 +64,7 @@ extension SettingViewModel {
     
     func settingMessageForAlertMessageLabel(_ view: SettingView) {
         view.backGroundTransparentView.alpha = 0.5
+        view.leftBarBtnItem.isEnabled = false
         switch whoCalledAlertView {
         case 0:
             view.alertMessageLabel.text = "운동을 직접 추가합니다."
@@ -110,8 +111,6 @@ extension SettingViewModel {
         } else {
             view.alertView.alpha = 0
             view.stackViewVertical.alpha = 1
-            
-            
         }
     }
     
@@ -126,8 +125,8 @@ extension SettingViewModel {
         UIView.animate(withDuration: 2) {
             view.saveCompleteView.alpha = 1
             view.saveCompleteView.alpha = 0
-            
         }
+        view.leftBarBtnItem.isEnabled = true
         
     }
     

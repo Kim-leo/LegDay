@@ -67,7 +67,7 @@ class SettingView: UIView {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.tag = 0
-        cv.isPagingEnabled = true
+        cv.isPagingEnabled = false
         cv.showsHorizontalScrollIndicator = true
         cv.backgroundColor = .clear
         cv.register(UpperCell.self, forCellWithReuseIdentifier: "UpperCell")
@@ -89,7 +89,7 @@ class SettingView: UIView {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.tag = 1
-        cv.isPagingEnabled = true
+        cv.isPagingEnabled = false
         cv.showsVerticalScrollIndicator = true
         cv.register(LowerCell.self, forCellWithReuseIdentifier: "LowerCell")
         cv.backgroundColor = .clear
