@@ -15,7 +15,7 @@ class WorkoutViewModel {
     
     var myWorkoutModel = MyWorkout.shared
     
-    var cardSet = CardModel().cardSet
+//    var cardSet = CardModel().cardSet
     var cardArrayPerShape = CardModel().cardsArrayPerShape
     var cardSetWithMaximumNumber = [String]()
     var totalCardNumber = Int()
@@ -139,7 +139,7 @@ extension WorkoutViewModel {
         view.numberOfWorkoutLabel.text = ""
         view.cardCountLabel.text = ""
         view.finishBtnStackView.alpha = 1
-        
+        view.nextBtn.alpha = 0
         emptyArray.removeAll()
 
         cardSetWithMaximumNumber.removeAll()
@@ -162,6 +162,7 @@ extension WorkoutViewModel {
     
     func finishBtnTapped(_ view: WorkoutView, vc: WorkoutViewController, sender: UIButton) {
         view.finishBtnStackView.alpha = 0
+        view.nextBtn.alpha = 1
         switch sender.tag {
         case 0:
             vc.navigationController?.popToRootViewController(animated: true)
@@ -175,6 +176,24 @@ extension WorkoutViewModel {
     
     func countMaximumOfcontinuousProgress() {
         myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5] = (countContinuousNumberOfWorkoutSet >= myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5]) ? countContinuousNumberOfWorkoutSet : myWorkoutModel.maximumOfcontinuousProgress[myWorkoutModel.setMaximumNumberOfWorkout - 5]
+    }
+    
+    func tryingToLeaveDuringWorkout(_ view: WorkoutView) {
+        view.tryingToLeaveAlertView.alpha = 1
+    }
+    
+    
+    func alertBtnsTap(_ view: WorkoutView, vc: WorkoutViewController, sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            view.tryingToLeaveAlertView.alpha = 0
+            vc.navigationController?.popViewController(animated: true)
+        default:
+            view.tryingToLeaveAlertView.alpha = 0
+            break
+        }
+        
+        
     }
     
     

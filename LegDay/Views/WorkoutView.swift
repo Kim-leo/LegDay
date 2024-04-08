@@ -107,7 +107,7 @@ class WorkoutView: UIView {
         sv.axis = .horizontal
         sv.spacing = 20
         sv.distribution = .fillEqually
-        sv.backgroundColor = Colors().darkBlack
+        sv.backgroundColor = .clear
         return sv
     }()
     
@@ -133,6 +133,55 @@ class WorkoutView: UIView {
         return btn
     }()
     
+    lazy var tryingToLeaveAlertView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
+    lazy var alertMessageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Colors().darkBlack
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.text = "운동을 그만하고 나갈까요?"
+        return label
+    }()
+    
+    lazy var alertBtnStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.alignment = .bottom
+        sv.spacing = 10
+        sv.distribution = .fillEqually
+        return sv
+    }()
+    
+    lazy var alertCancelBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 0
+        btn.setTitle("마저 하러 가기", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = Colors().softBlack
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+    
+    lazy var alertOkBtn: UIButton = {
+        let btn = UIButton()
+        btn.tag = 1
+        btn.setTitle("운동 그만하기", for: .normal)
+        btn.setTitleColor(Colors().softBlack, for: .normal)
+        btn.backgroundColor = .systemGray6
+        btn.layer.cornerRadius = 5
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(backgroundGradientView)
@@ -146,9 +195,17 @@ class WorkoutView: UIView {
         self.addSubview(finishBtnStackView)
         finishBtnStackView.addArrangedSubview(doneAndLeaveBtn)
         finishBtnStackView.addArrangedSubview(oneMoreTimeBtn)
+        
+        self.addSubview(tryingToLeaveAlertView)
+        tryingToLeaveAlertView.addSubview(alertMessageLabel)
+        tryingToLeaveAlertView.addSubview(alertBtnStackView)
+        alertBtnStackView.addArrangedSubview(alertCancelBtn)
+        alertBtnStackView.addArrangedSubview(alertOkBtn)
+        
         viewLayout()
         
         finishBtnStackView.alpha = 0
+        tryingToLeaveAlertView.alpha = 0
         
     }
     
@@ -210,5 +267,29 @@ class WorkoutView: UIView {
         finishBtnStackView.heightAnchor.constraint(equalTo: nextBtn.heightAnchor).isActive = true
         finishBtnStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         finishBtnStackView.centerYAnchor.constraint(equalTo: nextBtnView.centerYAnchor).isActive = true
+        
+        tryingToLeaveAlertView.translatesAutoresizingMaskIntoConstraints = false
+        tryingToLeaveAlertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        tryingToLeaveAlertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        tryingToLeaveAlertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        tryingToLeaveAlertView.heightAnchor.constraint(equalTo: tryingToLeaveAlertView.widthAnchor, multiplier: 0.6).isActive = true
+        
+        alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
+        alertMessageLabel.topAnchor.constraint(equalTo: tryingToLeaveAlertView.topAnchor, constant: 10).isActive = true
+        alertMessageLabel.leadingAnchor.constraint(equalTo: tryingToLeaveAlertView.leadingAnchor).isActive = true
+        alertMessageLabel.trailingAnchor.constraint(equalTo: tryingToLeaveAlertView.trailingAnchor).isActive = true
+        alertMessageLabel.heightAnchor.constraint(equalTo: tryingToLeaveAlertView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        alertBtnStackView.translatesAutoresizingMaskIntoConstraints = false
+        alertBtnStackView.topAnchor.constraint(equalTo: alertMessageLabel.bottomAnchor).isActive = true
+        alertBtnStackView.bottomAnchor.constraint(equalTo: tryingToLeaveAlertView.bottomAnchor, constant: -10).isActive = true
+        alertBtnStackView.widthAnchor.constraint(equalTo: tryingToLeaveAlertView.widthAnchor, multiplier: 0.9).isActive = true
+        alertBtnStackView.centerXAnchor.constraint(equalTo: tryingToLeaveAlertView.centerXAnchor).isActive = true
+        
+        alertCancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        
+        alertOkBtn.translatesAutoresizingMaskIntoConstraints = false
+        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
     }
 }

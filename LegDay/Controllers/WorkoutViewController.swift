@@ -39,21 +39,15 @@ class WorkoutViewController: UIViewController {
         workoutView.nextBtn.addTarget(self, action: #selector(nextBtnTappedAction), for: .touchUpInside)
         workoutView.doneAndLeaveBtn.addTarget(self, action: #selector(finishBtnTapped), for: .touchUpInside)
         workoutView.oneMoreTimeBtn.addTarget(self, action: #selector(finishBtnTapped), for: .touchUpInside)
+        workoutView.alertOkBtn.addTarget(self, action: #selector(alertBtnsTap), for: .touchUpInside)
+        workoutView.alertCancelBtn.addTarget(self, action: #selector(alertBtnsTap), for: .touchUpInside)
     }
 
 }
 
 extension WorkoutViewController {
     @objc func workoutVCleftBarBtnTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "운동 그만하기", message: "", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "그만하고 나가기", style: .default) { [self] (ok) in
-            self.navigationController?.popViewController(animated: true)
-        }
-        let cancel = UIAlertAction(title: "계속하기", style: .cancel) { (cancel) in }
-        alert.addAction(yesAction)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
-        
+        viewModel.tryingToLeaveDuringWorkout(workoutView)
     }
     
     @objc func nextBtnTappedAction(_ sender: UIButton) {
@@ -63,6 +57,10 @@ extension WorkoutViewController {
     
     @objc func finishBtnTapped(_ sender: UIButton) {
         viewModel.finishBtnTapped(workoutView, vc: self, sender: sender)
+    }
+    
+    @objc func alertBtnsTap(_ sender: UIButton) {
+        viewModel.alertBtnsTap(workoutView, vc: self, sender: sender)
     }
     
     
