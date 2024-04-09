@@ -33,4 +33,7 @@ class MyWorkout {
     var numberOfWorkoutsStartedArray =  Array(repeating: 0, count: 9)
     var numberOfWorkoutsFinishedArray = Array(repeating: 0, count: 9)
     var maximumOfcontinuousProgress = Array(repeating: 0, count: 9)
+    var timeCountSumArray = Array(repeating: 0, count: 9)
+    var averageWorkoutTimeArray = Array(repeating: "00 : 00 : 00", count: 9)
+
 }

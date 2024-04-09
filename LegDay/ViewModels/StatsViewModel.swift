@@ -24,6 +24,7 @@ class StatsViewModel {
     var numberOfWorkoutsStartedArray = [Int]()
     var numberOfWorkoutsFinishedArray = [Int]()
     var maximumOfcontinuousProgress = [Int]()
+    var averageTimeInWorkingOutArray = [String]()
     var pieData: [Double] = [0, 0]
     
     func eachStatsBtnTapped(_ view: StatsView, sender: UIButton) {
@@ -49,12 +50,14 @@ class StatsViewModel {
         numberOfWorkoutsStartedArray = myWorkoutModel.numberOfWorkoutsStartedArray
         numberOfWorkoutsFinishedArray = myWorkoutModel.numberOfWorkoutsFinishedArray
         maximumOfcontinuousProgress = myWorkoutModel.maximumOfcontinuousProgress
+        averageTimeInWorkingOutArray = myWorkoutModel.averageWorkoutTimeArray
     }
     
     func showEachStatsInfoToLabels(_ view: StatsView) {
         view.rightStatsLabels[0].text = "\(numberOfWorkoutsStartedArray[selectMaxNumberInBtns]) 회"
         view.rightStatsLabels[1].text = "\(numberOfWorkoutsFinishedArray[selectMaxNumberInBtns]) 회"
         view.rightStatsLabels[3].text = "\(maximumOfcontinuousProgress[selectMaxNumberInBtns]) 회"
+        view.rightStatsLabels[4].text = "\(averageTimeInWorkingOutArray[selectMaxNumberInBtns])"
         
         switch numberOfWorkoutsStartedArray[selectMaxNumberInBtns] == 0 {
         case true:
@@ -80,7 +83,8 @@ class StatsViewModel {
             myWorkoutModel.numberOfWorkoutsStartedArray[selectMaxNumberInBtns] = 0
             myWorkoutModel.numberOfWorkoutsFinishedArray[selectMaxNumberInBtns] = 0
             myWorkoutModel.maximumOfcontinuousProgress[selectMaxNumberInBtns] = 0
-            
+            myWorkoutModel.timeCountSumArray[selectMaxNumberInBtns] = 0
+            myWorkoutModel.averageWorkoutTimeArray[selectMaxNumberInBtns] = "00 : 00 : 00"
             workoutInfo(view)
             view.backGroundTransparentView.alpha = 0
             view.backgroundViewForAlertView.alpha = 0

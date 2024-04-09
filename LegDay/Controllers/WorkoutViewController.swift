@@ -69,6 +69,7 @@ extension WorkoutViewController {
             viewModel.saveFinishedWorkoutData()
             viewModel.countMaximumOfcontinuousProgress()
             viewModel.stopTimerAndResetTime(workoutView)
+            viewModel.calculateAverateTimeInWorkingOut()
         case "시작":
             viewModel.saveStartWorkoutData()
             viewModel.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timeCounter), userInfo: nil, repeats: true)

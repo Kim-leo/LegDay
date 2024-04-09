@@ -27,9 +27,11 @@ class StatsViewController: UIViewController {
         
         self.navigationItem.titleView = statsView.titleLabel
         self.navigationItem.rightBarButtonItem = rightBarBtn
-//        self.view.backgroundColor = .white
-        backgroundGradientColor(statsView.backgroundGradientView, topColor: UIColor.darkGray.cgColor, bottomColor: UIColor.black.cgColor)
+        self.navigationController?.hidesBarsOnSwipe = true
+        backgroundGradientColor(self.view, topColor: UIColor.darkGray.cgColor, bottomColor: UIColor.black.cgColor)
+        
         self.view.addSubview(statsView)
+        
         setupViewLayout(yourView: statsView)
         
         statsView.rightBarBtnItem.addTarget(self, action: #selector(rightBarBtnTap), for: .touchUpInside)

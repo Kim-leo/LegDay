@@ -56,6 +56,7 @@ extension WorkoutViewModel {
         let time = secondsToHoursMinutesSeconds(seconds: count)
         let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
         view.timerNavigationBarLabel.text = timeString
+        
     }
     
     func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
@@ -181,11 +182,13 @@ extension WorkoutViewModel {
         emptyArray.removeAll()
 
         cardSetWithMaximumNumber.removeAll()
-    }
+        }
     
     func saveFinishedWorkoutData() {
         myWorkoutModel.numberOfWorkoutsFinishedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += 1
         countContinuousNumberOfWorkoutSet += 1
+        
+        calculateAverateTimeInWorkingOut()
     }
     
     func saveStartWorkoutData() {
@@ -216,5 +219,14 @@ extension WorkoutViewModel {
         view.alertBackgroundTransparentView.alpha = 1
     }
     
+    func calculateAverateTimeInWorkingOut() {
+        var countAverage = 0
+        myWorkoutModel.timeCountSumArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] += count
+        countAverage = myWorkoutModel.timeCountSumArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] / myWorkoutModel.numberOfWorkoutsFinishedArray[myWorkoutModel.setMaximumNumberOfWorkout - 5]
+        let time = secondsToHoursMinutesSeconds(seconds: countAverage)
+        let timeString = makeTimeString(hours: time.0, minutes: time.1, seconds: time.2)
+        myWorkoutModel.averageWorkoutTimeArray[myWorkoutModel.setMaximumNumberOfWorkout - 5] = timeString
+        print(myWorkoutModel.timeCountSumArray[myWorkoutModel.setMaximumNumberOfWorkout - 5], countAverage)
+    }
     
 }
