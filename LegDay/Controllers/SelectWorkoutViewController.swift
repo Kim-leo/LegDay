@@ -21,10 +21,12 @@ class SelectWorkoutViewController: UIViewController {
         
         viewModel.updateTableViewCell(selectWorkoutView)
         selectWorkoutView.myWorkoutTableView.reloadData()
+        popSwipeRecognizer()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         self.view.addSubview(selectWorkoutView)
         setupViewLayout(yourView: selectWorkoutView)
         backgroundGradientColor(selectWorkoutView.backgroundGradientView, topColor: Colors().darkRedColor.cgColor, bottomColor: UIColor.black.cgColor)

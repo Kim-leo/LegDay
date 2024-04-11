@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2477" y="-27"/>
+            <point key="canvasLocation" x="2515" y="-27"/>
         </scene>
         <!--Select Workout View Controller-->
         <scene sceneID="CmE-wp-bZX">

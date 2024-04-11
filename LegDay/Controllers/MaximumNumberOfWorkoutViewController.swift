@@ -26,6 +26,7 @@ class MaximumNumberOfWorkoutViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         self.navigationItem.leftBarButtonItem = self.leftBarBtn
+        popSwipeRecognizer()
     }
     
     override func viewDidLoad() {

@@ -18,6 +18,7 @@ class StatsViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         viewModel.workoutInfo(statsView)
+        
     }
 
     override func viewDidLoad() {
@@ -40,10 +41,7 @@ class StatsViewController: UIViewController {
         }
         statsView.alertCancelBtn.addTarget(self, action: #selector(alertBtnTap), for: .touchUpInside)
         statsView.alertOkBtn.addTarget(self, action: #selector(alertBtnTap), for: .touchUpInside)
-        
-        
     }
-
 }
 
 extension StatsViewController {

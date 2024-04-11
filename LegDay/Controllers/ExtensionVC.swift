@@ -55,4 +55,16 @@ extension UIViewController {
         myView.layer.addSublayer(gradientLayer)
     }
     
+    func popSwipeRecognizer() {
+        let swipeToRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeToRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeToRight)
+    }
+    
+    @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
+        if let swipteGesture = gesture as? UISwipeGestureRecognizer {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
 }
