@@ -18,7 +18,7 @@ class MyPageViewController: UIViewController  {
         tabBarController?.tabBar.isHidden = false
         viewModel.updateTableViewCell(myPageView)
         myPageView.myWorkoutTableView.reloadData()
-        
+        viewModel.showAlertViewWhenMyworkoutListIsEmpty(myPageView)
     }
     
     override func viewDidLoad() {
@@ -38,7 +38,6 @@ class MyPageViewController: UIViewController  {
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return viewModel.myWorkoutsList.count
     }
     
@@ -85,6 +84,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         
         let deleteAction = UIContextualAction(style: .normal, title: "삭제") { (action, view, completion) in
             self.viewModel.deleteCellAndMyWorkoutData(self.myPageView, indexPath: indexPath)
+            self.viewModel.showAlertViewWhenMyworkoutListIsEmpty(self.myPageView)
             completion(true)
         }
         deleteAction.backgroundColor = Colors().softRedColor

@@ -37,11 +37,27 @@ class MyPageView: UIView {
         return tv
     }()
     
+    lazy var noSavedSetsAlertLabel: UILabel = {
+        let label = UILabel()
+        label.layer.cornerRadius = 10
+        label.layer.masksToBounds = true
+        label.alpha = 0.8
+        label.textAlignment = .center
+        label.textColor = Colors().darkBlack
+        label.backgroundColor = .white
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.text = "저장한 세트가 없습니다. \n\n"  + "나만의 운동 세트를 만드세요!"
+        return label
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(backgroundGradientView)
         self.addSubview(viewForTableView)
+        self.addSubview(noSavedSetsAlertLabel)
         viewForTableView.addSubview(myWorkoutTableView)
         viewLayout()
     }
@@ -61,8 +77,6 @@ class MyPageView: UIView {
         viewForTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         viewForTableView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95).isActive = true
         viewForTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-//        viewForTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-//        viewForTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         viewForTableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         myWorkoutTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,5 +84,11 @@ class MyPageView: UIView {
         myWorkoutTableView.leadingAnchor.constraint(equalTo: viewForTableView.leadingAnchor, constant: 5).isActive = true
         myWorkoutTableView.trailingAnchor.constraint(equalTo: viewForTableView.trailingAnchor, constant: -5).isActive = true
         myWorkoutTableView.bottomAnchor.constraint(equalTo: viewForTableView.bottomAnchor, constant: -5).isActive = true
+        
+        noSavedSetsAlertLabel.translatesAutoresizingMaskIntoConstraints = false
+        noSavedSetsAlertLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        noSavedSetsAlertLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        noSavedSetsAlertLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        noSavedSetsAlertLabel.heightAnchor.constraint(equalTo: noSavedSetsAlertLabel.widthAnchor, multiplier: 0.4).isActive = true
     }
 }

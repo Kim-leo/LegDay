@@ -37,4 +37,8 @@ class MyPageViewModel {
         myWorkoutModel.myWorkoutsList.remove(at: indexPath.row)
         view.myWorkoutTableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
+    func showAlertViewWhenMyworkoutListIsEmpty(_ view: MyPageView) {
+        view.noSavedSetsAlertLabel.alpha = (myWorkoutsList.isEmpty) ? 0.8 : 0
+    }
 }
