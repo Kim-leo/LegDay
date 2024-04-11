@@ -14,24 +14,45 @@ class MyPageEditViewModel {
     var myWorkoutModel = MyWorkout.shared
     
     var typeOfWorkouts = [String]()
-    
     var yourAllWorkoutsArray = [String]()
+    
+    var workoutsInTableCell = [String]()
+    var selectedOneWorkout = String()
     
     func initialSetting(_ view: MyPageEditView) {
         typeOfWorkouts = myWorkoutModel.typeOfWorkouts
         yourAllWorkoutsArray = Array(myWorkoutModel.workoutsForCollectionViewCell.joined())
+        workoutsInTableCell = Array(myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow])
         
         view.titleTextField.text = "\(myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow])"
+        
+        
     }
     
-    func autoSaveEditedData(_ view: MyPageEditView, vc: MyPageViewController) {
+    func autoSaveEditedData(_ view: MyPageEditView) {
         myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = view.titleTextField.text ?? ""
+        myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow] = workoutsInTableCell
         
         
-//        let cell = myPageView.myWorkoutTableView.dequeueReusableCell(withIdentifier: "MyPageCell", for: [0, myWorkoutModel.selectedTableViewIndexPathRow]) as! MyPageCell
-//        myPageView.myWorkoutTableView.reloadData()
-//        cell.workoutTitleLabel.text = myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow]
         
-        print("Done")
+    }
+    
+    func tapBackgroundView(_ view: MyPageEditView) {
+        view.backgroundTransparentView.alpha = 0
+        view.backgroundAlphaView.alpha = 0
+        
+    }
+    
+    func tapWorkoutCell(_ view: MyPageEditView, indexPath: IndexPath) {
+        selectedOneWorkout = yourAllWorkoutsArray[indexPath.row]
+        for label in view.pokerWorkoutNameLabels {
+            label.text = "\(workoutsInTableCell[label.tag])"
+        }
+    }
+    
+    func tapPokerBtns(_ view: MyPageEditView, sender: UIButton) {
+        view.backgroundAlphaView.alpha = 0
+        view.backgroundTransparentView.alpha = 0
+        workoutsInTableCell[sender.tag] = selectedOneWorkout
     }
 }

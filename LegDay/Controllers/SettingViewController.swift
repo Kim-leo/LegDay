@@ -62,6 +62,7 @@ class SettingViewController: UIViewController {
         settingView.backgroundViewForSettingPokerShapes.addGestureRecognizer(tapGestureRecognizer)
         
         
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -30,7 +30,10 @@ class MyPageViewController: UIViewController  {
         myPageView.myWorkoutTableView.delegate = self
         myPageView.myWorkoutTableView.dataSource = self
 
+        
     }
+    
+    
 }
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
@@ -72,19 +75,17 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         let editAction = UIContextualAction(style: .normal, title: "편집") { (action, view, completion) in
 //            self.viewModel.saveCurrentCellData(indexPath: indexPath)
 //            self.viewModel.editWorkoutFromMyPageVC()
-////            self.tabBarController?.selectedIndex = 1
-//            self.viewModel.getSelectedTableViewIndexPathRow(indexPath: indexPath)
-//            
-//            let settingVC = SettingViewController()
-//            self.navigationController?.pushViewController(settingVC, animated: true)
+//            self.tabBarController?.selectedIndex = 1
             
+            
+            self.viewModel.getSelectedTableViewIndexPathRow(indexPath: indexPath)
             let vc = MyPageEditViewController()
-                
+
             if let sheet = vc.sheetPresentationController {
                 sheet.detents = [.medium()]
+                sheet.prefersGrabberVisible = true
             }
-            
-            self.present(vc, animated: true)
+            self.present(vc, animated: true, completion: nil)
             
             completion(true)
         }
@@ -107,3 +108,4 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+

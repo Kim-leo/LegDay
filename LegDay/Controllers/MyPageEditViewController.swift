@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class MyPageEditViewController: UIViewController {
 
     let myPageEditView = MyPageEditView()
@@ -28,17 +29,27 @@ class MyPageEditViewController: UIViewController {
         myPageEditView.upperCollectinView.dataSource = self
         myPageEditView.lowerCollectinView.delegate = self
         myPageEditView.lowerCollectinView.dataSource = self
-
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
+        myPageEditView.backgroundTransparentView.addGestureRecognizer(tapGestureRecognizer)
+        
+        for btn in myPageEditView.pokerShapeBtns {
+            btn.addTarget(self, action: #selector(tapPokerBtns), for: .touchUpInside)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        viewModel.autoSaveEditedData(myPageEditView, vc: MyPageViewController())
-        
-//        let dataToSend = myPageEditView.titleTextField.text ?? ""
-//        let notification = Notification(name: .dataNotification, object: self, userInfo: ["data": dataToSend])
-//        
-//        NotificationCenter.default.post(notification)
-//        dismiss(animated: true)
+        viewModel.autoSaveEditedData(myPageEditView)
+    }
+}
+
+extension MyPageEditViewController {
+    @objc func backgroundViewTapped(_ sender: UITapGestureRecognizer) {
+        viewModel.tapBackgroundView(myPageEditView)
+    }
+    
+    @objc func tapPokerBtns(_ sender: UIButton) {
+        viewModel.tapPokerBtns(myPageEditView, sender: sender)
     }
 }
 
@@ -99,7 +110,29 @@ extension MyPageEditViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         
+        guard let cell = myPageEditView.lowerCollectinView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: IndexPath()) as? LowerCell else { return }
+        switch collectionView.tag {
+        case 0:
+            collectionView.performBatchUpdates {
+                viewModel.yourAllWorkoutsArray.removeAll()
+                if viewModel.typeOfWorkouts[indexPath.row] == "전체" {
+                    viewModel.yourAllWorkoutsArray += Array(viewModel.myWorkoutModel.workoutsForCollectionViewCell.joined())
+                } else {
+                    viewModel.yourAllWorkoutsArray += Array(viewModel.myWorkoutModel.workoutsForCollectionViewCell[indexPath.row])
+                }
+            }
+            
+            cell.isSelected = false
+            myPageEditView.lowerCollectinView.reloadData()
+        case 1:
+            myPageEditView.backgroundTransparentView.alpha = 1
+            myPageEditView.backgroundAlphaView.alpha = 0.8
+            
+            viewModel.tapWorkoutCell(myPageEditView, indexPath: indexPath)
+            
+        default:
+            break
+        }
         
     }
 }
