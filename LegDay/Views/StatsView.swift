@@ -70,9 +70,8 @@ class StatsView: UIView {
     
     lazy var alertBtnStackView: UIStackView = {
         let sv = UIStackView()
-        sv.axis = .horizontal
-        sv.alignment = .bottom
-        sv.spacing = 10
+        sv.axis = .vertical
+        sv.alignment = .center
         sv.distribution = .fillEqually
         return sv
     }()
@@ -82,9 +81,7 @@ class StatsView: UIView {
         btn.tag = 0
         btn.setTitle("취소", for: .normal)
         btn.setTitleColor(Colors().softBlack, for: .normal)
-        btn.backgroundColor = .systemGray6
-        btn.layer.cornerRadius = 5
-        btn.layer.masksToBounds = true
+        btn.backgroundColor = .clear
         return btn
     }()
     
@@ -94,7 +91,7 @@ class StatsView: UIView {
         btn.setTitle("초기화", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = Colors().softBlack
-        btn.layer.cornerRadius = 5
+        btn.layer.cornerRadius = 10
         btn.layer.masksToBounds = true
         return btn
     }()
@@ -226,8 +223,6 @@ class StatsView: UIView {
         return labels
     }()
     
-    
-    
     lazy var initializingCompleteView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -295,8 +290,8 @@ class StatsView: UIView {
         backgroundViewForAlertView.addSubview(alertView)
         alertView.addSubview(alertMessageLabel)
         alertView.addSubview(alertBtnStackView)
-        alertBtnStackView.addArrangedSubview(alertCancelBtn)
         alertBtnStackView.addArrangedSubview(alertOkBtn)
+        alertBtnStackView.addArrangedSubview(alertCancelBtn)
         backGroundTransparentView.alpha = 0
         backgroundViewForAlertView.alpha = 0
         
@@ -402,7 +397,7 @@ class StatsView: UIView {
         alertView.translatesAutoresizingMaskIntoConstraints = false
         alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         alertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         alertView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
         
         alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -412,16 +407,18 @@ class StatsView: UIView {
         alertMessageLabel.heightAnchor.constraint(equalTo: alertView.heightAnchor, multiplier: 0.6).isActive = true
         
         alertBtnStackView.translatesAutoresizingMaskIntoConstraints = false
-        alertBtnStackView.widthAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.8).isActive = true
+        alertBtnStackView.widthAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.9).isActive = true
         alertBtnStackView.centerXAnchor.constraint(equalTo: alertView.centerXAnchor).isActive = true
         alertBtnStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10).isActive = true
         alertBtnStackView.topAnchor.constraint(equalTo: alertMessageLabel.bottomAnchor, constant: 5).isActive = true
         
-        alertCancelBtn.translatesAutoresizingMaskIntoConstraints = false
-        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
-        
         alertOkBtn.translatesAutoresizingMaskIntoConstraints = false
-        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        alertOkBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
+        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        alertCancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        alertCancelBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
+        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
         
         initializingCompleteView.translatesAutoresizingMaskIntoConstraints = false
         initializingCompleteView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

@@ -178,15 +178,14 @@ class WorkoutView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.text = "운동을 그만하고 나갈까요?"
+        label.text = "운동을 그만하고 나갈까요? \n\n" + "지금 나가면 미완수 기록으로 저장됩니다."
         return label
     }()
     
     lazy var alertBtnStackView: UIStackView = {
         let sv = UIStackView()
-        sv.axis = .horizontal
-        sv.alignment = .bottom
-        sv.spacing = 10
+        sv.axis = .vertical
+        sv.alignment = .center
         sv.distribution = .fillEqually
         return sv
     }()
@@ -197,7 +196,7 @@ class WorkoutView: UIView {
         btn.setTitle("마저 하러 가기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = Colors().softBlack
-        btn.layer.cornerRadius = 5
+        btn.layer.cornerRadius = 10
         btn.layer.masksToBounds = true
         return btn
     }()
@@ -207,9 +206,7 @@ class WorkoutView: UIView {
         btn.tag = 1
         btn.setTitle("운동 그만하기", for: .normal)
         btn.setTitleColor(Colors().softBlack, for: .normal)
-        btn.backgroundColor = .systemGray6
-        btn.layer.cornerRadius = 5
-        btn.layer.masksToBounds = true
+        btn.backgroundColor = .clear
         return btn
     }()
     
@@ -318,7 +315,7 @@ class WorkoutView: UIView {
         tryingToLeaveAlertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         tryingToLeaveAlertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         tryingToLeaveAlertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        tryingToLeaveAlertView.heightAnchor.constraint(equalTo: tryingToLeaveAlertView.widthAnchor, multiplier: 0.6).isActive = true
+        tryingToLeaveAlertView.heightAnchor.constraint(equalTo: tryingToLeaveAlertView.widthAnchor).isActive = true
         
         alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         alertMessageLabel.topAnchor.constraint(equalTo: tryingToLeaveAlertView.topAnchor, constant: 10).isActive = true
@@ -333,9 +330,12 @@ class WorkoutView: UIView {
         alertBtnStackView.centerXAnchor.constraint(equalTo: tryingToLeaveAlertView.centerXAnchor).isActive = true
         
         alertCancelBtn.translatesAutoresizingMaskIntoConstraints = false
-        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        alertCancelBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
+        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
         
         alertOkBtn.translatesAutoresizingMaskIntoConstraints = false
-        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        alertOkBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
+        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
+
     }
 }

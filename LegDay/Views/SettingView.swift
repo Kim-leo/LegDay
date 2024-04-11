@@ -318,9 +318,8 @@ class SettingView: UIView {
     
     lazy var alertBtnStackView: UIStackView = {
         let sv = UIStackView()
-        sv.axis = .horizontal
-        sv.alignment = .bottom
-        sv.spacing = 10
+        sv.axis = .vertical
+        sv.alignment = .center
         sv.distribution = .fillEqually
         return sv
     }()
@@ -330,9 +329,7 @@ class SettingView: UIView {
         btn.tag = 0
         btn.setTitle("취소", for: .normal)
         btn.setTitleColor(Colors().softBlack, for: .normal)
-        btn.backgroundColor = .systemGray6
-        btn.layer.cornerRadius = 5
-        btn.layer.masksToBounds = true
+        btn.backgroundColor = .clear
         return btn
     }()
     
@@ -342,8 +339,8 @@ class SettingView: UIView {
         btn.setTitle("샘플", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = Colors().softBlack
-        btn.layer.cornerRadius = 5
         btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 10
         return btn
     }()
     
@@ -395,8 +392,8 @@ class SettingView: UIView {
         alertView.addSubview(alertTextField)
         alertView.addSubview(alertMessageLabel)
         alertView.addSubview(alertBtnStackView)
-        alertBtnStackView.addArrangedSubview(alertCancelBtn)
         alertBtnStackView.addArrangedSubview(alertOkBtn)
+        alertBtnStackView.addArrangedSubview(alertCancelBtn)
         
         saveCompleteView.addSubview(saveCompleteImageView)
         saveCompleteView.addSubview(saveCompleteLabel)
@@ -431,11 +428,11 @@ class SettingView: UIView {
         stackViewVertical.alpha = 0
         backGroundTransparentView.alpha = 0
         backgroundViewForSettingPokerShapes.alpha = 0
-//        verticalStackViewForSettingPokerShapes.alpha = 0
         alertView.alpha = 0
         saveCompleteView.alpha = 0
         
         viewLayout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -514,7 +511,7 @@ class SettingView: UIView {
         alertView.translatesAutoresizingMaskIntoConstraints = false
         alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         alertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         alertView.heightAnchor.constraint(equalTo: alertView.widthAnchor).isActive = true
         
         alertTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -532,14 +529,15 @@ class SettingView: UIView {
         alertBtnStackView.translatesAutoresizingMaskIntoConstraints = false
         alertBtnStackView.leadingAnchor.constraint(equalTo: alertTextField.leadingAnchor).isActive = true
         alertBtnStackView.trailingAnchor.constraint(equalTo: alertTextField.trailingAnchor).isActive = true
-        alertBtnStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10).isActive = true
-        alertBtnStackView.topAnchor.constraint(equalTo: alertTextField.bottomAnchor, constant: 5).isActive = true
+        alertBtnStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -15).isActive = true
+        alertBtnStackView.topAnchor.constraint(equalTo: alertTextField.bottomAnchor, constant: 20).isActive = true
         
-        alertCancelBtn.translatesAutoresizingMaskIntoConstraints = false
-        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        alertOkBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
+        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
         
-        alertOkBtn.translatesAutoresizingMaskIntoConstraints = false
-        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
+        alertCancelBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
+        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
+        
         
         for i in 0...3 {
             setPokerShapeImage[i].translatesAutoresizingMaskIntoConstraints = false
