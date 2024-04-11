@@ -9,7 +9,6 @@ import UIKit
 
 class MyPageViewController: UIViewController  {
     
-    
     let myPageView = MyPageView()
     let viewModel = MyPageViewModel.shared
     
@@ -30,10 +29,8 @@ class MyPageViewController: UIViewController  {
         
         myPageView.myWorkoutTableView.delegate = self
         myPageView.myWorkoutTableView.dataSource = self
-        
-        
+
     }
-    
 }
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
@@ -54,7 +51,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
+        print(indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -73,12 +70,25 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         let editAction = UIContextualAction(style: .normal, title: "편집") { (action, view, completion) in
-            self.viewModel.saveCurrentCellData(indexPath: indexPath)
-            self.viewModel.editWorkoutFromMyPageVC()
-            self.tabBarController?.selectedIndex = 1
+//            self.viewModel.saveCurrentCellData(indexPath: indexPath)
+//            self.viewModel.editWorkoutFromMyPageVC()
+////            self.tabBarController?.selectedIndex = 1
+//            self.viewModel.getSelectedTableViewIndexPathRow(indexPath: indexPath)
+//            
+//            let settingVC = SettingViewController()
+//            self.navigationController?.pushViewController(settingVC, animated: true)
+            
+            let vc = MyPageEditViewController()
+                
+            if let sheet = vc.sheetPresentationController {
+                sheet.detents = [.medium()]
+            }
+            
+            self.present(vc, animated: true)
             
             completion(true)
         }
+        
         editAction.backgroundColor = .darkGray
         editAction.image = UIImage(systemName: "pencil.and.ellipsis.rectangle")
         

@@ -15,18 +15,11 @@ class SettingViewModel {
     var myWorkoutModel = MyWorkout.shared
     
     var selectedWorkoutPerPokerShapeArray = ["운동 1", "운동 2", "운동 3", "운동 4"]
-    var originalWorkoutArray = ["", "", "", ""]
-    var typeOfWorkouts: [String] = ["전체", "상체", "하체", "맨몸", "유산소", "스트레칭"]
+    var originalWorkoutArray = Array(repeating: "", count: 4)
+    var typeOfWorkouts = [String]()
     var yourAllWorkoutsArray: [String] = ["+ 직접 입력"]
     
-    var workoutForCategories: [[String]] = [
-        [],
-        ["이두", "삼두", "가슴근육", "복근", "딥스"],
-        ["스쿼트", "오른쪽 런지", "왼쪽 런지", "마운틴 클라이머"],
-        ["버피테스트", "턱걸이", "푸쉬업", "크런치", "플랭크"],
-        ["러닝", "사이클"],
-        ["팔 스트레칭", "다리 스트레칭", "가슴 스트레칭"],
-    ]
+    var workoutForCategories = [[String]]()
     
     var whichWorkout = ""
     var inputWorkout = ""
@@ -46,6 +39,8 @@ class SettingViewModel {
 extension SettingViewModel {
  
     func initialSetting(view: SettingView) {
+        workoutForCategories = myWorkoutModel.workoutsForCollectionViewCell
+        typeOfWorkouts = myWorkoutModel.typeOfWorkouts
         if yourAllWorkoutsArray.count == 1 {
             yourAllWorkoutsArray += Array(workoutForCategories.joined())
             workoutModel.originalWorkouts = yourAllWorkoutsArray
@@ -58,8 +53,6 @@ extension SettingViewModel {
         for label in view.setPokerShapeLabel {
             label.text = "\(originalWorkoutArray[label.tag])"
         }
-        
-        
     }
     
     func settingMessageForAlertMessageLabel(_ view: SettingView) {
@@ -115,6 +108,7 @@ extension SettingViewModel {
     }
     
     func saveCurrentWorkoutSet(_ view: SettingView) {
+
         inputWorkout = view.alertTextField.text ?? ""
         myWorkoutModel.myWorkoutTitles.append(inputWorkout)
         myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
@@ -141,6 +135,7 @@ extension SettingViewModel {
             yourAllWorkoutsArray.insert(inputWorkout, at: 1)
         }
         workoutModel.originalWorkouts.append(inputWorkout)
+        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
     }
     
     func cancelBtnTapped(view: SettingView) {
@@ -195,7 +190,7 @@ extension SettingViewModel {
         
         view.lowerCollectinView.deleteItems(at: [IndexPath(item: indexPath.row, section: 0)])
         view.lowerCollectinView.reloadData()
-        
+        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
     }
     
     func tryingToDeleteAddWorkoutByYourselfCell(_ view: SettingView) {

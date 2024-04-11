@@ -15,6 +15,10 @@ class MyPageViewModel {
     var myWorkoutsTitles = [String]()
     var myWorkoutsList = [[String]]()
     
+    func getSelectedTableViewIndexPathRow(indexPath: IndexPath) {
+        myWorkoutModel.selectedTableViewIndexPathRow = indexPath.row
+    }
+    
     func updateTableViewCell(_ view: MyPageView) {
         myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
         myWorkoutsList = myWorkoutModel.myWorkoutsList

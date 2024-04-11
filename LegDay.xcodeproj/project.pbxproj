@@ -38,6 +38,9 @@
 		E65D41362BAD8217002585B0 /* UpperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65D41342BAD8217002585B0 /* UpperCell.xib */; };
 		E65D41392BAD8223002585B0 /* LowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D41372BAD8223002585B0 /* LowerCell.swift */; };
 		E65D413A2BAD8223002585B0 /* LowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E65D41382BAD8223002585B0 /* LowerCell.xib */; };
+		E6944FA92BC81A2A00DD9C9D /* MyPageEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6944FA82BC81A2A00DD9C9D /* MyPageEditViewModel.swift */; };
+		E6944FAB2BC81A3700DD9C9D /* MyPageEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6944FAA2BC81A3700DD9C9D /* MyPageEditViewController.swift */; };
+		E6944FAD2BC81A3F00DD9C9D /* MyPageEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6944FAC2BC81A3F00DD9C9D /* MyPageEditView.swift */; };
 		E6B048032BB0AA6600C23D70 /* MyPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6B048022BB0AA6600C23D70 /* MyPageCell.xib */; };
 		E6B048042BB0AA6600C23D70 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B048012BB0AA6600C23D70 /* MyPageCell.swift */; };
 		E6B0480A2BB197D600C23D70 /* SelectWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B048092BB197D600C23D70 /* SelectWorkoutViewController.swift */; };
@@ -103,6 +106,9 @@
 		E65D41342BAD8217002585B0 /* UpperCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpperCell.xib; sourceTree = "<group>"; };
 		E65D41372BAD8223002585B0 /* LowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerCell.swift; sourceTree = "<group>"; };
 		E65D41382BAD8223002585B0 /* LowerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LowerCell.xib; sourceTree = "<group>"; };
+		E6944FA82BC81A2A00DD9C9D /* MyPageEditViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageEditViewModel.swift; sourceTree = "<group>"; };
+		E6944FAA2BC81A3700DD9C9D /* MyPageEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageEditViewController.swift; sourceTree = "<group>"; };
+		E6944FAC2BC81A3F00DD9C9D /* MyPageEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageEditView.swift; sourceTree = "<group>"; };
 		E6B048012BB0AA6600C23D70 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		E6B048022BB0AA6600C23D70 /* MyPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageCell.xib; sourceTree = "<group>"; };
 		E6B048092BB197D600C23D70 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWorkoutViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +217,7 @@
 				E65D412E2BAC079B002585B0 /* WorkoutViewModel.swift */,
 				E65D412A2BAC0785002585B0 /* SettingViewModel.swift */,
 				E65D412C2BAC0791002585B0 /* MyPageViewModel.swift */,
+				E6944FA82BC81A2A00DD9C9D /* MyPageEditViewModel.swift */,
 				E65D41302BAC07A5002585B0 /* DescriptionViewModel.swift */,
 				E6CFB4762BBDBA360048F6A6 /* StatsViewModel.swift */,
 			);
@@ -232,6 +239,7 @@
 				E65D41322BAD81E3002585B0 /* SettingViewCollectionViewCells */,
 				E65D41222BAC0720002585B0 /* MyPageView.swift */,
 				E6B048002BB0AA3D00C23D70 /* MyPageTableViewCell */,
+				E6944FAC2BC81A3F00DD9C9D /* MyPageEditView.swift */,
 				E6CFB4402BBA060E0048F6A6 /* DescriptionView.swift */,
 				E6CFB4422BBA08840048F6A6 /* DescriptionViewCell */,
 				E6CFB4742BBDBA150048F6A6 /* StatsView.swift */,
@@ -250,6 +258,7 @@
 				E65D411A2BABFF5F002585B0 /* WorkoutViewController.swift */,
 				E65D41142BABF9E0002585B0 /* SettingViewController.swift */,
 				E65D41162BABF9EC002585B0 /* MyPageViewController.swift */,
+				E6944FAA2BC81A3700DD9C9D /* MyPageEditViewController.swift */,
 				E65D411C2BABFF80002585B0 /* DescriptionViewController.swift */,
 				E6CFB4722BBDB8550048F6A6 /* StatsViewController.swift */,
 			);
@@ -434,6 +443,7 @@
 				E65D41292BAC0766002585B0 /* HomeViewModel.swift in Sources */,
 				E6CFB4452BBA08AC0048F6A6 /* DescriptionCell.swift in Sources */,
 				E6B048122BB1AD8F00C23D70 /* SelectWorkoutCell.swift in Sources */,
+				E6944FAB2BC81A3700DD9C9D /* MyPageEditViewController.swift in Sources */,
 				E65D411B2BABFF5F002585B0 /* WorkoutViewController.swift in Sources */,
 				E65D41312BAC07A5002585B0 /* DescriptionViewModel.swift in Sources */,
 				E6B0480E2BB1980600C23D70 /* SelectWorkoutViewModel.swift in Sources */,
@@ -445,6 +455,7 @@
 				E65D412F2BAC079B002585B0 /* WorkoutViewModel.swift in Sources */,
 				E6CFB4412BBA060E0048F6A6 /* DescriptionView.swift in Sources */,
 				E65D410D2BABF764002585B0 /* ExtensionView.swift in Sources */,
+				E6944FA92BC81A2A00DD9C9D /* MyPageEditViewModel.swift in Sources */,
 				E65D40F12BABF648002585B0 /* AppDelegate.swift in Sources */,
 				E65D41212BAC06D2002585B0 /* SettingView.swift in Sources */,
 				E6CFB46F2BBD15210048F6A6 /* MaximumNumberOfWorkoutView.swift in Sources */,
@@ -463,6 +474,7 @@
 				E6B0480A2BB197D600C23D70 /* SelectWorkoutViewController.swift in Sources */,
 				E65D412D2BAC0791002585B0 /* MyPageViewModel.swift in Sources */,
 				E6CFB4772BBDBA360048F6A6 /* StatsViewModel.swift in Sources */,
+				E6944FAD2BC81A3F00DD9C9D /* MyPageEditView.swift in Sources */,
 				E65D41192BABFC66002585B0 /* TabBarVC.swift in Sources */,
 				E65D410F2BABF784002585B0 /* CardModel.swift in Sources */,
 				E65D41352BAD8217002585B0 /* UpperCell.swift in Sources */,

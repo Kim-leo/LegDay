@@ -19,6 +19,8 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
         viewModel.changeSetPokerLabelWhenComeFromMyPage(settingView)
+        
+        
     }
     
     
@@ -59,12 +61,17 @@ class SettingViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         settingView.backgroundViewForSettingPokerShapes.addGestureRecognizer(tapGestureRecognizer)
         
+        
     }
     
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            view.endEditing(true)
-        }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     
 }
 
