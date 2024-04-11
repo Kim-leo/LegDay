@@ -17,7 +17,7 @@ class UpperCell: UICollectionViewCell {
         label.backgroundColor = .white
         label.textColor = Colors().darkBlack
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 13)
         label.numberOfLines = 0
         return label
     }()

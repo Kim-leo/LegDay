@@ -20,7 +20,7 @@ class LowerCell: UICollectionViewCell {
         label.minimumScaleFactor = 0.3
         label.layer.masksToBounds = true
         label.layer.borderWidth = 1
-        label.layer.cornerRadius = 8
+        label.layer.cornerRadius = 15
         
         return label
     }()

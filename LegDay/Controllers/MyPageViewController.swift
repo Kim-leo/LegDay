@@ -79,13 +79,13 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             
             
             self.viewModel.getSelectedTableViewIndexPathRow(indexPath: indexPath)
-            let vc = MyPageEditViewController()
-
-            if let sheet = vc.sheetPresentationController {
-                sheet.detents = [.medium()]
-                sheet.prefersGrabberVisible = true
-            }
-            self.present(vc, animated: true, completion: nil)
+            let myPageEditVC = MyPageEditViewController()
+            self.navigationController?.pushViewController(myPageEditVC, animated: true)
+//            if let sheet = vc.sheetPresentationController {
+//                sheet.detents = [.medium()]
+//                sheet.prefersGrabberVisible = true
+//            }
+//            self.present(vc, animated: true, completion: nil)
             
             completion(true)
         }

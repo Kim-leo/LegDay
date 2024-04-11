@@ -24,13 +24,17 @@ class MyPageEditViewModel {
         yourAllWorkoutsArray = Array(myWorkoutModel.workoutsForCollectionViewCell.joined())
         workoutsInTableCell = Array(myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow])
         
-        view.titleTextField.text = "\(myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow])"
+        view.titleTextField.text = " \(myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow])"
         
         
     }
     
     func autoSaveEditedData(_ view: MyPageEditView) {
-        myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = view.titleTextField.text ?? ""
+        var rawTitleString = view.titleTextField.text ?? ""
+        let startIndex = rawTitleString.index(rawTitleString.startIndex, offsetBy: 1)
+        var titleString = String(rawTitleString[startIndex...])
+        
+        myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = titleString
         myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow] = workoutsInTableCell
         
         

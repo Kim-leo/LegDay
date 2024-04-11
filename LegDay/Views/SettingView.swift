@@ -451,7 +451,7 @@ class SettingView: UIView {
         upperView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         .isActive = true
         upperView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        upperView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        upperView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         upperCollectinView.translatesAutoresizingMaskIntoConstraints = false
         upperCollectinView.topAnchor.constraint(equalTo: upperView.topAnchor).isActive = true

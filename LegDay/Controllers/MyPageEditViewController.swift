@@ -13,15 +13,21 @@ class MyPageEditViewController: UIViewController {
     let myPageEditView = MyPageEditView()
     let viewModel = MyPageEditViewModel.shared
     
+    var leftBarBtn = UIBarButtonItem()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         viewModel.initialSetting(myPageEditView)
+        popSwipeRecognizer()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        backgroundGradientColor(myPageEditView.backgroundGradientView, topColor: UIColor.darkGray.cgColor, bottomColor: UIColor.black.cgColor)
+        leftBarBtn = UIBarButtonItem(customView: myPageEditView.leftBarBtnItem)
+        self.navigationItem.leftBarButtonItem = leftBarBtn
+        self.navigationItem.titleView = myPageEditView.titleLabel
+
         self.view.addSubview(myPageEditView)
         setupViewLayout(yourView: myPageEditView)
         
@@ -30,6 +36,7 @@ class MyPageEditViewController: UIViewController {
         myPageEditView.lowerCollectinView.delegate = self
         myPageEditView.lowerCollectinView.dataSource = self
         
+        myPageEditView.leftBarBtnItem.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         myPageEditView.backgroundTransparentView.addGestureRecognizer(tapGestureRecognizer)
         
@@ -39,7 +46,10 @@ class MyPageEditViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         viewModel.autoSaveEditedData(myPageEditView)
+        
+        
     }
 }
 
@@ -72,7 +82,6 @@ extension MyPageEditViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.typesOfWorkoutLabel.layer.masksToBounds = true
             cell.typesOfWorkoutLabel.layer.cornerRadius = cell.frame.height / 3
             cell.typesOfWorkoutLabel.text = viewModel.typeOfWorkouts[indexPath.row]
-            cell.typesOfWorkoutLabel.font = UIFont.systemFont(ofSize: 13)
             cell.isSelected = (indexPath.row == 0) ? true : false
             if indexPath.item == 0 {
                 cell.isSelected = true
@@ -84,7 +93,6 @@ extension MyPageEditViewController: UICollectionViewDelegate, UICollectionViewDa
         case 1:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LowerCell", for: indexPath) as? LowerCell else { return UICollectionViewCell() }
             cell.typesOfWorkoutLabel.layer.masksToBounds = true
-            cell.typesOfWorkoutLabel.layer.cornerRadius = cell.frame.height / 4
             cell.typesOfWorkoutLabel.text = viewModel.yourAllWorkoutsArray[indexPath.row]
             cell.typesOfWorkoutLabel.font = UIFont.systemFont(ofSize: 15)
             cell.typesOfWorkoutLabel.backgroundColor = .white
@@ -101,9 +109,8 @@ extension MyPageEditViewController: UICollectionViewDelegate, UICollectionViewDa
             let height = myPageEditView.upperCollectinView.frame.height
             return CGSize(width: width, height: height)
         case 1:
-            let width = collectionView.frame.width / 3 - 5
-            let height = collectionView.frame.height / 3 - 5
-            return CGSize(width: width, height: height)
+            let width = collectionView.frame.width / 4 - 5
+            return CGSize(width: width, height: width)
         default:
             return CGSize()
         }

@@ -153,7 +153,7 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView.tag {
         case 0:
-            let width = settingView.upperCollectinView.frame.width / 4
+            let width = settingView.upperCollectinView.frame.width / 5
             let height = settingView.upperCollectinView.frame.height
             return CGSize(width: width, height: height)
         case 1:

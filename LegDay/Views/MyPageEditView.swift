@@ -9,6 +9,30 @@ import Foundation
 import UIKit
 
 class MyPageEditView: UIView {
+    lazy var backgroundGradientView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var leftBarBtnItem: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("완료", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        btn.frame = CGRect(x: 0, y: 0, width: 80, height: 30)
+        return btn
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "세트 편집"
+        label.textColor = .white
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }()
+    
     lazy var titleTextField: UITextField = {
         let tf = UITextField()
         tf.autocorrectionType = .no
@@ -46,7 +70,7 @@ class MyPageEditView: UIView {
     
     lazy var lowerCollectinView: UICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
         layout.footerReferenceSize = .zero
@@ -151,7 +175,7 @@ class MyPageEditView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.addSubview(backgroundGradientView)
         self.addSubview(titleTextField)
         self.addSubview(upperCollectinView)
         self.addSubview(thinDividingLine)
