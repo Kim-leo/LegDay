@@ -20,8 +20,8 @@ class MyWorkout {
     
     var selectedWorkoutPerPokerShapeArray: [String] = ["운동 1", "운동 2", "운동 3", "운동 4"]
     
-    var myWorkoutsList = [[String]]()
-    var myWorkoutTitles = [String]()
+    var myWorkoutsList: [[String]] = [["스쿼트", "오른쪽 런지", "왼쪽 런지", "마운틴 클라이머"]]
+    var myWorkoutTitles: [String] = ["(샘플) 하체 루틴"]
     
     var selectedWorkoutInSelectWorkoutVC = [String]()
     var selectedWorkoutTitleInSelectWorkoutVC = String()

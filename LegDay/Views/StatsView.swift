@@ -288,8 +288,8 @@ class StatsView: UIView {
             rightStackView.addArrangedSubview(rightStatsLabels[tag])
         }
         
-        backgroundContentView.addSubview(backGroundTransparentView)
-        backgroundContentView.addSubview(backgroundViewForAlertView)
+        self.addSubview(backGroundTransparentView)
+        self.addSubview(backgroundViewForAlertView)
 //        self.addSubview(backGroundTransparentView)
 //        self.addSubview(backgroundViewForAlertView)
         backgroundViewForAlertView.addSubview(alertView)
@@ -300,7 +300,7 @@ class StatsView: UIView {
         backGroundTransparentView.alpha = 0
         backgroundViewForAlertView.alpha = 0
         
-        backgroundContentView.addSubview(initializingCompleteView)
+        self.addSubview(initializingCompleteView)
 //        self.addSubview(initializingCompleteView)
         initializingCompleteView.addSubview(initializingCompleteImageView)
         initializingCompleteView.addSubview(initializingCompleteLabel)
@@ -388,22 +388,22 @@ class StatsView: UIView {
         transparentView.bottomAnchor.constraint(equalTo: chartBackgroundView.bottomAnchor).isActive = true
         
         backGroundTransparentView.translatesAutoresizingMaskIntoConstraints = false
-        backGroundTransparentView.topAnchor.constraint(equalTo: backgroundContentView.topAnchor).isActive = true
-        backGroundTransparentView.leadingAnchor.constraint(equalTo: backgroundContentView.leadingAnchor).isActive = true
-        backGroundTransparentView.trailingAnchor.constraint(equalTo: backgroundContentView.trailingAnchor).isActive = true
-        backGroundTransparentView.bottomAnchor.constraint(equalTo: backgroundContentView.bottomAnchor).isActive = true
+        backGroundTransparentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backGroundTransparentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backGroundTransparentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backGroundTransparentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         backgroundViewForAlertView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundViewForAlertView.topAnchor.constraint(equalTo: backgroundContentView.safeAreaLayoutGuide.topAnchor).isActive = true
-        backgroundViewForAlertView.leadingAnchor.constraint(equalTo: backgroundContentView.leadingAnchor).isActive = true
-        backgroundViewForAlertView.trailingAnchor.constraint(equalTo: backgroundContentView.trailingAnchor).isActive = true
-        backgroundViewForAlertView.bottomAnchor.constraint(equalTo: backgroundContentView.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        backgroundViewForAlertView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundViewForAlertView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        backgroundViewForAlertView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundViewForAlertView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         alertView.translatesAutoresizingMaskIntoConstraints = false
-        alertView.centerXAnchor.constraint(equalTo: backgroundContentView.centerXAnchor).isActive = true
-        alertView.centerYAnchor.constraint(equalTo: backgroundContentView.centerYAnchor).isActive = true
-        alertView.widthAnchor.constraint(equalTo: backgroundContentView.widthAnchor, multiplier: 0.7).isActive = true
-        alertView.heightAnchor.constraint(equalTo: alertView.widthAnchor).isActive = true
+        alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        alertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        alertView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
         
         alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         alertMessageLabel.topAnchor.constraint(equalTo: alertView.topAnchor).isActive = true
@@ -424,10 +424,10 @@ class StatsView: UIView {
         alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.8).isActive = true
         
         initializingCompleteView.translatesAutoresizingMaskIntoConstraints = false
-        initializingCompleteView.centerXAnchor.constraint(equalTo: backgroundContentView.centerXAnchor).isActive = true
-        initializingCompleteView.centerYAnchor.constraint(equalTo: backgroundContentView.centerYAnchor).isActive = true
-        initializingCompleteView.widthAnchor.constraint(equalTo: backgroundContentView.widthAnchor, multiplier: 0.7).isActive = true
-        initializingCompleteView.heightAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.7).isActive = true
+        initializingCompleteView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        initializingCompleteView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        initializingCompleteView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        initializingCompleteView.heightAnchor.constraint(equalTo: initializingCompleteView.widthAnchor, multiplier: 0.7).isActive = true
         
         initializingCompleteImageView.translatesAutoresizingMaskIntoConstraints = false
         initializingCompleteImageView.topAnchor.constraint(equalTo: initializingCompleteView.topAnchor, constant: 10).isActive = true
