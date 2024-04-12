@@ -42,16 +42,6 @@ class SettingView: UIView {
         return btn
     }()
     
-    lazy var stackViewVertical: UIStackView = {
-        let sv = UIStackView()
-        sv.axis = .vertical
-        sv.alignment = .fill
-        sv.distribution = .fillEqually
-        sv.spacing = 10
-        sv.backgroundColor = .clear
-        return sv
-    }()
-    
     lazy var upperView: UIView = {
         let v = UIView()
         return v
@@ -96,56 +86,70 @@ class SettingView: UIView {
         return cv
     }()
     
-    lazy var stackViewHorizontal1: UIStackView = {
+    lazy var categoryView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "운동을 직접 추가합니다."
+        label.textColor = Colors().darkBlack
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    lazy var categoryNameTextField: UITextField = {
+        let tf = UITextField()
+        tf.tintColor = .lightGray
+        tf.placeholder = "운동 이름"
+        return tf
+    }()
+    
+    lazy var categoryTextField: UITextField = {
+        let tf = UITextField()
+        tf.tintColor = .lightGray
+        tf.placeholder = "카테고리 지정"
+        return tf
+    }()
+    
+    lazy var categoryPickerView: UIPickerView = {
+        let pv = UIPickerView()
+        pv.backgroundColor = .white
+        return pv
+    }()
+    
+    lazy var categoryBtnStackView: UIStackView = {
         let sv = UIStackView()
-        sv.axis = .horizontal
-        sv.alignment = .fill
+        sv.axis = .vertical
+        sv.alignment = .center
         sv.distribution = .fillEqually
-        sv.spacing = 10
         return sv
     }()
     
-    lazy var stackViewHorizontal2: UIStackView = {
-        let sv = UIStackView()
-        sv.axis = .horizontal
-        sv.alignment = .fill
-        sv.distribution = .fillEqually
-        sv.spacing = 10
-        return sv
-    }()
-    
-    lazy var categoryBtns: [UIButton] = {
-        var btnArr = [UIButton]()
-        for num in 0...5 {
-            let btn = UIButton()
-            btn.tag = num
-            btn.backgroundColor = .white
-            btn.setTitle("\(btn.tag)", for: .normal)
-            btn.setTitleColor(.darkGray, for: .normal)
-            btn.tintColor = .white
-            btn.layer.cornerRadius = 15
-            btn.clipsToBounds = true
-            btn.layer.borderColor = UIColor.darkGray.cgColor
-            btn.layer.borderWidth = 1
-            btnArr.append(btn)
-        }
-        return btnArr
-    }()
-    
-    lazy var cancelBtnView: UIView = {
-        let v = UIView()
-        return v
-    }()
-    
-    lazy var cancelBtn: UIButton = {
+    lazy var categoryOkBtn: UIButton = {
         let btn = UIButton()
-        btn.setTitle("X", for: .normal)
-        btn.setTitleColor(.darkGray, for: .normal)
-        btn.backgroundColor = . white
-        btn.layer.cornerRadius = 15
-        btn.clipsToBounds = true
-        btn.layer.borderColor = UIColor.darkGray.cgColor
-        btn.layer.borderWidth = 1
+        btn.setTitle("운동 저장", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = Colors().softBlack
+        btn.tag = 1
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 10
+        return btn
+    }()
+    
+    lazy var categoryCancelBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("취소", for: .normal)
+        btn.setTitleColor(Colors().softBlack, for: .normal)
+        btn.tag = 0
+        btn.backgroundColor = .white
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 10
         return btn
     }()
     
@@ -286,7 +290,7 @@ class SettingView: UIView {
         return imageViews
     }()
     
-    lazy var alertView: UIView = {
+    lazy var saveSetAlertView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
@@ -294,17 +298,17 @@ class SettingView: UIView {
         return view
     }()
     
-    lazy var alertMessageLabel: UILabel = {
+    lazy var saveSetAlertMessageLabel: UILabel = {
         let label = UILabel()
         label.textColor = Colors().darkBlack
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.text = "샘플 텍스트 알림입니다."
+        label.text = "나만의 운동 세트를 만들어 보아요."
         return label
     }()
     
-    lazy var alertTextField: UITextField = {
+    lazy var saveSetAlertTextField: UITextField = {
         let tf = UITextField()
         tf.autocorrectionType = .no
         tf.spellCheckingType = .no
@@ -313,10 +317,11 @@ class SettingView: UIView {
         tf.layer.masksToBounds = true
         tf.layer.borderColor = UIColor.darkGray.cgColor
         tf.layer.borderWidth = 1
+        tf.placeholder = " 생략 가능"
         return tf
     }()
     
-    lazy var alertBtnStackView: UIStackView = {
+    lazy var saveSetAlertBtnStackView: UIStackView = {
         let sv = UIStackView()
         sv.axis = .vertical
         sv.alignment = .center
@@ -324,7 +329,7 @@ class SettingView: UIView {
         return sv
     }()
     
-    lazy var alertCancelBtn: UIButton = {
+    lazy var saveSetAlertCancelBtn: UIButton = {
         let btn = UIButton()
         btn.tag = 0
         btn.setTitle("취소", for: .normal)
@@ -333,10 +338,10 @@ class SettingView: UIView {
         return btn
     }()
     
-    lazy var alertOkBtn: UIButton = {
+    lazy var saveSetAlertOkBtn: UIButton = {
         let btn = UIButton()
         btn.tag = 1
-        btn.setTitle("샘플", for: .normal)
+        btn.setTitle("저장", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = Colors().softBlack
         btn.layer.masksToBounds = true
@@ -378,35 +383,33 @@ class SettingView: UIView {
         self.addSubview(upperView)
         self.addSubview(lowerView)
         self.addSubview(backGroundTransparentView)
-        self.addSubview(stackViewVertical)
         self.addSubview(backgroundViewForSettingPokerShapes)
-//        self.addSubview(verticalStackViewForSettingPokerShapes)
         backgroundViewForSettingPokerShapes.addSubview(verticalStackViewForSettingPokerShapes)
         self.addSubview(setPokerShapeStackView)
-        self.addSubview(alertView)
+        self.addSubview(saveSetAlertView)
         self.addSubview(saveCompleteView)
+        self.addSubview(categoryView)
+        
+        categoryView.addSubview(categoryLabel)
+        categoryView.addSubview(categoryNameTextField)
+        categoryView.addSubview(categoryTextField)
+        categoryView.addSubview(categoryBtnStackView)
+        categoryBtnStackView.addArrangedSubview(categoryOkBtn)
+        categoryBtnStackView.addArrangedSubview(categoryCancelBtn)
         
         upperView.addSubview(upperCollectinView)
         lowerView.addSubview(lowerCollectinView)
         
-        alertView.addSubview(alertTextField)
-        alertView.addSubview(alertMessageLabel)
-        alertView.addSubview(alertBtnStackView)
-        alertBtnStackView.addArrangedSubview(alertOkBtn)
-        alertBtnStackView.addArrangedSubview(alertCancelBtn)
+        saveSetAlertView.addSubview(saveSetAlertTextField)
+        saveSetAlertView.addSubview(saveSetAlertMessageLabel)
+        saveSetAlertView.addSubview(saveSetAlertBtnStackView)
+        saveSetAlertBtnStackView.addArrangedSubview(saveSetAlertOkBtn)
+        saveSetAlertBtnStackView.addArrangedSubview(saveSetAlertCancelBtn)
         
         saveCompleteView.addSubview(saveCompleteImageView)
         saveCompleteView.addSubview(saveCompleteLabel)
         
-        stackViewVertical.addArrangedSubview(stackViewHorizontal1)
-        stackViewVertical.addArrangedSubview(stackViewHorizontal2)
-        stackViewVertical.addArrangedSubview(cancelBtnView)
         
-        for num in 0...2 {
-            stackViewHorizontal1.addArrangedSubview(categoryBtns[num])
-            stackViewHorizontal2.addArrangedSubview(categoryBtns[num + 3])
-        }
-        cancelBtnView.addSubview(cancelBtn)
         
         verticalStackViewForSettingPokerShapes.addArrangedSubview(stackViewHorizontal3)
         verticalStackViewForSettingPokerShapes.addArrangedSubview(stackViewHorizontal4)
@@ -425,11 +428,11 @@ class SettingView: UIView {
             setPokerShapeEachView[i].addSubview(setPokerShapeLabel[i])
         }
         
-        stackViewVertical.alpha = 0
         backGroundTransparentView.alpha = 0
         backgroundViewForSettingPokerShapes.alpha = 0
-        alertView.alpha = 0
+        saveSetAlertView.alpha = 0
         saveCompleteView.alpha = 0
+        categoryView.alpha = 0
         
         viewLayout()
         
@@ -477,11 +480,11 @@ class SettingView: UIView {
         lowerCollectinView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10).isActive = true
         lowerCollectinView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor).isActive = true
         
-        stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
-        stackViewVertical.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        stackViewVertical.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        stackViewVertical.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
-        stackViewVertical.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+//        stackViewVertical.translatesAutoresizingMaskIntoConstraints = false
+//        stackViewVertical.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+//        stackViewVertical.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+//        stackViewVertical.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
+//        stackViewVertical.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
         
         
         backGroundTransparentView.translatesAutoresizingMaskIntoConstraints = false
@@ -496,11 +499,11 @@ class SettingView: UIView {
         backgroundViewForSettingPokerShapes.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         backgroundViewForSettingPokerShapes.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
-        cancelBtn.translatesAutoresizingMaskIntoConstraints = false
-        cancelBtn.centerXAnchor.constraint(equalTo: stackViewVertical.centerXAnchor).isActive = true
-        cancelBtn.centerYAnchor.constraint(equalTo: cancelBtnView.centerYAnchor).isActive = true
-        cancelBtn.widthAnchor.constraint(equalTo: cancelBtnView.widthAnchor, multiplier: 0.2).isActive = true
-        cancelBtn.heightAnchor.constraint(equalTo: cancelBtn.widthAnchor).isActive = true
+//        cancelBtn.translatesAutoresizingMaskIntoConstraints = false
+//        cancelBtn.centerXAnchor.constraint(equalTo: stackViewVertical.centerXAnchor).isActive = true
+//        cancelBtn.centerYAnchor.constraint(equalTo: cancelBtnView.centerYAnchor).isActive = true
+//        cancelBtn.widthAnchor.constraint(equalTo: cancelBtnView.widthAnchor, multiplier: 0.2).isActive = true
+//        cancelBtn.heightAnchor.constraint(equalTo: cancelBtn.widthAnchor).isActive = true
         
         verticalStackViewForSettingPokerShapes.translatesAutoresizingMaskIntoConstraints = false
         verticalStackViewForSettingPokerShapes.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -508,36 +511,73 @@ class SettingView: UIView {
         verticalStackViewForSettingPokerShapes.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
         verticalStackViewForSettingPokerShapes.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
         
-        alertView.translatesAutoresizingMaskIntoConstraints = false
-        alertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        alertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        alertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        alertView.heightAnchor.constraint(equalTo: alertView.widthAnchor).isActive = true
+        saveSetAlertView.translatesAutoresizingMaskIntoConstraints = false
+        saveSetAlertView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        saveSetAlertView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        saveSetAlertView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        saveSetAlertView.heightAnchor.constraint(equalTo: saveSetAlertView.widthAnchor).isActive = true
         
-        alertTextField.translatesAutoresizingMaskIntoConstraints = false
-        alertTextField.centerYAnchor.constraint(equalTo: alertView.centerYAnchor).isActive = true
-        alertTextField.centerXAnchor.constraint(equalTo: alertView.centerXAnchor).isActive = true
-        alertTextField.widthAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.9).isActive = true
-        alertTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        saveSetAlertTextField.translatesAutoresizingMaskIntoConstraints = false
+        saveSetAlertTextField.centerYAnchor.constraint(equalTo: saveSetAlertView.centerYAnchor).isActive = true
+        saveSetAlertTextField.centerXAnchor.constraint(equalTo: saveSetAlertView.centerXAnchor).isActive = true
+        saveSetAlertTextField.widthAnchor.constraint(equalTo: saveSetAlertView.widthAnchor, multiplier: 0.9).isActive = true
+        saveSetAlertTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        alertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
-        alertMessageLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 5).isActive = true
-        alertMessageLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor).isActive = true
-        alertMessageLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor).isActive = true
-        alertMessageLabel.bottomAnchor.constraint(equalTo: alertTextField.topAnchor, constant: -5).isActive = true
+        saveSetAlertMessageLabel.translatesAutoresizingMaskIntoConstraints = false
+        saveSetAlertMessageLabel.topAnchor.constraint(equalTo: saveSetAlertView.topAnchor, constant: 5).isActive = true
+        saveSetAlertMessageLabel.leadingAnchor.constraint(equalTo: saveSetAlertView.leadingAnchor).isActive = true
+        saveSetAlertMessageLabel.trailingAnchor.constraint(equalTo: saveSetAlertView.trailingAnchor).isActive = true
+        saveSetAlertMessageLabel.bottomAnchor.constraint(equalTo: saveSetAlertTextField.topAnchor, constant: -5).isActive = true
         
-        alertBtnStackView.translatesAutoresizingMaskIntoConstraints = false
-        alertBtnStackView.leadingAnchor.constraint(equalTo: alertTextField.leadingAnchor).isActive = true
-        alertBtnStackView.trailingAnchor.constraint(equalTo: alertTextField.trailingAnchor).isActive = true
-        alertBtnStackView.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -15).isActive = true
-        alertBtnStackView.topAnchor.constraint(equalTo: alertTextField.bottomAnchor, constant: 20).isActive = true
+        saveSetAlertBtnStackView.translatesAutoresizingMaskIntoConstraints = false
+        saveSetAlertBtnStackView.leadingAnchor.constraint(equalTo: saveSetAlertTextField.leadingAnchor).isActive = true
+        saveSetAlertBtnStackView.trailingAnchor.constraint(equalTo: saveSetAlertTextField.trailingAnchor).isActive = true
+        saveSetAlertBtnStackView.bottomAnchor.constraint(equalTo: saveSetAlertView.bottomAnchor, constant: -15).isActive = true
+        saveSetAlertBtnStackView.topAnchor.constraint(equalTo: saveSetAlertTextField.bottomAnchor, constant: 20).isActive = true
         
-        alertOkBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
-        alertOkBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
+        saveSetAlertOkBtn.widthAnchor.constraint(equalTo: saveSetAlertBtnStackView.widthAnchor).isActive = true
+        saveSetAlertOkBtn.heightAnchor.constraint(equalTo: saveSetAlertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
         
-        alertCancelBtn.widthAnchor.constraint(equalTo: alertBtnStackView.widthAnchor).isActive = true
-        alertCancelBtn.heightAnchor.constraint(equalTo: alertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
+        saveSetAlertCancelBtn.widthAnchor.constraint(equalTo: saveSetAlertBtnStackView.widthAnchor).isActive = true
+        saveSetAlertCancelBtn.heightAnchor.constraint(equalTo: saveSetAlertBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
         
+        categoryView.translatesAutoresizingMaskIntoConstraints = false
+        categoryView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        categoryView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        categoryView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        categoryView.heightAnchor.constraint(equalTo: categoryView.widthAnchor, multiplier: 1.2).isActive = true
+        
+        categoryTextField.translatesAutoresizingMaskIntoConstraints = false
+        categoryTextField.centerXAnchor.constraint(equalTo: categoryView.centerXAnchor).isActive = true
+        categoryTextField.centerYAnchor.constraint(equalTo: categoryView.centerYAnchor).isActive = true
+        categoryTextField.widthAnchor.constraint(equalTo: categoryView.widthAnchor, multiplier: 0.9).isActive = true
+        categoryTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        categoryNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        categoryNameTextField.widthAnchor.constraint(equalTo: categoryTextField.widthAnchor).isActive = true
+        categoryNameTextField.heightAnchor.constraint(equalTo: categoryTextField.heightAnchor).isActive = true
+        categoryNameTextField.centerXAnchor.constraint(equalTo: categoryView.centerXAnchor).isActive = true
+        categoryNameTextField.bottomAnchor.constraint(equalTo: categoryTextField.topAnchor, constant: -10).isActive = true
+        
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        categoryLabel.topAnchor.constraint(equalTo: categoryView.topAnchor).isActive = true
+        categoryLabel.leadingAnchor.constraint(equalTo: categoryView.leadingAnchor).isActive = true
+        categoryLabel.trailingAnchor.constraint(equalTo: categoryView.trailingAnchor).isActive = true
+        categoryLabel.bottomAnchor.constraint(equalTo: categoryNameTextField.topAnchor).isActive = true
+        
+        categoryBtnStackView.translatesAutoresizingMaskIntoConstraints = false
+        categoryBtnStackView.widthAnchor.constraint(equalTo: categoryTextField.widthAnchor).isActive = true
+        categoryBtnStackView.centerXAnchor.constraint(equalTo: categoryView.centerXAnchor).isActive = true
+        categoryBtnStackView.bottomAnchor.constraint(equalTo: categoryView.bottomAnchor, constant: -15).isActive = true
+        categoryBtnStackView.heightAnchor.constraint(equalTo: saveSetAlertBtnStackView.heightAnchor).isActive = true
+        
+        categoryOkBtn.translatesAutoresizingMaskIntoConstraints = false
+        categoryOkBtn.widthAnchor.constraint(equalTo: categoryBtnStackView.widthAnchor).isActive = true
+        categoryOkBtn.heightAnchor.constraint(equalTo: categoryBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        categoryCancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        categoryCancelBtn.widthAnchor.constraint(equalTo: categoryBtnStackView.widthAnchor).isActive = true
+        categoryCancelBtn.heightAnchor.constraint(equalTo: categoryBtnStackView.heightAnchor, multiplier: 0.5).isActive = true
         
         for i in 0...3 {
             setPokerShapeImage[i].translatesAutoresizingMaskIntoConstraints = false
@@ -569,7 +609,7 @@ class SettingView: UIView {
         saveCompleteView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         saveCompleteView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         saveCompleteView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
-        saveCompleteView.heightAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.7).isActive = true
+        saveCompleteView.heightAnchor.constraint(equalTo: saveSetAlertView.widthAnchor, multiplier: 0.7).isActive = true
         
         saveCompleteImageView.translatesAutoresizingMaskIntoConstraints = false
         saveCompleteImageView.topAnchor.constraint(equalTo: saveCompleteView.topAnchor, constant: 10).isActive = true

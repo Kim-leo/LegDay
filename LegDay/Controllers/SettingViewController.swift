@@ -40,20 +40,25 @@ class SettingViewController: UIViewController {
         settingView.upperCollectinView.dataSource = self
         settingView.lowerCollectinView.delegate = self
         settingView.lowerCollectinView.dataSource = self
+        settingView.categoryPickerView.delegate = self
+        settingView.categoryPickerView.dataSource = self
         
         viewModel.initialSetting(view: settingView)
         
         
-        for btn in settingView.categoryBtns {
-            btn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
-        }
-        settingView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
+//        for btn in settingView.categoryBtns {
+//            btn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
+//        }
+//        settingView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
         for btn in settingView.pokerShapeBtns {
             btn.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
         }
         
-        settingView.alertCancelBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
-        settingView.alertOkBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
+        settingView.saveSetAlertCancelBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
+        settingView.saveSetAlertOkBtn.addTarget(self, action: #selector(alertBtnTapped), for: .touchUpInside)
+        
+        settingView.categoryOkBtn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
+        settingView.categoryCancelBtn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
         
         settingView.leftBarBtnItem.addTarget(self, action: #selector(leftBarBtnTap), for: .touchUpInside)
         settingView.rightBarBtnItem.addTarget(self, action: #selector(rightBarBtnTap), for: .touchUpInside)
@@ -62,7 +67,7 @@ class SettingViewController: UIViewController {
         settingView.backgroundViewForSettingPokerShapes.addGestureRecognizer(tapGestureRecognizer)
         
         
-
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -83,18 +88,13 @@ extension SettingViewController {
     }
     
     @objc func rightBarBtnTap(_ sender: UIBarButtonItem) {
-        settingView.alertView.alpha = 1
-        viewModel.whoCalledAlertView = 1
-        viewModel.settingMessageForAlertMessageLabel(settingView)
+        viewModel.rightBarBtnTap(settingView)
     }
     
     @objc func categoryBtnTapped(_ sender: UIButton) {
-        viewModel.workoutForCategories[sender.tag].append(viewModel.inputWorkout)
-        viewModel.categoryBtnTapped(view: settingView)
-    }
-    
-    @objc func cancelBtnTapped(_ sender: UIButton) {
-        viewModel.cancelBtnTapped(view: settingView)
+        viewModel.categoryBtnTap(settingView, sender: sender)
+//        viewModel.workoutForCategories[sender.tag].append(viewModel.inputWorkout)
+//        viewModel.categoryBtnTapped(view: settingView)
     }
     
     @objc func pokerShapeBtnsTapped(_ sender: UIButton) {
@@ -195,9 +195,9 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                 settingView.rightBarBtnItem.isEnabled = false
                 switch viewModel.yourAllWorkoutsArray[indexPath.row] {
                 case "+ 직접 입력":
-                    settingView.alertView.alpha = 1
-                    viewModel.whoCalledAlertView = 0
-                    viewModel.settingMessageForAlertMessageLabel(settingView)
+                    print("new alert view will appear")
+                    viewModel.cellAddWorkoutTap(settingView)
+//                      viewModel.settingMessageForAlertMessageLabel(settingView)
                 default:
                     
                     settingView.backGroundTransparentView.alpha = 0.5
@@ -209,12 +209,29 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                     }
                 }
             }
-            
-            
         default:
             break
         }
     }
 }
 
+extension SettingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return viewModel.myWorkoutModel.typeOfWorkouts[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return viewModel.myWorkoutModel.typeOfWorkouts.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(viewModel.myWorkoutModel.typeOfWorkouts[row])
+    }
+    
+    
+}
 

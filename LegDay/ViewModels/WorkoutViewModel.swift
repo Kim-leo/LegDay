@@ -151,7 +151,6 @@ extension WorkoutViewModel {
         pickedCard = cardSetWithMaximumNumber.randomElement() ?? ""
         let indexOfPickedCard = Int(cardSetWithMaximumNumber.firstIndex(of: pickedCard) ?? 0)
         cardSetWithMaximumNumber.remove(at: indexOfPickedCard)
-
         
         emptyArray.append(pickedCard)
     

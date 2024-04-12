@@ -30,9 +30,9 @@ class MyPageEditViewModel {
     }
     
     func autoSaveEditedData(_ view: MyPageEditView) {
-        var rawTitleString = view.titleTextField.text ?? ""
+        let rawTitleString = view.titleTextField.text ?? ""
         let startIndex = rawTitleString.index(rawTitleString.startIndex, offsetBy: 1)
-        var titleString = String(rawTitleString[startIndex...])
+        let titleString = String(rawTitleString[startIndex...])
         
         myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = titleString
         myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow] = workoutsInTableCell

@@ -23,9 +23,7 @@ class SettingViewModel {
     
     var whichWorkout = ""
     var inputWorkout = ""
-    
-    var whoCalledAlertView = 0
-    
+        
     var isLeftBarBtnClicked = false
     
     init(workoutModel: WorkoutModel) {
@@ -46,30 +44,66 @@ extension SettingViewModel {
             workoutModel.originalWorkouts = yourAllWorkoutsArray
         }
         
-        for btn in view.categoryBtns {
-            btn.setTitle("\(typeOfWorkouts[btn.tag])", for: .normal)
-        }
         
         for label in view.setPokerShapeLabel {
             label.text = "\(originalWorkoutArray[label.tag])"
         }
     }
     
-    func settingMessageForAlertMessageLabel(_ view: SettingView) {
+    func cellAddWorkoutTap(_ view: SettingView) {
         view.backGroundTransparentView.alpha = 0.5
         view.leftBarBtnItem.isEnabled = false
-        switch whoCalledAlertView {
-        case 0:
-            view.alertMessageLabel.text = "운동을 직접 추가합니다."
-            view.alertOkBtn.setTitle("카테고리 지정", for: .normal)
-            view.alertTextField.placeholder = " 운동 이름"
+        view.rightBarBtnItem.isEnabled = false
+        view.categoryView.alpha = 1
+        view.categoryLabel.text = "운동을 직접 추가합니다."
+    }
+    
+    func categoryBtnTap(_ view: SettingView, sender: UIButton) {
+        switch sender.tag {
         case 1:
-            view.alertMessageLabel.text = "나만의 운동 세트를 만들어 보아요."
-            view.alertOkBtn.setTitle("저장", for: .normal)
-            view.alertTextField.placeholder = " 생략 가능"
+            print("직접 입력한 운동 저장하는 코드")
+            addWorkoutByYourself(view, vc: SettingViewController())
+            
         default:
+            view.backGroundTransparentView.alpha = 0
+            view.leftBarBtnItem.isEnabled = true
+            view.rightBarBtnItem.isEnabled = true
+            view.categoryView.alpha = 0
             break
         }
+    }
+    
+    func addWorkoutByYourself(_ view: SettingView, vc: SettingViewController) {
+        inputWorkout = view.categoryNameTextField.text ?? ""
+        if inputWorkout.contains("+ 직접 입력") {
+            view.categoryLabel.text = "다른 이름으로 입력하세요."
+        } else if inputWorkout.isEmpty {
+            view.categoryLabel.text = "운동 이름을 입력해주세요."
+        } else {
+            print("here")
+            view.backGroundTransparentView.alpha = 0
+            view.leftBarBtnItem.isEnabled = true
+            view.rightBarBtnItem.isEnabled = true
+            view.categoryView.alpha = 0
+            
+            saveAndUpdateMyNewWorkout(view)
+        }
+    }
+    
+    func saveAndUpdateMyNewWorkout(_ view: SettingView) {
+        view.lowerCollectinView.performBatchUpdates {
+            view.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
+            yourAllWorkoutsArray.insert(inputWorkout, at: 1)
+        }
+        workoutModel.originalWorkouts.append(inputWorkout)
+        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
+    }
+    
+    func rightBarBtnTap(_ view: SettingView) {
+        view.leftBarBtnItem.isEnabled = false
+        view.rightBarBtnItem.isEnabled = false
+        view.saveSetAlertView.alpha = 1
+        view.backGroundTransparentView.alpha = 0.5
     }
     
     func alertBtnTapAction(_ view: SettingView, sender: UIButton) {
@@ -77,42 +111,23 @@ extension SettingViewModel {
         case 0:
             view.leftBarBtnItem.isEnabled = true
             view.rightBarBtnItem.isEnabled = true
-            view.alertView.alpha = 0
+            view.saveSetAlertView.alpha = 0
             view.backGroundTransparentView.alpha = 0
         case 1:
-            switch whoCalledAlertView {
-            case 0:
-                addWorkoutByYourself(view, vc: SettingViewController())
-            case 1:
-                saveCurrentWorkoutSet(view)
-            default:
-                break
-            }
+            saveCurrentWorkoutSet(view)
         default:
             break
         }
-        view.alertTextField.text = ""
+        view.saveSetAlertTextField.text = ""
         view.endEditing(true)
-    }
-    
-    func addWorkoutByYourself(_ view: SettingView, vc: SettingViewController) {
-        inputWorkout = view.alertTextField.text ?? ""
-        if inputWorkout.contains("+ 직접 입력") {
-            view.alertMessageLabel.text = "다른 이름으로 입력하세요."
-        } else if inputWorkout.isEmpty {
-            view.alertMessageLabel.text = "운동 이름을 입력해주세요."
-        } else {
-            view.alertView.alpha = 0
-            view.stackViewVertical.alpha = 1
-        }
     }
     
     func saveCurrentWorkoutSet(_ view: SettingView) {
 
-        inputWorkout = view.alertTextField.text ?? ""
+        inputWorkout = view.saveSetAlertTextField.text ?? ""
         myWorkoutModel.myWorkoutTitles.append(inputWorkout)
         myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
-        view.alertView.alpha = 0
+        view.saveSetAlertView.alpha = 0
         view.saveCompleteLabel.text = "세트 저장 완료!"
         view.saveCompleteImageView.image = UIImage(systemName: "checkmark.square")
         view.backGroundTransparentView.alpha = 0
@@ -122,28 +137,6 @@ extension SettingViewModel {
         }
         view.leftBarBtnItem.isEnabled = true
         
-    }
-    
-    func categoryBtnTapped(view: SettingView) {
-        view.leftBarBtnItem.isEnabled = true
-        view.rightBarBtnItem.isEnabled = true
-        view.stackViewVertical.alpha = 0
-        view.backGroundTransparentView.alpha = 0
-        
-        view.lowerCollectinView.performBatchUpdates {
-            view.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
-            yourAllWorkoutsArray.insert(inputWorkout, at: 1)
-        }
-        workoutModel.originalWorkouts.append(inputWorkout)
-        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
-    }
-    
-    func cancelBtnTapped(view: SettingView) {
-        inputWorkout = ""
-        view.leftBarBtnItem.isEnabled = true
-        view.rightBarBtnItem.isEnabled = true
-        view.stackViewVertical.alpha = 0
-        view.backGroundTransparentView.alpha = 0
     }
     
     func pokerCardBtnTapped(view: SettingView, _ sender: UIButton) {
