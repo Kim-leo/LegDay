@@ -26,6 +26,8 @@ class SettingViewModel {
         
     var isLeftBarBtnClicked = false
     
+    var rowInPickerView: Int = 0
+    
     init(workoutModel: WorkoutModel) {
         self.workoutModel = WorkoutModel()
     }
@@ -39,9 +41,10 @@ extension SettingViewModel {
     func initialSetting(view: SettingView) {
         workoutForCategories = myWorkoutModel.workoutsForCollectionViewCell
         typeOfWorkouts = myWorkoutModel.typeOfWorkouts
+        
         if yourAllWorkoutsArray.count == 1 {
             yourAllWorkoutsArray += Array(workoutForCategories.joined())
-            workoutModel.originalWorkouts = yourAllWorkoutsArray
+//            workoutModel.originalWorkouts = yourAllWorkoutsArray
         }
         
         
@@ -73,14 +76,24 @@ extension SettingViewModel {
         }
     }
     
+    func selectRowInPickerView(_ view: SettingView) {
+        rowInPickerView = view.categoryPickerView.selectedRow(inComponent: 0)
+        view.categoryPickerView.selectRow(rowInPickerView, inComponent: 0, animated: false)
+        view.categoryTextField.text = myWorkoutModel.typeOfWorkouts[rowInPickerView]
+        view.categoryTextField.resignFirstResponder()
+        
+        
+        
+    }
+    
     func addWorkoutByYourself(_ view: SettingView, vc: SettingViewController) {
         inputWorkout = view.categoryNameTextField.text ?? ""
+
         if inputWorkout.contains("+ 직접 입력") {
             view.categoryLabel.text = "다른 이름으로 입력하세요."
         } else if inputWorkout.isEmpty {
             view.categoryLabel.text = "운동 이름을 입력해주세요."
         } else {
-            print("here")
             view.backGroundTransparentView.alpha = 0
             view.leftBarBtnItem.isEnabled = true
             view.rightBarBtnItem.isEnabled = true
@@ -90,13 +103,16 @@ extension SettingViewModel {
         }
     }
     
-    func saveAndUpdateMyNewWorkout(_ view: SettingView) {
+    func saveAndUpdateMyNewWorkout(_ view: SettingView) {        workoutForCategories[rowInPickerView].append(inputWorkout)
+        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
+        
         view.lowerCollectinView.performBatchUpdates {
             view.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
             yourAllWorkoutsArray.insert(inputWorkout, at: 1)
         }
-        workoutModel.originalWorkouts.append(inputWorkout)
-        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
+        
+        
+        
     }
     
     func rightBarBtnTap(_ view: SettingView) {

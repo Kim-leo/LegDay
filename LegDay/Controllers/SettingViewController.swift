@@ -44,12 +44,7 @@ class SettingViewController: UIViewController {
         settingView.categoryPickerView.dataSource = self
         
         viewModel.initialSetting(view: settingView)
-        
-        
-//        for btn in settingView.categoryBtns {
-//            btn.addTarget(self, action: #selector(categoryBtnTapped), for: .touchUpInside)
-//        }
-//        settingView.cancelBtn.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
+
         for btn in settingView.pokerShapeBtns {
             btn.addTarget(self, action: #selector(pokerShapeBtnsTapped), for: .touchUpInside)
         }
@@ -67,7 +62,7 @@ class SettingViewController: UIViewController {
         settingView.backgroundViewForSettingPokerShapes.addGestureRecognizer(tapGestureRecognizer)
         
         
-        
+        configuratePickerViewToolBar()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -93,8 +88,6 @@ extension SettingViewController {
     
     @objc func categoryBtnTapped(_ sender: UIButton) {
         viewModel.categoryBtnTap(settingView, sender: sender)
-//        viewModel.workoutForCategories[sender.tag].append(viewModel.inputWorkout)
-//        viewModel.categoryBtnTapped(view: settingView)
     }
     
     @objc func pokerShapeBtnsTapped(_ sender: UIButton) {
@@ -229,7 +222,33 @@ extension SettingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(viewModel.myWorkoutModel.typeOfWorkouts[row])
+        settingView.categoryTextField.text = viewModel.myWorkoutModel.typeOfWorkouts[row]
+    }
+    
+    func configuratePickerViewToolBar() {
+        settingView.categoryTextField.inputView = settingView.categoryPickerView
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = .white
+        toolBar.sizeToFit()
+        
+        let doneBtn = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(self.donePickerView))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelBtn = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(self.cancelPickerView))
+        
+        toolBar.setItems([cancelBtn,flexibleSpace,doneBtn], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        settingView.categoryTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func donePickerView() {
+        viewModel.selectRowInPickerView(settingView)
+    }
+
+    @objc func cancelPickerView() {
+        settingView.categoryTextField.text = nil
+        settingView.categoryTextField.resignFirstResponder()
     }
     
     

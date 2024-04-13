@@ -119,7 +119,7 @@ class SettingView: UIView {
     
     lazy var categoryPickerView: UIPickerView = {
         let pv = UIPickerView()
-        pv.backgroundColor = .white
+        pv.backgroundColor = .clear
         return pv
     }()
     
