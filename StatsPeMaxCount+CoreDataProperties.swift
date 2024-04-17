@@ -16,5 +16,6 @@ extension StatsPeMaxCount {
         return NSFetchRequest<StatsPeMaxCount>(entityName: "StatsPeMaxCount")
     }
 
+    @NSManaged public var maxCount: Int64
 
 }

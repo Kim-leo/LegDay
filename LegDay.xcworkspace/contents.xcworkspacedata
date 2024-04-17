@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:StatsPeMaxCount+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:StatsPeMaxCount+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:WorkoutSets+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:WorkoutSets+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:LegDay.xcodeproj">
    </FileRef>
    <FileRef

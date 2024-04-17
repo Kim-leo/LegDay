@@ -57,6 +57,8 @@
 		E6CFB4732BBDB8550048F6A6 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB4722BBDB8550048F6A6 /* StatsViewController.swift */; };
 		E6CFB4752BBDBA150048F6A6 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB4742BBDBA150048F6A6 /* StatsView.swift */; };
 		E6CFB4772BBDBA360048F6A6 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CFB4762BBDBA360048F6A6 /* StatsViewModel.swift */; };
+		E6DA66272BCF9D9700E74CB4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6DA66252BCF9D9700E74CB4 /* DataModel.xcdatamodeld */; };
+		E6DA66292BCF9DDC00E74CB4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA66282BCF9DDC00E74CB4 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -125,6 +127,8 @@
 		E6CFB4722BBDB8550048F6A6 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		E6CFB4742BBDBA150048F6A6 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		E6CFB4762BBDBA360048F6A6 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
+		E6DA66262BCF9D9700E74CB4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		E6DA66282BCF9DDC00E74CB4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		FF9D7FEF795D2CFB17900789 /* Pods-LegDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegDay.debug.xcconfig"; path = "Target Support Files/Pods-LegDay/Pods-LegDay.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +208,8 @@
 				E65D410E2BABF784002585B0 /* CardModel.swift */,
 				E65D41102BABF795002585B0 /* WorkoutModel.swift */,
 				E65D41122BABF7A6002585B0 /* ImageModel.swift */,
+				E6DA66252BCF9D9700E74CB4 /* DataModel.xcdatamodeld */,
+				E6DA66282BCF9DDC00E74CB4 /* CoreDataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -451,7 +457,9 @@
 				E6CFB4752BBDBA150048F6A6 /* StatsView.swift in Sources */,
 				E65D40F52BABF648002585B0 /* HomeViewController.swift in Sources */,
 				E6CFB4712BBD15580048F6A6 /* MaximumNumberOfWorkoutViewModel.swift in Sources */,
+				E6DA66292BCF9DDC00E74CB4 /* CoreDataManager.swift in Sources */,
 				E65D411D2BABFF80002585B0 /* DescriptionViewController.swift in Sources */,
+				E6DA66272BCF9D9700E74CB4 /* DataModel.xcdatamodeld in Sources */,
 				E65D412F2BAC079B002585B0 /* WorkoutViewModel.swift in Sources */,
 				E6CFB4412BBA060E0048F6A6 /* DescriptionView.swift in Sources */,
 				E65D410D2BABF764002585B0 /* ExtensionView.swift in Sources */,
@@ -726,6 +734,20 @@
 			productName = DGCharts;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		E6DA66252BCF9D9700E74CB4 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E6DA66262BCF9D9700E74CB4 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = E6DA66262BCF9D9700E74CB4 /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = /Users/gimseunghyeon/Desktop/LegDay/LegDay/Models/DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E65D40E52BABF648002585B0 /* Project object */;
 }

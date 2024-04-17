@@ -16,5 +16,5 @@ extension WorkoutSets {
         return NSFetchRequest<WorkoutSets>(entityName: "WorkoutSets")
     }
 
-
+    @NSManaged public var title: String?
 }
