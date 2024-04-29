@@ -1,8 +1,8 @@
 //
 //  StatsPeMaxCount+CoreDataProperties.swift
-//  
+//  LegDay
 //
-//  Created by 김승현 on 4/17/24.
+//  Created by 김승현 on 4/29/24.
 //
 //
 
@@ -17,5 +17,9 @@ extension StatsPeMaxCount {
     }
 
     @NSManaged public var maxCount: Int64
+
+}
+
+extension StatsPeMaxCount : Identifiable {
 
 }

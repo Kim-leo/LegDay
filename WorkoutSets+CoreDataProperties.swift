@@ -1,8 +1,8 @@
 //
 //  WorkoutSets+CoreDataProperties.swift
-//  
+//  LegDay
 //
-//  Created by 김승현 on 4/17/24.
+//  Created by 김승현 on 4/29/24.
 //
 //
 
@@ -17,4 +17,11 @@ extension WorkoutSets {
     }
 
     @NSManaged public var title: String?
+    @NSManaged public var id: Int64
+    @NSManaged public var workoutArray: [String]?
+
+}
+
+extension WorkoutSets : Identifiable {
+
 }
