@@ -16,7 +16,6 @@ class MyPageViewModel {
     var myWorkoutsList = [[String]]()
     
     
-    
     func getSelectedTableViewIndexPathRow(indexPath: IndexPath) {
         myWorkoutModel.selectedTableViewIndexPathRow = indexPath.row
     }
@@ -43,7 +42,8 @@ class MyPageViewModel {
     
     // MARK: - 'Delete' Data in DataModel
     func deleteCellAndMyWorkoutData(_ view: MyPageView, indexPath: IndexPath) {
-        CoreDataManager.shared.deleteWorkoutData(id: Int64(indexPath.row)) { _ in }
+        let currentIndexPathRow = CoreDataManager.shared.getWorkoutData().map({$0.id}).reversed()[indexPath.row]
+        CoreDataManager.shared.deleteWorkoutData(id: Int64(currentIndexPathRow)) { _ in }
         
         myWorkoutsTitles.remove(at: indexPath.row)
 //        myWorkoutModel.myWorkoutTitles.remove(at: indexPath.row)
