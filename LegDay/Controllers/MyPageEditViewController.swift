@@ -49,7 +49,8 @@ class MyPageEditViewController: UIViewController {
         super.viewWillDisappear(animated)
         viewModel.autoSaveEditedData(myPageEditView)
         
-        
+        print(CoreDataManager.shared.getWorkoutData().map({$0.title}).reversed())
+        print(CoreDataManager.shared.getWorkoutData().map({$0.workoutArray}).reversed())
     }
 }
 

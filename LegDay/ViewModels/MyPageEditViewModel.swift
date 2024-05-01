@@ -44,10 +44,12 @@ class MyPageEditViewModel {
         
         
         // MARK: - 'Save' edited data in DataModel
+        let selectedCoreDataWorkoutID = CoreDataManager.shared.getWorkoutData().map({$0.id})[myWorkoutModel.selectedTableViewIndexPathRow]
+//        print(selectedCoreDataWorkoutID)
+        CoreDataManager.shared.updateWorkoutData(indexPath: Int(selectedCoreDataWorkoutID), title: rawTitleString, workoutArray: workoutsInTableCell)
         
-        
-        myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = titleString
-        myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow] = workoutsInTableCell
+//        myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = titleString
+//        myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow] = workoutsInTableCell
         
         
         

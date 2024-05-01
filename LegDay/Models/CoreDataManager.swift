@@ -35,6 +35,26 @@ class CoreDataManager {
         return models
     }
     
+    func updateWorkoutData(indexPath: Int, title: String, workoutArray: [String]) {
+        if let context = context {
+            let idSort: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: false)
+            let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest<NSManagedObject>(entityName: modelName)
+            fetchRequest.sortDescriptors = [idSort]
+            
+            do {
+                if let fetchResult: [WorkoutSets] = try context.fetch(fetchRequest) as? [WorkoutSets] {
+                    let objectUpdate = fetchResult[indexPath]
+                    objectUpdate.setValue(title, forKey: "title")
+                    objectUpdate.setValue(workoutArray, forKey: "workoutArray")
+                    
+                    contextSave { _ in }
+                }
+            } catch let error as NSError {
+                print("getUser Error: \(error)")
+            }
+        }
+    }
+    
     func saveWorkoutData(id: Int64, title: String, workoutArray: [String], onSuccess: @escaping ((Bool) -> Void)) {
         if let context = context, let entity: NSEntityDescription = NSEntityDescription.entity(forEntityName: modelName, in: context) {
             if let workoutSet: WorkoutSets = NSManagedObject(entity: entity, insertInto: context) as? WorkoutSets {
@@ -48,6 +68,8 @@ class CoreDataManager {
             }
         }
     }
+    
+   
     
     func deleteWorkoutData(id: Int64, onSuccess: @escaping ((Bool) -> Void)) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = filteredRequest(id: id, modelName: modelName)
