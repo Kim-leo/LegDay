@@ -19,12 +19,19 @@ class MyPageEditViewModel {
     var workoutsInTableCell = [String]()
     var selectedOneWorkout = String()
     
+    var loadedWorkoutSets = CoreDataManager.shared.getWorkoutData()
+    
     func initialSetting(_ view: MyPageEditView) {
         typeOfWorkouts = myWorkoutModel.typeOfWorkouts
         yourAllWorkoutsArray = Array(myWorkoutModel.workoutsForCollectionViewCell.joined())
-        workoutsInTableCell = Array(myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow])
         
-        view.titleTextField.text = " \(myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow])"
+        // MARK: - 'Load' data in DataModel
+        view.titleTextField.text = "\(loadedWorkoutSets.map({$0.title ?? ""}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow])"
+        workoutsInTableCell = loadedWorkoutSets.map({$0.workoutArray ?? []}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow]
+        
+        
+//        workoutsInTableCell = Array(myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow])
+//        view.titleTextField.text = " \(myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow])"
         
         
     }
@@ -33,6 +40,10 @@ class MyPageEditViewModel {
         let rawTitleString = view.titleTextField.text ?? ""
         let startIndex = rawTitleString.index(rawTitleString.startIndex, offsetBy: 1)
         let titleString = String(rawTitleString[startIndex...])
+        
+        
+        // MARK: - 'Save' edited data in DataModel
+        
         
         myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = titleString
         myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow] = workoutsInTableCell

@@ -28,6 +28,8 @@ class SettingViewModel {
     
     var rowInPickerView: Int = 0
     
+    var idNumber: Int64 = 0
+    
     init(workoutModel: WorkoutModel) {
         self.workoutModel = WorkoutModel()
     }
@@ -138,11 +140,31 @@ extension SettingViewModel {
         view.endEditing(true)
     }
     
+    
+    
     func saveCurrentWorkoutSet(_ view: SettingView) {
-
         inputWorkout = view.saveSetAlertTextField.text ?? ""
-        myWorkoutModel.myWorkoutTitles.append(inputWorkout)
-        myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
+        
+        // MARK: - DataModel: 'Save' data in DataModel
+//        myWorkoutModel.myWorkoutTitles.append(inputWorkout)
+//        myWorkoutModel.myWorkoutsList.append(myWorkoutModel.selectedWorkoutPerPokerShapeArray)
+        
+        if CoreDataManager.shared.getWorkoutData().count == 0 {
+            idNumber = 0
+        } else {
+            idNumber = (CoreDataManager.shared.getWorkoutData().map({$0.id}).first ?? 0) + 1 
+        }
+        
+        CoreDataManager.shared.saveWorkoutData(id: idNumber, title: inputWorkout, workoutArray: myWorkoutModel.selectedWorkoutPerPokerShapeArray) { onSuccess in
+            print("saved = \(onSuccess)")
+        }
+        
+        
+        print(CoreDataManager.shared.getWorkoutData().map({$0.id}))
+        print(CoreDataManager.shared.getWorkoutData().map({$0.title}))
+        print(CoreDataManager.shared.getWorkoutData().map({$0.workoutArray}))
+        print(CoreDataManager.shared.getWorkoutIDData().map({$0.workoutID}))
+        
         view.saveSetAlertView.alpha = 0
         view.saveCompleteLabel.text = "세트 저장 완료!"
         view.saveCompleteImageView.image = UIImage(systemName: "checkmark.square")
@@ -174,6 +196,8 @@ extension SettingViewModel {
     func backgroundViewForSettingPokerShapeTap(_ view: SettingView) {
         view.backGroundTransparentView.alpha = 0
         view.backgroundViewForSettingPokerShapes.alpha = 0
+        view.leftBarBtnItem.isEnabled = true
+        view.rightBarBtnItem.isEnabled = true
     }
     
     func changeSetPokerLabelWhenComeFromMyPage(_ view: SettingView) {

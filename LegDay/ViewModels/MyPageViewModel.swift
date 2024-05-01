@@ -15,13 +15,21 @@ class MyPageViewModel {
     var myWorkoutsTitles = [String]()
     var myWorkoutsList = [[String]]()
     
+    
+    
     func getSelectedTableViewIndexPathRow(indexPath: IndexPath) {
         myWorkoutModel.selectedTableViewIndexPathRow = indexPath.row
     }
     
+    // MARK: - DataModel: 'Load' data in DataModel
     func updateTableViewCell(_ view: MyPageView) {
-        myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
-        myWorkoutsList = myWorkoutModel.myWorkoutsList
+//        myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
+//        myWorkoutsList = myWorkoutModel.myWorkoutsList
+        
+        let loadedWorkoutSets = CoreDataManager.shared.getWorkoutData()
+        myWorkoutsTitles = loadedWorkoutSets.map({$0.title ?? ""})
+        myWorkoutsList = loadedWorkoutSets.map({$0.workoutArray ?? []})
+        
     }
 
     func saveCurrentCellData(indexPath: IndexPath) {
@@ -29,16 +37,19 @@ class MyPageViewModel {
         myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = myWorkoutsTitles[indexPath.row]
     }
     
-    func editWorkoutFromMyPageVC() {
-        myWorkoutModel.isComeFromMyPageVC = true
-    }
+//    func editWorkoutFromMyPageVC() {
+//        myWorkoutModel.isComeFromMyPageVC = true
+//    }
     
+    // MARK: - 'Delete' Data in DataModel
     func deleteCellAndMyWorkoutData(_ view: MyPageView, indexPath: IndexPath) {
+        CoreDataManager.shared.deleteWorkoutData(id: Int64(indexPath.row)) { _ in }
+        
         myWorkoutsTitles.remove(at: indexPath.row)
-        myWorkoutModel.myWorkoutTitles.remove(at: indexPath.row)
+//        myWorkoutModel.myWorkoutTitles.remove(at: indexPath.row)
         
         myWorkoutsList.remove(at: indexPath.row)
-        myWorkoutModel.myWorkoutsList.remove(at: indexPath.row)
+//        myWorkoutModel.myWorkoutsList.remove(at: indexPath.row)
         view.myWorkoutTableView.deleteRows(at: [indexPath], with: .automatic)
     }
     

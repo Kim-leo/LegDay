@@ -50,7 +50,7 @@ class CoreDataManager {
     }
     
     func deleteWorkoutData(id: Int64, onSuccess: @escaping ((Bool) -> Void)) {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = filteredRequest(id: id)
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = filteredRequest(id: id, modelName: modelName)
         
         do {
             if let results: [WorkoutSets] = try context?.fetch(fetchRequest) as? [WorkoutSets] {
@@ -66,12 +66,61 @@ class CoreDataManager {
         contextSave { success in
             onSuccess(success)
         }
-
+    }
+    
+    func getWorkoutIDData(ascending: Bool = false) -> [WorkoutID] {
+        var models: [WorkoutID] = [WorkoutID]()
+        
+        if let context = context {
+            let idSort: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: ascending)
+            let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest<NSManagedObject>(entityName: modelName)
+            fetchRequest.sortDescriptors = [idSort]
+            
+            do {
+                if let fetchResult: [WorkoutID] = try context.fetch(fetchRequest) as? [WorkoutID] {
+                    models = fetchResult
+                }
+            } catch let error as NSError {
+                print("getUser Error: \(error)")
+            }
+        }
+        return models
+    }
+    
+    func saveWorkoutIDData(id: Int64, onSuccess: @escaping ((Bool) -> Void)) {
+        if let context = context, let entity: NSEntityDescription = NSEntityDescription.entity(forEntityName: "WorkoutID", in: context) {
+            if let workoutSet: WorkoutID = NSManagedObject(entity: entity, insertInto: context) as? WorkoutID {
+                workoutSet.workoutID = id
+                
+                contextSave { success in
+                    onSuccess(success)
+                }
+            }
+        }
+    }
+    
+    func deleteWorkoutIDData(id: Int64, onSuccess: @escaping ((Bool) -> Void)) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = filteredRequest(id: id, modelName: "WorkoutID")
+        
+        do {
+            if let results: [WorkoutID] = try context?.fetch(fetchRequest) as? [WorkoutID] {
+                if results.count != 0 {
+                    context?.delete(results[0])
+                }
+            }
+        } catch let error as NSError {
+            print("Could not fatch: \(error), \(error.userInfo)")
+            onSuccess(false)
+        }
+        
+        contextSave { success in
+            onSuccess(success)
+        }
     }
 }
 
 extension CoreDataManager {
-    fileprivate func filteredRequest(id: Int64) -> NSFetchRequest<NSFetchRequestResult> {
+    fileprivate func filteredRequest(id: Int64, modelName: String) -> NSFetchRequest<NSFetchRequestResult> {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult>
             = NSFetchRequest<NSFetchRequestResult>(entityName: modelName)
         fetchRequest.predicate = NSPredicate(format: "id = %@", NSNumber(value: id))

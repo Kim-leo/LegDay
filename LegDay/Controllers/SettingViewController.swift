@@ -19,8 +19,10 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
         viewModel.changeSetPokerLabelWhenComeFromMyPage(settingView)
+        settingView.rightBarBtnItem.isEnabled = true
+        settingView.leftBarBtnItem.isEnabled = true
         
-        
+        print(CoreDataManager.shared.getWorkoutData().map({$0.objectID}))
     }
     
     
@@ -192,7 +194,6 @@ extension SettingViewController: UICollectionViewDelegate, UICollectionViewDataS
                     viewModel.cellAddWorkoutTap(settingView)
 //                      viewModel.settingMessageForAlertMessageLabel(settingView)
                 default:
-                    
                     settingView.backGroundTransparentView.alpha = 0.5
                     settingView.backgroundViewForSettingPokerShapes.alpha = 1
                     self.view.bringSubviewToFront(settingView.backgroundViewForSettingPokerShapes)

@@ -20,9 +20,14 @@ class SelectWorkoutViewModel {
         myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = myWorkoutsTitles[indexPath.row]
     }
     
+    
     func updateTableViewCell(_ view: SelectWorkoutView) {
-        myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
-        myWorkoutsList = myWorkoutModel.myWorkoutsList
+//        myWorkoutsTitles = myWorkoutModel.myWorkoutTitles
+//        myWorkoutsList = myWorkoutModel.myWorkoutsList
+        
+        let loadedWorkoutSets = CoreDataManager.shared.getWorkoutData()
+        myWorkoutsTitles = loadedWorkoutSets.map({$0.title ?? ""})
+        myWorkoutsList = loadedWorkoutSets.map({$0.workoutArray ?? []})
     }
     
     func changeColorOfTheBtn(_ view: SelectWorkoutView) {

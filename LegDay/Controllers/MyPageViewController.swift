@@ -18,6 +18,9 @@ class MyPageViewController: UIViewController  {
         viewModel.updateTableViewCell(myPageView)
         myPageView.myWorkoutTableView.reloadData()
         viewModel.showAlertViewWhenMyworkoutListIsEmpty(myPageView)
+        
+//        print(CoreDataManager.shared.getWorkoutData().map({$0.id}))
+
     }
     
     override func viewDidLoad() {
@@ -38,15 +41,18 @@ class MyPageViewController: UIViewController  {
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.myWorkoutsList.count
+        return CoreDataManager.shared.getWorkoutData().count
+//        return viewModel.myWorkoutsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageCell", for: indexPath) as? MyPageCell else { return .init() }
         cell.backgroundColor = .clear
-        cell.workoutTitleLabel.text = "\(viewModel.myWorkoutsTitles[indexPath.row])"
+//        cell.workoutTitleLabel.text = "\(viewModel.myWorkoutsTitles[indexPath.row])"
+        cell.workoutTitleLabel.text = "\(CoreDataManager.shared.getWorkoutData().map({$0.title}).reversed()[indexPath.row] ?? "")"
         for i in 0...3 {
-            cell.setPokerShapeLabel[i].text = "\(viewModel.myWorkoutsList[indexPath.row][i])"
+//            cell.setPokerShapeLabel[i].text = "\(viewModel.myWorkoutsList[indexPath.row][i])"
+            cell.setPokerShapeLabel[i].text = "\(CoreDataManager.shared.getWorkoutData().map({$0.workoutArray ?? []}).reversed()[indexPath.row][i])"
         }
 
         return cell
