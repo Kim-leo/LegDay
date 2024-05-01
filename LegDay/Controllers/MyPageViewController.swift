@@ -62,6 +62,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         print("indexPath.row: " , indexPath.row)
         print("workoutData ID: ", CoreDataManager.shared.getWorkoutData().map({$0.id}).reversed()[indexPath.row])
+        print("WorkoutData workout Array ", CoreDataManager.shared.getWorkoutData().map({$0.workoutArray}).reversed()[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -84,6 +85,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
 //            self.viewModel.editWorkoutFromMyPageVC()
 //            self.tabBarController?.selectedIndex = 1
             
+            self.viewModel.saveCurrentCellData(indexPath: indexPath)
             self.viewModel.getSelectedTableViewIndexPathRow(indexPath: indexPath)
             let myPageEditVC = MyPageEditViewController()
             self.navigationController?.pushViewController(myPageEditVC, animated: true)

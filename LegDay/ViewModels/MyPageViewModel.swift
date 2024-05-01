@@ -31,9 +31,10 @@ class MyPageViewModel {
         
     }
 
+    // MARK: - Get Current WorkoutData and get ready to print in nextVC(MyPageEditVC)
     func saveCurrentCellData(indexPath: IndexPath) {
-        myWorkoutModel.selectedWorkoutInSelectWorkoutVC = myWorkoutsList[indexPath.row]
-        myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = myWorkoutsTitles[indexPath.row]
+        myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = CoreDataManager.shared.getWorkoutData().map({$0.title ?? ""}).reversed()[indexPath.row]
+        myWorkoutModel.selectedWorkoutInSelectWorkoutVC = CoreDataManager.shared.getWorkoutData().map({$0.workoutArray ?? []}).reversed()[indexPath.row]
     }
     
 //    func editWorkoutFromMyPageVC() {

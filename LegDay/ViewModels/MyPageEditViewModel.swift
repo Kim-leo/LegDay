@@ -26,12 +26,13 @@ class MyPageEditViewModel {
         yourAllWorkoutsArray = Array(myWorkoutModel.workoutsForCollectionViewCell.joined())
         
         // MARK: - 'Load' data in DataModel
-        view.titleTextField.text = "\(loadedWorkoutSets.map({$0.title ?? ""}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow])"
-        workoutsInTableCell = loadedWorkoutSets.map({$0.workoutArray ?? []}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow]
+//        view.titleTextField.text = "\(loadedWorkoutSets.map({$0.title ?? ""}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow])"
+//        workoutsInTableCell = loadedWorkoutSets.map({$0.workoutArray ?? []}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow]
         
         
-//        workoutsInTableCell = Array(myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow])
-//        view.titleTextField.text = " \(myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow])"
+        view.titleTextField.text = myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC
+        workoutsInTableCell = myWorkoutModel.selectedWorkoutInSelectWorkoutVC
+        
         
         
     }
