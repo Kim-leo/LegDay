@@ -14,6 +14,8 @@ class CoreDataManager {
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     lazy var context = appDelegate?.persistentContainer.viewContext
     
+    
+    // MARK: - WorkoutSets
     let modelName = "WorkoutSets"
     
     func getWorkoutData(ascending: Bool = false) -> [WorkoutSets] {
@@ -69,8 +71,6 @@ class CoreDataManager {
         }
     }
     
-   
-    
     func deleteWorkoutData(id: Int64, onSuccess: @escaping ((Bool) -> Void)) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = filteredRequest(id: id, modelName: modelName)
         
@@ -90,12 +90,13 @@ class CoreDataManager {
         }
     }
     
+    // MARK: - WorkoutID
     func getWorkoutIDData(ascending: Bool = false) -> [WorkoutID] {
         var models: [WorkoutID] = [WorkoutID]()
         
         if let context = context {
             let idSort: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: ascending)
-            let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest<NSManagedObject>(entityName: modelName)
+            let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest<NSManagedObject>(entityName: "WorkoutID")
             fetchRequest.sortDescriptors = [idSort]
             
             do {
@@ -109,10 +110,30 @@ class CoreDataManager {
         return models
     }
     
-    func saveWorkoutIDData(id: Int64, onSuccess: @escaping ((Bool) -> Void)) {
+    func updateWorkoutIDData(indexPath: Int, workoutForCollectionViewCell: [[String]]) {
+        if let context = context {
+            let idSort: NSSortDescriptor = NSSortDescriptor(key: "id", ascending: false)
+            let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest<NSManagedObject>(entityName: "WorkoutID")
+            fetchRequest.sortDescriptors = [idSort]
+            
+            do {
+                if let fetchResult: [WorkoutSets] = try context.fetch(fetchRequest) as? [WorkoutSets] {
+                    let objectUpdate = fetchResult[indexPath]
+                    objectUpdate.setValue(workoutForCollectionViewCell, forKey: "workoutForCollectionViewCell")
+                    
+                    contextSave { _ in }
+                }
+            } catch let error as NSError {
+                print("getUser Error: \(error)")
+            }
+        }
+    }
+    
+    func saveWorkoutIDData(id: Int64, workoutForCollectionViewCell: [[String]], onSuccess: @escaping ((Bool) -> Void)) {
         if let context = context, let entity: NSEntityDescription = NSEntityDescription.entity(forEntityName: "WorkoutID", in: context) {
             if let workoutSet: WorkoutID = NSManagedObject(entity: entity, insertInto: context) as? WorkoutID {
-                workoutSet.workoutID = id
+                workoutSet.id = id
+                workoutSet.workoutForCollectionViewCell = workoutForCollectionViewCell
                 
                 contextSave { success in
                     onSuccess(success)
@@ -148,6 +169,7 @@ extension CoreDataManager {
         fetchRequest.predicate = NSPredicate(format: "id = %@", NSNumber(value: id))
         return fetchRequest
     }
+    
     
     fileprivate func contextSave(onSuccess: ((Bool) -> Void)) {
         do {

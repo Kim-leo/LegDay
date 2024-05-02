@@ -31,15 +31,7 @@ class HomeViewController: UIViewController {
         
         homeView.startWorkoutBtn.addTarget(self, action: #selector(startWorkoutBtnTapped), for: .touchUpInside)
         homeView.descriptionBtn.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
-        
-        for i in 0...2 {
-//            CoreDataManager.shared.deleteWorkoutData(id: Int64(i)) { _ in }
-        }
 
-////        CoreDataManager.shared.deleteWorkoutIDData(id: 0) { _ in }
-////        CoreDataManager.shared.deleteWorkoutIDData(id: 0) { _ in }
-////        CoreDataManager.shared.deleteWorkoutIDData(id: 1) { _ in }
-//        print(CoreDataManager.shared.getWorkoutData().map({$0.id}))
 
     }
     

@@ -56,7 +56,6 @@ extension SelectWorkoutViewController {
 
 extension SelectWorkoutViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.myWorkoutsList.count
         return CoreDataManager.shared.getWorkoutData().count
     }
     
@@ -71,6 +70,7 @@ extension SelectWorkoutViewController: UITableViewDelegate, UITableViewDataSourc
 
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectWorkoutAndReadyToLoadOnWorkoutVC(indexPath: indexPath)

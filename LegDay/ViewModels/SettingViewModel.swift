@@ -160,10 +160,10 @@ extension SettingViewModel {
         }
         
         
-        print(CoreDataManager.shared.getWorkoutData().map({$0.id}))
-        print(CoreDataManager.shared.getWorkoutData().map({$0.title}))
-        print(CoreDataManager.shared.getWorkoutData().map({$0.workoutArray}))
-        print(CoreDataManager.shared.getWorkoutIDData().map({$0.workoutID}))
+//        print(CoreDataManager.shared.getWorkoutData().map({$0.id}))
+//        print(CoreDataManager.shared.getWorkoutData().map({$0.title}))
+//        print(CoreDataManager.shared.getWorkoutData().map({$0.workoutArray}))
+//        print(CoreDataManager.shared.getWorkoutIDData().map({$0.id}))
         
         view.saveSetAlertView.alpha = 0
         view.saveCompleteLabel.text = "세트 저장 완료!"
@@ -174,7 +174,7 @@ extension SettingViewModel {
             view.saveCompleteView.alpha = 0
         }
         view.leftBarBtnItem.isEnabled = true
-        
+        view.rightBarBtnItem.isEnabled = true
     }
     
     func pokerCardBtnTapped(view: SettingView, _ sender: UIButton) {

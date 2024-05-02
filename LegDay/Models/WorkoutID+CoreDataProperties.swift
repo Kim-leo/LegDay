@@ -16,7 +16,8 @@ extension WorkoutID {
         return NSFetchRequest<WorkoutID>(entityName: "WorkoutID")
     }
 
-    @NSManaged public var workoutID: Int64
+    @NSManaged public var id: Int64
+    @NSManaged public var workoutForCollectionViewCell: [[String]]?
 
 }
 

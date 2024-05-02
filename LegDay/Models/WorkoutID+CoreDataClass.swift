@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(WorkoutID)
+//@objc(WorkoutID)
 public class WorkoutID: NSManagedObject {
 
 }
