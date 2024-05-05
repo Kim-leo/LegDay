@@ -42,7 +42,8 @@ extension SettingViewModel {
  
     // MARK: - Retrieve WorkoutID Data
     func initialSetting(view: SettingView) {
-        workoutForCategories = myWorkoutModel.workoutsForCollectionViewCell
+        workoutForCategories = CoreDataManager.shared.getWorkoutIDData().map({$0.workoutForCollectionViewCell ?? [[]]})[0]
+ //        workoutForCategories = myWorkoutModel.workoutsForCollectionViewCell
         typeOfWorkouts = myWorkoutModel.typeOfWorkouts
         
         if yourAllWorkoutsArray.count == 1 {
