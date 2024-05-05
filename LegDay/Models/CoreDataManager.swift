@@ -117,7 +117,7 @@ class CoreDataManager {
             fetchRequest.sortDescriptors = [idSort]
             
             do {
-                if let fetchResult: [WorkoutSets] = try context.fetch(fetchRequest) as? [WorkoutSets] {
+                if let fetchResult: [WorkoutID] = try context.fetch(fetchRequest) as? [WorkoutID] {
                     let objectUpdate = fetchResult[indexPath]
                     objectUpdate.setValue(workoutForCollectionViewCell, forKey: "workoutForCollectionViewCell")
                     

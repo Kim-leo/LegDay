@@ -110,7 +110,8 @@ extension SettingViewModel {
     // MARK: - Insert new data and Update WorkoutID Data
     func saveAndUpdateMyNewWorkout(_ view: SettingView) {
         workoutForCategories[rowInPickerView].append(inputWorkout)
-        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
+        CoreDataManager.shared.updateWorkoutIDData(indexPath: 0, workoutForCollectionViewCell: workoutForCategories)
+//        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
         
         view.lowerCollectinView.performBatchUpdates {
             view.lowerCollectinView.insertItems(at: [IndexPath(item: 1, section: 0)])
@@ -227,7 +228,9 @@ extension SettingViewModel {
         
         view.lowerCollectinView.deleteItems(at: [IndexPath(item: indexPath.row, section: 0)])
         view.lowerCollectinView.reloadData()
-        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
+        
+        CoreDataManager.shared.updateWorkoutIDData(indexPath: 0, workoutForCollectionViewCell: workoutForCategories)
+//        myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
     }
     
     func tryingToDeleteAddWorkoutByYourselfCell(_ view: SettingView) {
