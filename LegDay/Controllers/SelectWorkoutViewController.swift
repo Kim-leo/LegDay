@@ -22,6 +22,8 @@ class SelectWorkoutViewController: UIViewController {
         viewModel.updateTableViewCell(selectWorkoutView)
         selectWorkoutView.myWorkoutTableView.reloadData()
         popSwipeRecognizer()
+        
+        
     }
     
     override func viewDidLoad() {

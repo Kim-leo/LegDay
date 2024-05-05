@@ -10,13 +10,15 @@ import UIKit
 class HomeViewController: UIViewController {
 
     let homeView = HomeView()
+    let viewModel = HomeViewModel.shared
+    
     
     var rightBarButton = UIBarButtonItem()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tabBarController?.tabBar.isHidden = false
-        
+        viewModel.initializeWorkoutsInDataModel()
     }
     
     var gradientLayer: CAGradientLayer!
@@ -32,7 +34,7 @@ class HomeViewController: UIViewController {
         homeView.startWorkoutBtn.addTarget(self, action: #selector(startWorkoutBtnTapped), for: .touchUpInside)
         homeView.descriptionBtn.addTarget(self, action: #selector(descriptionBtnTapped), for: .touchUpInside)
 
-
+        
     }
     
     

@@ -40,6 +40,7 @@ class SettingViewModel {
 
 extension SettingViewModel {
  
+    // MARK: - Retrieve WorkoutID Data
     func initialSetting(view: SettingView) {
         workoutForCategories = myWorkoutModel.workoutsForCollectionViewCell
         typeOfWorkouts = myWorkoutModel.typeOfWorkouts
@@ -105,7 +106,9 @@ extension SettingViewModel {
         }
     }
     
-    func saveAndUpdateMyNewWorkout(_ view: SettingView) {        workoutForCategories[rowInPickerView].append(inputWorkout)
+    // MARK: - Insert new data and Update WorkoutID Data
+    func saveAndUpdateMyNewWorkout(_ view: SettingView) {
+        workoutForCategories[rowInPickerView].append(inputWorkout)
         myWorkoutModel.workoutsForCollectionViewCell = workoutForCategories
         
         view.lowerCollectinView.performBatchUpdates {
