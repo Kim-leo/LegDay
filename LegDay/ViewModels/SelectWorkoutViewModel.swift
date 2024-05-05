@@ -26,8 +26,8 @@ class SelectWorkoutViewModel {
 //        myWorkoutsList = myWorkoutModel.myWorkoutsList
         
         let loadedWorkoutSets = CoreDataManager.shared.getWorkoutData()
-        myWorkoutsTitles = loadedWorkoutSets.map({$0.title ?? ""})
-        myWorkoutsList = loadedWorkoutSets.map({$0.workoutArray ?? []})
+        myWorkoutsTitles = loadedWorkoutSets.map({$0.title ?? ""}).reversed()
+        myWorkoutsList = loadedWorkoutSets.map({$0.workoutArray ?? []}).reversed()
     }
     
     func changeColorOfTheBtn(_ view: SelectWorkoutView) {
