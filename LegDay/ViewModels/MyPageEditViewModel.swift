@@ -14,6 +14,7 @@ class MyPageEditViewModel {
     var myWorkoutModel = MyWorkout.shared
     
     var typeOfWorkouts = [String]()
+    var workoutForCategories = [[String]]()
     var yourAllWorkoutsArray = [String]()
     
     var workoutsInTableCell = [String]()
@@ -22,8 +23,10 @@ class MyPageEditViewModel {
     var loadedWorkoutSets = CoreDataManager.shared.getWorkoutData()
     
     func initialSetting(_ view: MyPageEditView) {
+        view.lowerCollectinView.reloadData()
         typeOfWorkouts = myWorkoutModel.typeOfWorkouts
-        yourAllWorkoutsArray = Array(myWorkoutModel.workoutsForCollectionViewCell.joined())
+        workoutForCategories = CoreDataManager.shared.getWorkoutIDData().map({$0.workoutForCollectionViewCell ?? [[]]})[0]
+        yourAllWorkoutsArray = Array(workoutForCategories.joined())
         
         // MARK: - 'Load' data in DataModel
 //        view.titleTextField.text = "\(loadedWorkoutSets.map({$0.title ?? ""}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow])"
@@ -33,20 +36,20 @@ class MyPageEditViewModel {
         view.titleTextField.text = myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC
         workoutsInTableCell = myWorkoutModel.selectedWorkoutInSelectWorkoutVC
         
-        
-        
     }
     
     func autoSaveEditedData(_ view: MyPageEditView) {
+//        print("SelectedCoreDataWorkoutID: ", CoreDataManager.shared.getWorkoutData().map({$0.id}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow])
+        
         let rawTitleString = view.titleTextField.text ?? ""
-        let startIndex = rawTitleString.index(rawTitleString.startIndex, offsetBy: 1)
-        let titleString = String(rawTitleString[startIndex...])
         
         
         // MARK: - 'Save' edited data in DataModel
-        let selectedCoreDataWorkoutID = CoreDataManager.shared.getWorkoutData().map({$0.id})[myWorkoutModel.selectedTableViewIndexPathRow]
-//        print(selectedCoreDataWorkoutID)
-        CoreDataManager.shared.updateWorkoutData(indexPath: Int(selectedCoreDataWorkoutID), title: rawTitleString, workoutArray: workoutsInTableCell)
+//        let selectedCoreDataWorkoutID = CoreDataManager.shared.getWorkoutData().map({$0.id}).reversed()[myWorkoutModel.selectedTableViewIndexPathRow]
+//        print("here: ", selectedCoreDataWorkoutID)
+        
+        let indexPathRowToBeUpdated: Int = CoreDataManager.shared.getWorkoutData().count - myWorkoutModel.selectedTableViewIndexPathRow + 1
+        CoreDataManager.shared.updateWorkoutData(indexPath: myWorkoutModel.selectedTableViewIndexPathRow, title: rawTitleString, workoutArray: workoutsInTableCell)
         
 //        myWorkoutModel.myWorkoutTitles[myWorkoutModel.selectedTableViewIndexPathRow] = titleString
 //        myWorkoutModel.myWorkoutsList[myWorkoutModel.selectedTableViewIndexPathRow] = workoutsInTableCell

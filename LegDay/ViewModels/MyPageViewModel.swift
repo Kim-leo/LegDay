@@ -35,6 +35,7 @@ class MyPageViewModel {
     func saveCurrentCellData(indexPath: IndexPath) {
         myWorkoutModel.selectedWorkoutTitleInSelectWorkoutVC = CoreDataManager.shared.getWorkoutData().map({$0.title ?? ""}).reversed()[indexPath.row]
         myWorkoutModel.selectedWorkoutInSelectWorkoutVC = CoreDataManager.shared.getWorkoutData().map({$0.workoutArray ?? []}).reversed()[indexPath.row]
+        
     }
     
 //    func editWorkoutFromMyPageVC() {

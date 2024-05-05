@@ -63,6 +63,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         print("indexPath.row: " , indexPath.row)
         print("workoutData ID: ", CoreDataManager.shared.getWorkoutData().map({$0.id}).reversed()[indexPath.row])
         print("WorkoutData workout Array ", CoreDataManager.shared.getWorkoutData().map({$0.workoutArray}).reversed()[indexPath.row])
+        print("All workoutData id: ", CoreDataManager.shared.getWorkoutData().map({$0.id}).reversed())
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

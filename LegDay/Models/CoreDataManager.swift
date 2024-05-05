@@ -45,7 +45,7 @@ class CoreDataManager {
             
             do {
                 if let fetchResult: [WorkoutSets] = try context.fetch(fetchRequest) as? [WorkoutSets] {
-                    let objectUpdate = fetchResult[indexPath]
+                    let objectUpdate = fetchResult.reversed()[indexPath]
                     objectUpdate.setValue(title, forKey: "title")
                     objectUpdate.setValue(workoutArray, forKey: "workoutArray")
                     
